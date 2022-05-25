@@ -1,0 +1,105 @@
+{
+  "project_info": {
+    "project_number": "324316550639",
+    "firebase_url": "https://smartgym-1204.firebaseio.com",
+    "project_id": "smartgym-1204",
+    "storage_bucket": "smartgym-1204.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:324316550639:android:2bf3dedb89a50980",
+        "android_client_info": {
+          "package_name": "com.tangramfactory.smartgym"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "324316550639-mthe45jmdiht5p7cip2c7sg64dp91oa6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tangramfactory.smartgym",
+            "certificate_hash": "01116b53b21c1100399ee8db7f9ebe164d3340ed"
+          }
+        },
+        {
+          "client_id": "324316550639-t4khgn4850m66odlo95f7485ss4of131.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVFeavjQD3V7tBjby1wsykxwkmmWHOUkI"
+        },
+        {
+          "current_key": "AIzaSyCTb82xb5H4ehTxjflAzi6Js6jd_3ssUN8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "324316550639-9n2gugesg2p1gktcalr4fg66sp47v5o9.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "324316550639-lq3t1ts735dtlmp37lvhiik6hlq3lplj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "kr.tangram.smartgym"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:324316550639:android:def4487c09ce340673d21a",
+        "android_client_info": {
+          "package_name": "kr.tangram.smartgym"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "324316550639-olo63eso98fgg9n5iau66fd9dhlgpt05.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "kr.tangram.smartgym",
+            "certificate_hash": "58570f967c9c63b7301822573a453f0fd07ca157"
+          }
+        },
+        {
+          "client_id": "324316550639-t4khgn4850m66odlo95f7485ss4of131.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVFeavjQD3V7tBjby1wsykxwkmmWHOUkI"
+        },
+        {
+          "current_key": "AIzaSyCTb82xb5H4ehTxjflAzi6Js6jd_3ssUN8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "324316550639-9n2gugesg2p1gktcalr4fg66sp47v5o9.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "324316550639-lq3t1ts735dtlmp37lvhiik6hlq3lplj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "kr.tangram.smartgym"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
