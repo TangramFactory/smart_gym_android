@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">smart_gym</string>
+    <string name="firebase_project_id">smartgym-1204</string>
+    <string name="firebase_api_key">AIzaSyCPc_hCgBetiPKR61cW-vnfLv-HOv_RL7c</string>
+    <string name="firebase_application_id">1:324316550639:android:2bf3dedb89a50980</string>
+    <string name="google_map_api_key">AIzaSyBpr2aD8VPyQ4CaKWsdLoqtG7WEhDjjErQ</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
