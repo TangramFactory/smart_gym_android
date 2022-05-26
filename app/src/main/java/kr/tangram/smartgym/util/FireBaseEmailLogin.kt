@@ -1,4 +1,4 @@
-package kr.tangram.smartgym
+package kr.tangram.smartgym.util
 
 import android.content.Context
 import android.util.Log
@@ -10,6 +10,7 @@ import com.google.firebase.auth.ktx.auth
 
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.ktx.initialize
+import kr.tangram.smartgym.R
 
 class FireBaseEmailLogin constructor(private val context: Context) {
     private val TAG = "deepLink"

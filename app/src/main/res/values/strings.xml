@@ -7,4 +7,10 @@
     <string name="title_activity_maps">MapsActivity</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="login_email_certification">Email Certification</string>
+    <string name="login_sign_in">Sign In</string>
+    <string name="login_email_login">Email Login</string>
+    <string name="login_hint_email_login">example@google.com</string>
+    <string name="login_email_id">Email ID</string>
+    <string name="login_script">Enter your email address to receive and enter a verification code. If you enter the verification code without setting a password, you can sign up. It\'s done.</string>
 </resources>

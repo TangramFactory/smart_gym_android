@@ -1,16 +1,19 @@
 package kr.tangram.smartgym.ui.login
 
-import android.app.Application
 import android.util.Log
-import androidx.lifecycle.AndroidViewModel
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import kr.tangram.smartgym.FireBaseEmailLogin
+import kr.tangram.smartgym.util.FireBaseEmailLogin
+import kr.tangram.smartgym.base.BaseViewModel
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
-class LoginViewModel constructor(application: Application) : AndroidViewModel(application) {
-    private var fireBaseEmailLogin: FireBaseEmailLogin = FireBaseEmailLogin(application)
+
+class LoginViewModel : BaseViewModel(), KoinComponent{
+
+    private val fireBaseEmailLogin: FireBaseEmailLogin by inject()
     private val auth : FirebaseAuth = Firebase.auth
     private val tag = "Login"
     private var email = "printf2475@naver.com"

@@ -1,4 +1,4 @@
-package kr.tangram.smartgym
+package kr.tangram.smartgym.base
 
 import android.app.Application
 import kr.tangram.smartgym.di.*
