@@ -1,7 +1,9 @@
 package kr.tangram.smartgym.ui.challenge
 
-import androidx.lifecycle.ViewModel
+import TableNameRepository
+import kr.tangram.smartgym.base.BaseViewModel
 
-class ChallengeViewModel : ViewModel() {
-    // TODO: Implement the ViewModel
+class ChallengeViewModel(
+) : BaseViewModel() {
+
 }

@@ -48,6 +48,9 @@
         <entry key="app/src/main/res/layout/layout_sync.xml" value="0.5604166666666667" />
         <entry key="app/src/main/res/layout/layout_sync_row.xml" value="0.5604166666666667" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.5604166666666667" />
+        <entry key="..\:/dev/smart_gym/app/src/main/res/layout/activity_login.xml" value="0.1" />
+        <entry key="..\:/dev/smart_gym/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/dev/smart_gym/app/src/main/res/layout/fragment_challenge.xml" value="0.1" />
       </map>
     </option>
   </component>

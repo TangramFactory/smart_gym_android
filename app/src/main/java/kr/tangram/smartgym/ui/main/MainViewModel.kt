@@ -1,6 +1,7 @@
 package kr.tangram.smartgym.ui.main
 
 import ContributorRepository
+import TableNameRepository
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -10,8 +11,9 @@ import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
 
-class MainViewModel : BaseViewModel() , KoinComponent{
-    private val contributorRepository : ContributorRepository by inject()
+class MainViewModel(
+    private val contributorRepository: TableNameRepository
+) : BaseViewModel() {
 
     private val _name = MutableLiveData<String>()
     val name : LiveData<String>

@@ -1,29 +1,28 @@
 package kr.tangram.smartgym.ui.challenge
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import kr.tangram.smartgym.R
+import kr.tangram.smartgym.base.BaseFragment
+import kr.tangram.smartgym.databinding.FragmentChallengeBinding
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class ChallengeFragment : Fragment() {
+class ChallengeFragment : BaseFragment<FragmentChallengeBinding, ChallengeViewModel>(
+    R.layout.fragment_challenge
+) {
 
     companion object {
         @JvmStatic
         fun newInstance() = ChallengeFragment()
     }
 
-    private lateinit var viewModel: ChallengeViewModel
+    override val viewModel: ChallengeViewModel by viewModel()
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View? {
-        viewModel = ViewModelProvider(this)[ChallengeViewModel::class.java]
+    override fun initLiveData() {
 
-        return inflater.inflate(R.layout.fragment_challenge, container, false)
+    }
+
+    override fun initListener() {
+
     }
 
 }
