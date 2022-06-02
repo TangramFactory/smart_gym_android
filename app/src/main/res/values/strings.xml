@@ -5,7 +5,7 @@
     <string name="firebase_application_id">1:324316550639:android:2bf3dedb89a50980</string>
     <string name="google_map_api_key">AIzaSyBpr2aD8VPyQ4CaKWsdLoqtG7WEhDjjErQ</string>
     <string name="title_activity_maps">MapsActivity</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="login_email_certification">Email Certification</string>
     <string name="login_sign_in">Sign In</string>
@@ -13,4 +13,87 @@
     <string name="login_hint_email_login">example@google.com</string>
     <string name="login_email_id">Email ID</string>
     <string name="login_script">Enter your email address to receive and enter a verification code. If you enter the verification code without setting a password, you can sign up. It\'s done.</string>
+    <string name="login_joining_under_14">Information on joining\n under 14 years of age</string>
+    <string name="login_kakao_certification">Kakao Certification</string>
+    <string name="login_mobile_certification">Mobile Certification</string>
+    <string name="login_button_next">Next</string>
+    <string name="login_agree_all">Agree All</string>
+    <string name="login_over_14_years_old">Over 14 Years Old.</string>
+    <string name="login_privacy_policy">Privacy Policy</string>
+    <string name="login_terms_and_conditions">Smart Gym Terms and Conditions</string>
+    <string name="login_location_information_terms_and_conditions">Location Information Terms and Conditions</string>
+    <!-- BASICCOUNT -->
+    <string name="basiccount_title">Basic Count</string>
+    <string name="basiccount_title_jump">Jumps</string>
+    <string name="basiccount_title_jump_color">#FF6161</string>
+    <string name="basiccount_title_calorie">Calories</string>
+    <string name="basiccount_title_calorie_color">#FF8532</string>
+    <string name="basiccount_title_time">Time</string>
+    <string name="basiccount_title_time_color">#4096FF</string>
+    <string name="basiccount_title_goal">Goal</string>
+    <string name="basiccount_title_goal_color">#3DE463</string>
+
+
+    <string name="word_next">Next</string>
+    <string name="word_confirm">Confirm</string>
+    <string name="word_cancel">Cancel</string>
+    <string name="word_google">Google</string>
+    <string name="word_facebook">FaceBook</string>
+    <string name="word_email">Email</string>
+    <string name="word_send">Send</string>
+    <string name="word_complete">Complete</string>
+    <string name="word_hour">Hour</string>
+    <string name="word_minute">Min</string>
+    <string name="word_second">Sec</string>
+    <string name="word_time">Time</string>
+    <string name="word_calorie">Calories</string>
+    <string name="word_jump">Jump</string>
+    <string name="word_today">Today</string>
+    <string name="word_logout">Logout</string>
+    <string name="word_connect">Connect</string>
+    <string name="word_disconnected">Disconnect</string>
+    <string name="word_setting">Settings</string>
+    <string name="word_close">Close</string>
+    <string name="word_save">Save</string>
+    <string name="word_height">Height</string>
+    <string name="word_weight">Weight</string>
+    <string name="word_gender">Gender</string>
+    <string name="word_birthday">Birthday</string>
+    <string name="word_dailygoal">Daily Goal</string>
+    <string name="word_week_range">Week</string>
+    <string name="word_month_range">Month</string>
+    <string name="word_year_range">Year</string>
+    <string name="word_all_range">Total</string>
+    <string name="word_level">Level</string>
+    <string name="word_success">Success</string>
+    <string name="word_fail">Fail</string>
+    <string name="work_rank">Rank</string>
+    <string name="word_jumps">Jumps</string>
+
+    <!-- POP . HISTORY -->
+    <string name="pop_history_title">Sync your Exercise Data</string>
+    <string name="pop_history_description">Save your Exercise Data.</string>
+
+    <string name="error_network_connection"><![CDATA[The network connection is bad.<br>Please check and try again.]]></string>
+    <string name="basiccount_pop_voice_complete" formatted="false">%s jumped.</string>
+    <string name="word_count_ordinal">th</string>
+    <string name="setting_device_firmware">Firmware version</string>
+    <string name="setting_device_firmwareupdate">FirmWare Update</string>
+    <string name="setting_device_firmwarealert">\"Do not power off your phone until this\nupdate is complete.\nDo not operate SmartRope during this update process.\"</string>
+    <string name="setting_device_firmwarefound">Found a device waiting for a firmware update.\nDo you want to proceed with the firmware update?</string>
+
+    <string name="notification_bleclose_title">Power management</string>
+    <string name="notification_bleclose_message">Automatically disconnected due to long period of inactivity.</string>
+    <string name="message_internet_denied">Unable to use network service</string>
+    <string name="message_update_googleservice">Unable to use Google Play \n Please update the application or complete the installation</string>
+    <!-- NOTIFICATION BLE -->
+    <string name="notification_bleautoclose_channel_num" translatable="false">9</string>
+    <string name="notification_bleautoclose_channel_id" translatable="false">smartrope_bleclose</string>
+    <string name="notification_bleautoclose_channel_title" translatable="false">BLE Power Save Notification</string>
+    <string name="notification_bleautoclose_channel_description" translatable="false">Automatically disconnected due to long period of inactivity.</string>
+
+    <!-- SETTING . DEVICE DISCOVER -->
+    <string name="setting_discover_title">Searching for SmartRope</string>
+    <string name="setting_discover_start">Start Searching</string>
+    <string name="setting_discover_doing">Searching..</string>
 </resources>

@@ -13,8 +13,9 @@ class IntroActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_intro)
 
-        Thread.sleep(2000)
+        Thread.sleep(5000)
         startActivity(Intent(this, LoginActivity::class.java))
+        this.finish()
 
     }
 

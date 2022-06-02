@@ -8,7 +8,7 @@ plugins {
     id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 }
 apply plugin: 'kotlin-android'
-
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 31
@@ -48,7 +48,7 @@ android {
 
 
     ext.server_live_url = "https://us-central1-tangram-smartrope.cloudfunctions.net/liveSmartrope/"
-    ext.server_dev_url = "https://us-central1-tangram-smartrope.cloudfunctions.net/devSmartrope/"
+    ext.server_dev_url = "https://us-central1-smartgym-1204.cloudfunctions.net/devSmartGYM/"
     ext.server_proxy_live_url = "http://02.api.smartrope.tangramfactory.com/live/"
     ext.server_proxy_dev_url = "http://02.api.smartrope.tangramfactory.com/dev/"
 
@@ -62,7 +62,7 @@ android {
         DEV {
             flavorDimensions "DEV"
 //            applicationIdSuffix = ".dev"
-            buildConfigField("String", "SERVER_URL", "\"$server_live_url\"")
+            buildConfigField("String", "SERVER_URL", "\"$server_dev_url\"")
         }
     }
 }
@@ -89,6 +89,7 @@ dependencies {
     implementation 'androidx.activity:activity-ktx:1.4.0'
     implementation 'androidx.fragment:fragment-ktx:1.4.1'
 
+
     // firebase
     implementation platform('com.google.firebase:firebase-bom:30.0.1')
     implementation 'com.google.firebase:firebase-core:21.0.0'
@@ -99,6 +100,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-config'
     implementation 'com.google.firebase:firebase-crashlytics:18.2.8'
     implementation 'com.google.firebase:firebase-analytics'
+    implementation 'com.google.firebase:firebase-firestore-ktx'
 
 
 
@@ -128,7 +130,24 @@ dependencies {
     // koin
     implementation "io.insert-koin:koin-core:3.1.5"
     implementation "io.insert-koin:koin-android:3.1.5"
+    //     Nordic DFU
+    implementation 'no.nordicsemi.android:dfu:1.10.1'
+    //     Blur
+    implementation 'com.github.mmin18:realtimeblurview:1.2.1'
+//     Fuel : Http Request
+//     https://github.com/kittinunf/Fuel
+    implementation 'com.github.kittinunf.fuel:fuel-android:2.2.3' // 20200708
 
+    // LOTTIE
+    implementation 'com.airbnb.android:lottie:4.2.0'
+
+//     EverythingMe : overscroll-decor
+    implementation 'me.everything:overscroll-decor-android:1.1.0'
+    // 프로그래스바 (기본메터리얼프로그래시브바는 안에 패딩이 있어서..)
+    implementation 'me.zhanghai.android.materialprogressbar:library:1.6.1'
+
+    //     https://github.com/ybq/Android-SpinKit
+    implementation 'com.github.ybq:Android-SpinKit:1.2.0'
 
 }
 

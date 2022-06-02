@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="button_padding_start">20dp</dimen>
+    <dimen name="login_script_text_size">14sp</dimen>
+    <dimen name="login_header_text_size">20sp</dimen>
+    <dimen name="login_header2_text_size">18sp</dimen>
+    <dimen name="login_button_text_size">16sp</dimen>
+    <dimen name="login_button_text_small_size">10sp</dimen>
+    <dimen name="login_script_margin_top">7dp</dimen>
+    <dimen name="login_header_margin_top">54dp</dimen>
+    <dimen name="layout_with">295dp</dimen>
+</resources>

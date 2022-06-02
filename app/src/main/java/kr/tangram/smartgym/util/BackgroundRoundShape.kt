@@ -23,7 +23,7 @@ class BackgroundRoundShape {
             )
             val colors = intArrayOf(
                 Color.parseColor(colorString),
-                Color.RED,
+                Color.parseColor("#AAAAAA"),
                 Color.GREEN,
                 Color.BLUE
             )
@@ -44,7 +44,7 @@ class BackgroundRoundShape {
             )
             val colors = intArrayOf(
                 Color.parseColor(fillColorString),
-                Color.RED,
+                Color.parseColor("#AAAAAA"),
                 Color.GREEN,
                 Color.BLUE
             )
@@ -58,7 +58,7 @@ class BackgroundRoundShape {
             )
             val colors2 = intArrayOf(
                 Color.parseColor(strokeColorString),
-                Color.RED,
+                Color.parseColor("#AAAAAA"),
                 Color.GREEN,
                 Color.BLUE
             )
