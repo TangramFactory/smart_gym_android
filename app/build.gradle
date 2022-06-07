@@ -154,6 +154,13 @@ dependencies {
     implementation "androidx.room:room-rxjava2:$room_version"
     implementation "androidx.room:room-ktx:$room_version"
 
+    // bluetooth
+    implementation 'no.nordicsemi.android:ble:2.2.4'
+    implementation 'no.nordicsemi.android:ble-common:2.2.4'
+    implementation 'no.nordicsemi.android.support.v18:scanner:1.4.2'
+
+    // hawk
+    implementation 'com.orhanobut:hawk:2.0.1'
 }
 
 
