@@ -4,69 +4,68 @@ import android.util.Log
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import kr.tangram.smartgym.util.FireBaseEmailLogin
 import kr.tangram.smartgym.base.BaseViewModel
-import kr.tangram.smartgym.data.remote.RestApi
+import kr.tangram.smartgym.data.repository.UserRepository
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
 
-class LoginViewModel constructor(
-    private val restApi: RestApi
-) : BaseViewModel(), KoinComponent{
-
+class LoginViewModel : BaseViewModel(), KoinComponent{
+    private val userRepository: UserRepository by inject()
     private val fireBaseEmailLogin: FireBaseEmailLogin by inject()
     private val auth : FirebaseAuth = Firebase.auth
-    private val fireStore = Firebase.firestore
     private val tag = "Login"
-    private var email = "printf2475@naver.com"
-
-    init {
-        getLastLoginUserInfo()
-    }
-
-    fun getLastLoginUserInfo(){
-
-    }
 
 
     fun checkLogin(emailLink : String, savedUserCallback : () -> Unit, notSavedUserCallback : () -> Unit){
-
+        // 로그인되어있을때
         if(auth.currentUser !=null){
-            // 로그인되어있을때
             savedUserCallback()
-        }else if (auth.isSignInWithEmailLink(emailLink)) {
+            return
+        }
+
+        if (auth.isSignInWithEmailLink(emailLink)) {
             var savedUserFlag = false
             //링크 타고 들어왔을때 로그인, 이메일은 로컬DB 사용해서 불러와야함...
-                if (isSavedUser(email)){ savedUserFlag = true }
+            userRepository.getUserCachedEmail().subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+                .subscribe {
+                    if (it.email.isNullOrEmpty()){ return@subscribe }
 
-            auth.signInWithEmailLink(email, emailLink)
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        Log.d(tag, "Successfully signed in with email link!")
+                    if (isSavedUser(it.email!!)){ savedUserFlag = true }
 
-                        if (!savedUserFlag){
-                            savedUserCallback()
-                        }else{
-                            notSavedUserCallback()
+                    auth.signInWithEmailLink(it.email!!, emailLink)
+                        .addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                Log.d(tag, "Successfully signed in with email link!")
+                                if (savedUserFlag){
+                                    savedUserCallback()
+                                }else{
+                                    saveUser(task.result.user?.uid.toString(), it.email!!)
+                                    notSavedUserCallback()
+                                }
+                            } else { Log.e(tag, "Error signing in with email link", task.exception) }
                         }
-
-                    } else { Log.e(tag, "Error signing in with email link", task.exception) }
                 }
-
         }
     }
 
-    fun isSavedUser(string: String): Boolean {
-//        restApi.getUserExists()
 
-        return true
-    }
+    fun isSavedUser(string: String): Boolean = userRepository.getUserExists(string)?.result?.userCnt == 1
+
+    private fun saveUser(uid : String, email : String) = userRepository.getUserReg(uid, email)
+
 
     fun sendEmail(email: String) {
         fireBaseEmailLogin.sendEmail(email)
+    }
+
+    fun saveEmail(email: String?) {
+        userRepository.cacheUserEmail(email!!)
     }
 
 

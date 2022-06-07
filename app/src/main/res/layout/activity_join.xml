@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
@@ -57,7 +55,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tvLoginScript" />
 
         <EditText
-            android:id="@+id/edtSignUpEmail"
+            android:id="@+id/edtJoinEmail"
             android:layout_width="@dimen/layout_with"
             android:layout_height="48dp"
             android:layout_marginStart="40dp"
@@ -75,29 +73,43 @@
             android:id="@+id/btnEmailSend"
             android:layout_width="@dimen/layout_with"
             android:layout_height="48dp"
-            android:layout_marginTop="264dp"
-            android:text="@string/login_email_certification"
-            android:textSize="@dimen/login_button_text_size"
-            android:textColor="@color/white"
-            android:textAlignment="textStart"
+            android:layout_marginTop="50dp"
+            android:drawableLeft="@drawable/ic_certification_email"
             android:paddingStart="@dimen/button_padding_start"
+            android:text="@string/login_email_certification"
+            android:textAlignment="textStart"
+            android:textColor="@color/white"
+            android:textSize="@dimen/login_button_text_size"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edtSignUpEmail" />
+            app:layout_constraintTop_toBottomOf="@+id/tvSignUpFailScript" />
 
         <TextView
             android:id="@+id/tvSignUpFailScript"
             android:layout_width="@dimen/layout_with"
-            android:layout_height="32dp"
+            android:layout_height="30dp"
             android:layout_marginStart="40dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="40dp"
             android:textColor="#FF0000"
             android:textSize="14sp"
+            android:gravity="center_vertical"
             android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edtSignUpEmail" />
+            app:layout_constraintTop_toBottomOf="@+id/edtJoinEmail" />
+
+        <TextView
+            android:id="@+id/btnRecertification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:clickable="true"
+            android:text="@string/login_recertification"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnEmailSend" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

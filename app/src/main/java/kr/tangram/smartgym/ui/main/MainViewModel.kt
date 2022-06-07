@@ -11,10 +11,8 @@ import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
 
-class MainViewModel(
-    private val contributorRepository: TableNameRepository
-) : BaseViewModel() {
-
+class MainViewModel: BaseViewModel() {
+    private val contributorRepository: TableNameRepository by inject()
     private val _name = MutableLiveData<String>()
     val name : LiveData<String>
         get() = _name

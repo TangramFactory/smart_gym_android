@@ -23,11 +23,12 @@ import kr.tangram.smartgym.ui.map.MapFragment
 import kr.tangram.smartgym.util.bleConnection
 import kr.tangram.smartgym.util.log
 import org.json.JSONObject
+import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(
     R.layout.activity_main
 ), NavigationBarView.OnItemSelectedListener , BleSmartRopeConnect.SmartRopeInterface{
-    override val viewModel: MainViewModel by viewModels()
+    override val viewModel: MainViewModel by lazy { getViewModel() }
     val tag =  javaClass.name
     //
     private val REQUEST_CODE_LOCATION = 101

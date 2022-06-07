@@ -42,31 +42,18 @@
             app:layout_constraintTop_toBottomOf="@+id/tvCertification" />
 
         <Button
-            android:id="@+id/btnCertificationKakao"
+            android:id="@+id/btnCertificationMobile"
             android:layout_width="@dimen/layout_with"
             android:layout_height="44dp"
-            android:layout_marginTop="36dp"
+            android:layout_marginTop="40dp"
+            android:drawableLeft="@drawable/ic_certification_mobile"
             android:paddingStart="@dimen/button_padding_start"
-            android:text="@string/login_kakao_certification"
+            android:text="@string/login_mobile_certification"
             android:textAlignment="textStart"
             android:textSize="@dimen/login_button_text_size"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvCertificationScript" />
-
-        <Button
-            android:id="@+id/btnCertificationMobile"
-            android:layout_width="@dimen/layout_with"
-            android:layout_height="44dp"
-            android:layout_marginTop="28dp"
-            android:text="@string/login_mobile_certification"
-            android:textSize="@dimen/login_button_text_size"
-            android:textColor="#3BA1FF"
-            android:textAlignment="textStart"
-            android:paddingStart="@dimen/button_padding_start"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnCertificationKakao" />
     </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </layout>

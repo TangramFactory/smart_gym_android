@@ -90,7 +90,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.508"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/edtEmail" />
+                app:layout_constraintTop_toBottomOf="@+id/edtEmail"
+                android:drawableLeft="@drawable/ic_login_email"/>
 
             <TextView
                 android:id="@+id/tvLoginFailScript"
@@ -108,18 +109,19 @@
                 app:layout_constraintTop_toBottomOf="@+id/edtEmail" />
 
             <Button
-                android:id="@+id/btnSignIn"
+                android:id="@+id/btnJoin"
                 android:layout_width="@dimen/layout_with"
                 android:layout_height="48dp"
                 android:layout_marginTop="20dp"
-                android:text="@string/login_sign_in"
+                android:text="@string/login_join"
                 android:textSize="@dimen/login_button_text_size"
                 android:textColor="@color/white"
                 android:textAlignment="textStart"
-                android:paddingStart="@dimen/button_padding_start"
+                android:paddingStart="24dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnEmailLink" />
+                app:layout_constraintTop_toBottomOf="@+id/btnEmailLink"
+                android:drawableLeft="@drawable/ic_login_join"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

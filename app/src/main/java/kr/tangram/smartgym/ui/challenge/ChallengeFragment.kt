@@ -4,6 +4,7 @@ import android.os.Bundle
 import kr.tangram.smartgym.R
 import kr.tangram.smartgym.base.BaseFragment
 import kr.tangram.smartgym.databinding.FragmentChallengeBinding
+import org.koin.androidx.viewmodel.ext.android.getViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ChallengeFragment : BaseFragment<FragmentChallengeBinding, ChallengeViewModel>(
@@ -15,7 +16,7 @@ class ChallengeFragment : BaseFragment<FragmentChallengeBinding, ChallengeViewMo
         fun newInstance() = ChallengeFragment()
     }
 
-    override val viewModel: ChallengeViewModel by viewModel()
+    override val viewModel: ChallengeViewModel by lazy { getViewModel() }
 
     override fun initLiveData() {
 

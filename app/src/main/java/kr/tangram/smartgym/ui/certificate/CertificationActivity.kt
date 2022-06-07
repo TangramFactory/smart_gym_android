@@ -28,7 +28,7 @@ class CertificationActivity :
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
-        binding.btnAge14.background = BackgroundRoundShape.fill("#444444")
+        binding.btnAge14.background = BackgroundRoundShape.fill("#3BA1FF")
         binding.btnNext.background = BackgroundRoundShape.fill("#3BA1FF")
         binding.btnNext.setOnClickListener { startActivity(Intent(this, CertificationDetailActivity::class.java)) }
         binding.btnAge14.setOnClickListener { }

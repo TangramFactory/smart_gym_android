@@ -1,4 +1,4 @@
-package kr.tangram.smartgym.data.model
+package kr.tangram.smartgym.data.remote.model
 
 data class UserExistsResult(
     val result: ResultExists

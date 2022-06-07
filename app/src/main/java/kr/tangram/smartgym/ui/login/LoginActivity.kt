@@ -2,36 +2,32 @@ package kr.tangram.smartgym.ui.login
 
 
 import android.content.Intent
-import android.graphics.Color
-import android.opengl.Visibility
+
 import android.os.Bundle
 import android.util.Log
 import android.util.Patterns
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
 import androidx.activity.viewModels
-import androidx.lifecycle.ViewModelProvider
 import kr.tangram.smartgym.R
 import kr.tangram.smartgym.base.BaseActivity
 import kr.tangram.smartgym.databinding.ActivityLoginBinding
 import kr.tangram.smartgym.ui.certificate.CertificationActivity
 import kr.tangram.smartgym.ui.main.MainActivity
 import kr.tangram.smartgym.util.BackgroundRoundShape
+import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 
 class LoginActivity: BaseActivity<ActivityLoginBinding, LoginViewModel>(R.layout.activity_login) {
 
-    override val viewModel: LoginViewModel by viewModels()
+    override val viewModel: LoginViewModel by lazy { getViewModel() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         val emailLink = intent.data.toString()
-        binding.btnSignIn.background = BackgroundRoundShape.fill("#444444")
+        binding.btnJoin.background = BackgroundRoundShape.fill("#444444")
         binding.btnEmailLink.background = BackgroundRoundShape.fill("#3BA1FF")
         viewModel.checkLogin(emailLink,
             savedUserCallback = {
@@ -48,7 +44,7 @@ class LoginActivity: BaseActivity<ActivityLoginBinding, LoginViewModel>(R.layout
             })
 
 
-        binding.btnSignIn.setOnClickListener { startActivity(Intent(this, CertificationActivity::class.java)) }
+        binding.btnJoin.setOnClickListener { startActivity(Intent(this, CertificationActivity::class.java)) }
 
         binding.btnEmailLink.setOnClickListener{
             if ( binding.edtEmail.text.isNullOrEmpty()){
@@ -72,13 +68,10 @@ class LoginActivity: BaseActivity<ActivityLoginBinding, LoginViewModel>(R.layout
                 return@setOnClickListener
             }
 
-            viewModel.sendEmail( binding.edtEmail.text.toString())
+            viewModel.sendEmail(binding.edtEmail.text.toString())
+            viewModel.saveEmail(binding.edtEmail.text.toString())
+
             binding.btnEmailLink.isEnabled = false
         }
-
-
-
     }
-
-
 }

@@ -27,7 +27,7 @@ class FireBaseEmailLogin constructor(private val context: Context) {
     }
 
     private val actionCodeSettings: ActionCodeSettings = actionCodeSettings {
-        url = "https://smartgym.page.link/Login"
+        url = "https://smartgym.page.link/Login?"
         // This must be true
         handleCodeInApp = true
         setAndroidPackageName(
@@ -38,6 +38,7 @@ class FireBaseEmailLogin constructor(private val context: Context) {
 
     fun sendEmail(email : String) {
         Firebase.auth.sendSignInLinkToEmail(email,actionCodeSettings)
+
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     Log.d("Login", "Email sent.")
