@@ -9,7 +9,6 @@ plugins {
 }
 apply plugin: 'kotlin-android'
 
-
 android {
     compileSdkVersion 31
     buildToolsVersion "30.0.3"
@@ -161,6 +160,16 @@ dependencies {
 
     // hawk
     implementation 'com.orhanobut:hawk:2.0.1'
+
+    // viewpaper indicator
+    implementation 'com.tbuonomo:dotsindicator:4.2'
+
+    // butterknife
+    implementation 'com.jakewharton:butterknife:10.2.3'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.3'
+    kapt 'com.jakewharton:butterknife-compiler:10.2.3'
+
+    implementation "androidx.coordinatorlayout:coordinatorlayout:1.1.0"
 }
 
 

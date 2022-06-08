@@ -3,6 +3,24 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/dev/smart_gym/app/src/main/res/drawable/background_popwindow2.xml" value="0.299" />
+        <entry key="..\:/dev/smart_gym/app/src/main/res/drawable/ic_checked_button.xml" value="0.299" />
+        <entry key="..\:/dev/smart_gym/app/src/main/res/drawable/ic_header_arrow.xml" value="0.299" />
+        <entry key="..\:/dev/smart_gym/app/src/main/res/drawable/ic_login_email.xml" value="0.299" />
+        <entry key="..\:/dev/smart_gym/app/src/main/res/drawable/ic_login_join.xml" value="0.299" />
+        <entry key="..\:/dev/smart_gym/app/src/main/res/layout/activity_certificate_detail.xml" value="0.43697916666666664" />
+        <entry key="..\:/dev/smart_gym/app/src/main/res/layout/activity_device_discover.xml" value="0.43697916666666664" />
+        <entry key="..\:/dev/smart_gym/app/src/main/res/layout/activity_intro.xml" value="0.3333333333333333" />
+        <entry key="..\:/dev/smart_gym/app/src/main/res/layout/activity_login.xml" value="0.1" />
+        <entry key="..\:/dev/smart_gym/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/dev/smart_gym/app/src/main/res/layout/activity_sample.xml" value="0.43697916666666664" />
+        <entry key="..\:/dev/smart_gym/app/src/main/res/layout/activity_welcome.xml" value="0.3333333333333333" />
+        <entry key="..\:/dev/smart_gym/app/src/main/res/layout/fragment_challenge.xml" value="0.1" />
+        <entry key="..\:/dev/smart_gym/app/src/main/res/layout/fragment_welcome.xml" value="0.35885416666666664" />
+        <entry key="..\:/dev/smart_gym/app/src/main/res/layout/layout_header.xml" value="0.43697916666666664" />
+        <entry key="..\:/dev/smart_gym/app/src/main/res/layout/layout_pop_dialog.xml" value="0.3390625" />
+        <entry key="..\:/dev/smart_gym/app/src/main/res/layout/layout_pop_textcount.xml" value="0.3385416666666667" />
+        <entry key="..\:/dev/smart_gym/app/src/main/res/layout/layout_sync_row.xml" value="0.3729166666666667" />
         <entry key="app/src/main/res/drawable-v24/ic_icon_bat_0.xml" value="0.377" />
         <entry key="app/src/main/res/drawable-v24/ic_notification_icon_smartrope.xml" value="0.377" />
         <entry key="app/src/main/res/drawable/background_popwindow2.xml" value="0.3775" />
@@ -48,9 +66,6 @@
         <entry key="app/src/main/res/layout/layout_sync.xml" value="0.5604166666666667" />
         <entry key="app/src/main/res/layout/layout_sync_row.xml" value="0.5604166666666667" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.5604166666666667" />
-        <entry key="..\:/dev/smart_gym/app/src/main/res/layout/activity_login.xml" value="0.1" />
-        <entry key="..\:/dev/smart_gym/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/dev/smart_gym/app/src/main/res/layout/fragment_challenge.xml" value="0.1" />
       </map>
     </option>
   </component>

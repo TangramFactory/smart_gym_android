@@ -26,7 +26,6 @@
         android:usesCleartextTraffic="true">
 
 
-
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_map_api_key"/>
@@ -79,6 +78,9 @@
             android:exported="true"/>
         <activity android:name=".ui.deviceConnect.DeviceDiscoverActivity"
             android:exported="true"/>
+
+        <activity android:name=".ui.welcome.WelComeActivity" android:screenOrientation="portrait"/>
+
         <!-- **** SERVICES **** -->
         <!-- BLE SERVICE -->
         <service android:name=".ble.BleSmartRopeService" />

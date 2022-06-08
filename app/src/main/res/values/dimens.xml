@@ -9,4 +9,10 @@
     <dimen name="login_script_margin_top">7dp</dimen>
     <dimen name="login_header_margin_top">54dp</dimen>
     <dimen name="layout_with">295dp</dimen>
+
+    <dimen name="text_size_16">16sp</dimen>
+    <dimen name="text_size_20">20sp</dimen>
+    <dimen name="text_size_24">24sp</dimen>
+
+
 </resources>

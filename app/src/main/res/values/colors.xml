@@ -18,7 +18,17 @@
     <color name="a01_text_dark">#464F6F</color>
     <color name="a01_text_accent">#FF6161</color>
 
+
+    <color name="color_1">#3B89FF</color>
+    <color name="color_2">#FFFFFF</color>
+
+
     <!--- Theme -->
+
+    <color name="color_both_1">#000000</color>
+    <color name="color_both_2">#FFFFFF</color>
+
+
     <color name="a01_background">#202639</color>
     <color name="a01_background_transparent_light">#32000000</color>
     <color name="a01_background_transparent">#7A000000</color>
