@@ -4,11 +4,14 @@ import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import android.widget.ImageView
 import androidx.activity.viewModels
+import androidx.appcompat.widget.Toolbar
 import androidx.databinding.BindingAdapter
 import androidx.databinding.BindingMethod
 import androidx.databinding.BindingMethods
+import com.google.android.material.appbar.CollapsingToolbarLayout
 import kr.tangram.smartgym.R
 import kr.tangram.smartgym.base.BaseActivity
 import kr.tangram.smartgym.databinding.ActivityCertificateBinding
@@ -31,13 +34,32 @@ class CertificationActivity :
         binding.btnAge14.background = BackgroundRoundShape.fill("#3BA1FF")
         binding.btnNext.background = BackgroundRoundShape.fill("#3BA1FF")
         binding.btnNext.setOnClickListener { startActivity(Intent(this, CertificationDetailActivity::class.java)) }
-        binding.btnAge14.setOnClickListener { }
+        binding.btnAge14.setOnClickListener { startActivity(Intent(this, Certification14AgeActivity::class.java))}
 
 
         binding.btnChechAge.setOnClickListener { goWebViewActivity(CHECK_AGE) }
         binding.btnPersonalData.setOnClickListener { goWebViewActivity(PERSONAL_DATA) }
         binding.btnTerms.setOnClickListener { goWebViewActivity(TERMS) }
         binding.btnLocationInfo.setOnClickListener { goWebViewActivity(LOCATION_INFO) }
+
+
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_header_arrow);
+
+        val collapsingToolbar: CollapsingToolbarLayout = findViewById(R.id.collapsing_toolbar)
+        collapsingToolbar.title = getString(R.string.login_join)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.getItemId()) {
+            android.R.id.home -> {
+                finish()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     private fun goWebViewActivity(str: String) {

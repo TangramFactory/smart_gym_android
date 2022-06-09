@@ -2,18 +2,21 @@ package kr.tangram.smartgym.ui.login
 
 
 import android.content.Intent
+import android.graphics.Color
 
 import android.os.Bundle
 import android.util.Log
 import android.util.Patterns
+import android.view.MenuItem
 import android.view.View
-import androidx.activity.viewModels
+import androidx.appcompat.widget.Toolbar
+import com.google.android.material.appbar.CollapsingToolbarLayout
 import kr.tangram.smartgym.R
 import kr.tangram.smartgym.base.BaseActivity
 import kr.tangram.smartgym.databinding.ActivityLoginBinding
 import kr.tangram.smartgym.ui.certificate.CertificationActivity
-import kr.tangram.smartgym.ui.main.MainActivity
 import kr.tangram.smartgym.util.BackgroundRoundShape
+import kr.tangram.smartgym.util.ReceiveEmail
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 
@@ -26,31 +29,17 @@ class LoginActivity: BaseActivity<ActivityLoginBinding, LoginViewModel>(R.layout
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val emailLink = intent.data.toString()
         binding.btnJoin.background = BackgroundRoundShape.fill("#444444")
-        binding.btnEmailLink.background = BackgroundRoundShape.fill("#3BA1FF")
-        viewModel.checkLogin(emailLink,
-            savedUserCallback = {
-                val intent = Intent(this, MainActivity::class.java)
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                startActivity(intent)
-                this.finish()
-            },
-            notSavedUserCallback = {
-                val intent = Intent(this, MainActivity::class.java)
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                startActivity(intent)
-                this.finish()
-            })
-
+        binding.btnEmailLink.background = BackgroundRoundShape.fill(getString(R.string.buttonColor))
 
         binding.btnJoin.setOnClickListener { startActivity(Intent(this, CertificationActivity::class.java)) }
-
+        binding.tvLoginFailScript.compoundDrawablePadding = 10
         binding.btnEmailLink.setOnClickListener{
             if ( binding.edtEmail.text.isNullOrEmpty()){
-                Log.d("click", "~")
                 binding.tvLoginFailScript.setText("이메일을 입력하여주세요.")
+                binding.tvLoginFailScript.setCompoundDrawablesWithIntrinsicBounds(getDrawable(R.drawable.ic_fail_maker), null, null,null)
                 binding.tvLoginFailScript.visibility = View.VISIBLE
+
                 return@setOnClickListener
             }
 
@@ -58,6 +47,7 @@ class LoginActivity: BaseActivity<ActivityLoginBinding, LoginViewModel>(R.layout
                 //이메일 패턴 아님!
                 binding.tvLoginFailScript.text = "이메일 형식이 아닙니다."
                 binding.tvLoginFailScript.visibility = View.VISIBLE
+                binding.tvLoginFailScript.setCompoundDrawablesWithIntrinsicBounds(getDrawable(R.drawable.ic_fail_maker), null, null,null)
                 return@setOnClickListener
             }
 
@@ -65,13 +55,33 @@ class LoginActivity: BaseActivity<ActivityLoginBinding, LoginViewModel>(R.layout
                //인증페이지로 넘어가야함
                 binding.tvLoginFailScript.text = "회원이 아닙니다. 회원가입을 해주세요"
                 binding.tvLoginFailScript.visibility = View.VISIBLE
+                binding.tvLoginFailScript.setCompoundDrawablesWithIntrinsicBounds(getDrawable(R.drawable.ic_fail_maker), null, null,null)
                 return@setOnClickListener
             }
 
-            viewModel.sendEmail(binding.edtEmail.text.toString())
+            viewModel.sendEmail(binding.edtEmail.text.toString(), ReceiveEmail.LOGIN)
             viewModel.saveEmail(binding.edtEmail.text.toString())
-
             binding.btnEmailLink.isEnabled = false
+
+            startActivity(Intent(this, LoginEmailSentActivity::class.java))
+        }
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_header_arrow);
+
+        val collapsingToolbar: CollapsingToolbarLayout = findViewById(R.id.collapsing_toolbar)
+        collapsingToolbar.title = getString(R.string.login_email_login)
+
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.getItemId()) {
+            android.R.id.home -> {
+                finish()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 }

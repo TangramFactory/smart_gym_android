@@ -1,14 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="button_padding_start">20dp</dimen>
-    <dimen name="login_script_text_size">14sp</dimen>
-    <dimen name="login_header_text_size">20sp</dimen>
-    <dimen name="login_header2_text_size">18sp</dimen>
-    <dimen name="login_button_text_size">16sp</dimen>
-    <dimen name="login_button_text_small_size">10sp</dimen>
-    <dimen name="login_script_margin_top">7dp</dimen>
-    <dimen name="login_header_margin_top">54dp</dimen>
-    <dimen name="layout_with">295dp</dimen>
+    <dimen name="layout_with_295dp">295dp</dimen>
+
+    <dimen name="layout_height_50dp">50dp</dimen>
+    <dimen name="layout_height_48dp">48dp</dimen>
+    <dimen name="layout_height_32dp">32dp</dimen>
+    <dimen name="layout_height_24dp">24dp</dimen>
+    <dimen name="layout_height_29dp">29dp</dimen>
+
+    <dimen name="text_size_20sp">20sp</dimen>
+    <dimen name="text_size_18sp">18sp</dimen>
+    <dimen name="text_size_16sp">16sp</dimen>
+    <dimen name="text_size_14sp">14sp</dimen>
+    <dimen name="text_size_12sp">12dp</dimen>
+    <dimen name="text_size_10sp">10sp</dimen>
+
+    <dimen name="margin_top_60dp">60dp</dimen>
+    <dimen name="margin_top_54dp">54dp</dimen>
+
+    <dimen name="margin_top_10dp">10dp</dimen>
+    <dimen name="margin_top_7dp">7dp</dimen>
+
+    <dimen name="margin_side_40dp">40dp</dimen>
+
+    <dimen name="padding_start_20dp">20dp</dimen>
+    <dimen name="padding_start_10dp">10dp</dimen>
+
+    <dimen name="border_radius_12dp">12dp</dimen>
+    <dimen name="border_padding_10dp">10dp</dimen>
+
+    <integer name="alpha_40">40</integer>
+    <integer name="alpha_60">60</integer>
+
 
     <dimen name="text_size_16">16sp</dimen>
     <dimen name="text_size_20">20sp</dimen>

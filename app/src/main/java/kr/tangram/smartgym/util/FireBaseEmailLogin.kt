@@ -1,6 +1,7 @@
 package kr.tangram.smartgym.util
 
 import android.content.Context
+import android.net.Uri
 import android.util.Log
 import com.google.firebase.FirebaseApp
 import com.google.firebase.FirebaseOptions
@@ -26,19 +27,8 @@ class FireBaseEmailLogin constructor(private val context: Context) {
         }
     }
 
-    private val actionCodeSettings: ActionCodeSettings = actionCodeSettings {
-        url = "https://smartgym.page.link/Login?"
-        // This must be true
-        handleCodeInApp = true
-        setAndroidPackageName(
-            "kr.tangramfactory.smartgym",
-            false, /* installIfNotAvailable */
-            "21" /* minimumVersion */)
-    }
-
-    fun sendEmail(email : String) {
-        Firebase.auth.sendSignInLinkToEmail(email,actionCodeSettings)
-
+    fun sendEmail(email : String, receiveEmail: ReceiveEmail) {
+        Firebase.auth.sendSignInLinkToEmail(email,makeSetting(receiveEmail))
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     Log.d("Login", "Email sent.")
@@ -48,4 +38,40 @@ class FireBaseEmailLogin constructor(private val context: Context) {
                 Log.d("Login", "fail ${it.message}")
             }
     }
+
+    private fun makeSetting(receiveEmail: ReceiveEmail) : ActionCodeSettings{
+        var url = "https://smartgym.page.link/Login"
+
+        when (receiveEmail) {
+            ReceiveEmail.LOGIN -> url = Uri.parse(url).buildUpon()
+                    .appendQueryParameter("receiveEmail", ReceiveEmail.LOGIN.toString())
+                    .build()
+                    .toString()
+
+            ReceiveEmail.JOIN -> url = Uri.parse(url).buildUpon()
+                .appendQueryParameter("receiveEmail", ReceiveEmail.JOIN.toString())
+                .build()
+                .toString()
+
+            ReceiveEmail.JUNIOR -> url = Uri.parse(url).buildUpon()
+                .appendQueryParameter("receiveEmail", ReceiveEmail.JUNIOR.toString())
+                .build()
+                .toString()
+        }
+
+        return actionCodeSettings {
+            this.url = url
+            // This must be true
+            handleCodeInApp = true
+            setAndroidPackageName(
+                "kr.tangramfactory.smartgym",
+                false, /* installIfNotAvailable */
+                "21" /* minimumVersion */)
+        }
+    }
+}
+
+
+enum class ReceiveEmail{
+    LOGIN, JOIN, JUNIOR
 }

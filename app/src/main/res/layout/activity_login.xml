@@ -12,9 +12,19 @@
             type="kr.tangram.smartgym.ui.login.LoginViewModel" />
     </data>
 
-    <ScrollView
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/main_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/color_both_2"
+        android:fitsSystemWindows="true">
+
+    <include layout="@layout/layout_header"/>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -23,53 +33,28 @@
 
 
             <TextView
-                android:id="@+id/tvEmailLogin"
-                android:layout_width="@dimen/layout_with"
-                android:layout_height="28dp"
-                android:layout_marginStart="40dp"
-                android:layout_marginTop="@dimen/login_header_margin_top"
-                android:layout_marginEnd="40dp"
-                android:text="@string/login_email_login"
-                android:textSize="@dimen/login_header_text_size"
+                android:id="@+id/tvLoginScript"
+                style="@style/ScriptTextStyle"
+                android:text="@string/login_script"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/tvLoginScript"
-                android:layout_width="@dimen/layout_with"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="40dp"
-                android:layout_marginTop="7dp"
-                android:layout_marginEnd="40dp"
-                android:text="@string/login_script"
-                android:textSize="@dimen/login_script_text_size"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvEmailLogin" />
-
-            <TextView
                 android:id="@+id/tvEmailID"
-                android:layout_width="@dimen/layout_with"
-                android:layout_height="24dp"
-                android:layout_marginStart="40dp"
+                style="@style/Header2TextStyle"
                 android:layout_marginTop="28dp"
-                android:layout_marginEnd="40dp"
                 android:text="@string/login_email_id"
-                android:textSize="@dimen/login_header2_text_size"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvLoginScript" />
 
             <EditText
                 android:id="@+id/edtEmail"
-                android:layout_width="@dimen/layout_with"
-                android:layout_height="48dp"
-                android:layout_marginStart="40dp"
-                android:layout_marginTop="@dimen/login_script_margin_top"
-                android:layout_marginEnd="40dp"
+                style="@style/EditTextStyle"
+                android:layout_marginTop="@dimen/margin_top_7dp"
                 android:hint="@string/login_hint_email_login"
-                android:inputType="textEmailAddress"
+                android:inputType=""
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
@@ -79,51 +64,36 @@
 
             <Button
                 android:id="@+id/btnEmailLink"
-                android:layout_width="@dimen/layout_with"
-                android:layout_height="48dp"
-                android:layout_marginTop="80dp"
+                style="@style/ButtonStyle"
+                android:drawableLeft="@drawable/ic_login_email"
                 android:text="@string/login_email_certification"
-                android:textSize="@dimen/login_button_text_size"
-                android:textColor="@color/white"
-                android:textAlignment="textStart"
-                android:paddingStart="@dimen/button_padding_start"
+                android:layout_marginTop="84dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.508"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/edtEmail"
-                android:drawableLeft="@drawable/ic_login_email"/>
+                app:layout_constraintTop_toBottomOf="@+id/tvLoginFailScript" />
 
             <TextView
                 android:id="@+id/tvLoginFailScript"
-                android:layout_width="@dimen/layout_with"
-                android:layout_height="24dp"
-                android:layout_marginStart="40dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="40dp"
-                android:textColor="#FF0000"
-                android:textSize="14sp"
-                android:visibility="invisible"
-
+                style="@style/MessageTextStyle"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/edtEmail" />
 
             <Button
                 android:id="@+id/btnJoin"
-                android:layout_width="@dimen/layout_with"
-                android:layout_height="48dp"
+                style="@style/ButtonStyle"
                 android:layout_marginTop="20dp"
+                android:layout_marginBottom="@dimen/margin_side_40dp"
+                android:drawableLeft="@drawable/ic_login_join"
                 android:text="@string/login_join"
-                android:textSize="@dimen/login_button_text_size"
-                android:textColor="@color/white"
-                android:textAlignment="textStart"
-                android:paddingStart="24dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnEmailLink"
-                android:drawableLeft="@drawable/ic_login_join"/>
+                app:layout_constraintTop_toBottomOf="@+id/btnEmailLink" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </layout>

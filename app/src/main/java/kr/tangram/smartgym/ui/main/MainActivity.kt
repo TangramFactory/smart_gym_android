@@ -10,6 +10,8 @@ import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import com.google.android.material.navigation.NavigationBarView
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 import kr.tangram.smartgym.R
 import kr.tangram.smartgym.base.BaseActivity
@@ -47,6 +49,9 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.bottomNavigationView.setOnItemSelectedListener(this)
+
+
+
 
 
 

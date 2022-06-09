@@ -22,8 +22,8 @@
             android:contentInsetLeft="0dp"
             app:contentInsetLeft="0dp"
             app:contentInsetStart="0dp"
-            app:collapsedTitleTextAppearance="@style/Theme.AppBar.Title"
-            app:expandedTitleTextAppearance="@style/Theme.AppBar.Title"
+            app:collapsedTitleTextAppearance="@style/HeaderTextStyle"
+            app:expandedTitleTextAppearance="@style/HeaderTextStyle"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <androidx.appcompat.widget.Toolbar

@@ -29,6 +29,7 @@ class BackgroundRoundShape {
             )
             shapeDrawable.fillColor = ColorStateList(states, colors)//parent.context.getColorStateList(colur)
 
+
             return shapeDrawable
         }
 

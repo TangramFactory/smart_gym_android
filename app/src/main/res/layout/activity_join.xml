@@ -4,113 +4,96 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="vm"
             type="kr.tangram.smartgym.ui.login.LoginViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/main_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="kr.tangram.smartgym.ui.login.LoginActivity">
+        android:background="@color/color_both_2"
+        android:fitsSystemWindows="true">
+
+        <include layout="@layout/layout_header" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context="kr.tangram.smartgym.ui.login.LoginActivity">
 
 
-        <TextView
-            android:id="@+id/tvEmailLogin"
-            android:layout_width="@dimen/layout_with"
-            android:layout_height="28dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="@dimen/login_header_margin_top"
-            android:layout_marginEnd="40dp"
-            android:text="@string/login_email_login"
-            android:textSize="@dimen/login_header_text_size"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/tvLoginScript"
+                    style="@style/ScriptTextStyle"
+                    android:text="@string/login_script"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tvLoginScript"
-            android:layout_width="@dimen/layout_with"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="@dimen/login_script_margin_top"
-            android:layout_marginEnd="40dp"
-            android:text="@string/login_script"
-            android:textSize="@dimen/login_script_text_size"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvEmailLogin" />
+                <TextView
+                    android:id="@+id/tvEmailID"
+                    style="@style/Header2TextStyle"
+                    android:layout_marginTop="@dimen/margin_top_60dp"
+                    android:text="@string/login_email_id"
+                    android:textSize="@dimen/text_size_18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvLoginScript" />
 
-        <TextView
-            android:id="@+id/tvEmailID"
-            android:layout_width="@dimen/layout_with"
-            android:layout_height="24dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="40dp"
-            android:text="@string/login_email_id"
-            android:textSize="@dimen/login_header2_text_size"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvLoginScript" />
-
-        <EditText
-            android:id="@+id/edtJoinEmail"
-            android:layout_width="@dimen/layout_with"
-            android:layout_height="48dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="40dp"
-            android:hint="@string/login_hint_email_login"
-            android:inputType="textEmailAddress"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvEmailID"
-            tools:ignore="TouchTargetSizeCheck" />
+                <EditText
+                    android:id="@+id/edtJoinEmail"
+                    style="@style/EditTextStyle"
+                    android:hint="@string/login_hint_email_login"
+                    android:inputType="textEmailAddress"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvEmailID"
+                    tools:ignore="TouchTargetSizeCheck" />
 
 
-        <Button
-            android:id="@+id/btnEmailSend"
-            android:layout_width="@dimen/layout_with"
-            android:layout_height="48dp"
-            android:layout_marginTop="50dp"
-            android:drawableLeft="@drawable/ic_certification_email"
-            android:paddingStart="@dimen/button_padding_start"
-            android:text="@string/login_email_certification"
-            android:textAlignment="textStart"
-            android:textColor="@color/white"
-            android:textSize="@dimen/login_button_text_size"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvSignUpFailScript" />
+                <Button
+                    android:id="@+id/btnEmailSend"
+                    style="@style/ButtonStyle"
+                    android:layout_marginTop="50dp"
+                    android:drawableLeft="@drawable/ic_certification_email"
+                    android:text="@string/login_email_certification"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvJoinFailScript" />
 
-        <TextView
-            android:id="@+id/tvSignUpFailScript"
-            android:layout_width="@dimen/layout_with"
-            android:layout_height="30dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="40dp"
-            android:textColor="#FF0000"
-            android:textSize="14sp"
-            android:gravity="center_vertical"
-            android:visibility="invisible"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edtJoinEmail" />
+                <TextView
+                    android:id="@+id/tvJoinFailScript"
+                    style="@style/MessageTextStyle"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/edtJoinEmail" />
 
-        <TextView
-            android:id="@+id/btnRecertification"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:clickable="true"
-            android:text="@string/login_recertification"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnEmailSend" />
+                <TextView
+                    android:id="@+id/btnRecertification"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="@dimen/margin_side_40dp"
+                    android:clickable="true"
+                    android:text="@string/login_recertification"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btnEmailSend" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </layout>
