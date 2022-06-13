@@ -41,6 +41,7 @@
         <item name="android:layout_marginStart">@dimen/margin_side_40dp</item>
     </style>
 
+
     <style name="HeaderTextStyleAppend" parent="@android:style/TextAppearance.Medium">
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/color_both_2</item>

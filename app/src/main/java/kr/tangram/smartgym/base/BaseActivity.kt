@@ -6,6 +6,7 @@ import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import butterknife.ButterKnife
 import kr.tangram.smartgym.BR
 
 abstract class BaseActivity<B : ViewDataBinding, VM : BaseViewModel>(
@@ -22,6 +23,8 @@ abstract class BaseActivity<B : ViewDataBinding, VM : BaseViewModel>(
         binding = DataBindingUtil.setContentView(this, layoutResId)
         binding.setVariable(BR.vm, viewModel)
         binding.lifecycleOwner = this
+
+        ButterKnife.bind(this)
 
         init()
         initLiveData()

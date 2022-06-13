@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
+import butterknife.ButterKnife
 import kr.tangram.smartgym.BR
 
 abstract class BaseFragment<B : ViewDataBinding, VM : ViewModel>(
@@ -21,7 +22,9 @@ abstract class BaseFragment<B : ViewDataBinding, VM : ViewModel>(
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, layoutResId, container, false)
-        return binding.root
+        val view: View = binding.getRoot()
+        ButterKnife.bind(this, view)
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

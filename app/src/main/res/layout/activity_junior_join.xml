@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="vm"
+            type="kr.tangram.smartgym.ui.junior.JuniorViewModel" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_both_2"
+        android:fitsSystemWindows="true">
+
+    <include
+        android:id="@+id/header"
+        layout="@layout/layout_header"/>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:id="@+id/layout_main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp"
+            android:paddingBottom="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_14"
+                android:textColor="@color/color_both_3"
+                android:text="이메일로 발송되는 인증 버튼을 누르면 비밀번호 설정 없이 가입이 완료됩니다."/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:text="@string/login_email_id"/>
+
+            <EditText
+                android:id="@+id/edtEmail"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:gravity="center_vertical"
+                android:background="@drawable/edt_round"
+                android:layout_marginTop="@dimen/margin_top_7dp"
+                android:hint="@string/login_hint_email_login"
+                android:textColorHint="@color/border_color"
+                android:textColor="@color/color_both_1"
+                android:textSize="@dimen/text_size_18sp"
+                android:inputType="textEmailSubject"
+                android:maxLines="1"
+                android:maxLength="30"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="Name"/>
+
+            <EditText
+                android:id="@+id/edtName"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:gravity="center_vertical"
+                android:background="@drawable/edt_round"
+                android:layout_marginTop="@dimen/margin_top_7dp"
+                android:hint="Junior Name"
+                android:textColorHint="@color/border_color"
+                android:textColor="@color/color_both_1"
+                android:textSize="@dimen/text_size_18sp"
+                android:inputType="text"
+                android:maxLines="1"
+                android:maxLength="20"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="BirthDay"/>
+
+            <EditText
+                android:id="@+id/edtBirth"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:gravity="center_vertical"
+                android:background="@drawable/edt_round"
+                android:layout_marginTop="@dimen/margin_top_7dp"
+                android:hint="Junior Birthday"
+                android:textColorHint="@color/border_color"
+                android:textColor="@color/color_both_1"
+                android:textSize="@dimen/text_size_18sp"
+                android:inputType="number"
+                android:maxLines="1"
+                android:maxLength="8"
+                tools:ignore="TouchTargetSizeCheck" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="Sex"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_top_7dp"
+                android:gravity="center_vertical">
+
+                <LinearLayout
+                    android:id="@+id/vg_male"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical">
+
+                    <LinearLayout
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:background="@drawable/selector_checkbox"
+                        android:gravity="center">
+
+                        <View
+                            android:id="@+id/view_male"
+                            android:layout_width="11dp"
+                            android:layout_height="11dp"
+                            android:visibility="gone"
+                            android:background="@drawable/oval_3b89ff"/>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="@color/color_both_1"
+                        android:textSize="@dimen/text_size_18sp"
+                        android:text="남자"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/vg_female"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:gravity="center_vertical">
+
+                    <LinearLayout
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:background="@drawable/selector_checkbox"
+                        android:gravity="center">
+
+                        <View
+                            android:id="@+id/view_femal"
+                            android:layout_width="11dp"
+                            android:layout_height="11dp"
+                            android:visibility="gone"
+                            android:background="@drawable/oval_3b89ff"/>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="@color/color_both_1"
+                        android:textSize="@dimen/text_size_18sp"
+                        android:text="여자"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="40dp"
+                android:background="@color/color_4"
+                android:alpha="40"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:id="@+id/imgCheckAge"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:src="@drawable/ic_checked_button"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:textColor="@color/color_both_1"
+                    android:text="@string/login_over_14_years_old"
+                    app:layout_constraintStart_toEndOf="@+id/imgCheckAge"
+                    app:layout_constraintTop_toBottomOf="@+id/tvAllCheck" />
+
+
+                <ImageButton
+                    android:layout_width="4.5dp"
+                    android:layout_height="9dp"
+                    android:background="@drawable/ic_button_right" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnEmailLink"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="80dp"
+                android:drawableLeft="@drawable/ic_login_email"
+                android:text="@string/login_email_certification" />
+
+
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>

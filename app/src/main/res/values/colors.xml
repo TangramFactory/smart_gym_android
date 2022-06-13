@@ -32,12 +32,15 @@
 
     <color name="color_1">#3B89FF</color>
     <color name="color_2">#FFFFFF</color>
+    <color name="color_3">#33000000</color>
 
+    <color name="color_4">#AAAAAA</color>
 
     <!--- Theme -->
 
     <color name="color_both_1">#000000</color>
     <color name="color_both_2">#FFFFFF</color>
+    <color name="color_both_3">#AD000000</color>
 
 
     <color name="a01_background">#202639</color>

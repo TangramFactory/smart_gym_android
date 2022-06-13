@@ -112,6 +112,9 @@
         <activity android:name=".ui.welcome.WelComeActivity"
             android:screenOrientation="portrait"/>
 
+        <activity android:name=".ui.junior.JuniorAccountActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".ui.junior.JuniorJoinActivity" android:screenOrientation="portrait"/>
+
         <!-- **** SERVICES **** -->
         <!-- BLE SERVICE -->
         <service android:name=".ble.BleSmartRopeService" />
