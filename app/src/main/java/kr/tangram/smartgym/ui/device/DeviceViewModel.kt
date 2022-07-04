@@ -2,22 +2,24 @@ package kr.tangram.smartgym.ui.device
 
 import DeviceRegisterRepository
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.google.gson.Gson
 import com.hwangjr.rxbus.RxBus
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
-import kr.tangram.smartgym.base.BaseApplication
 import kr.tangram.smartgym.base.BaseViewModel
 import kr.tangram.smartgym.ble.SmartRopeManager
 import kr.tangram.smartgym.data.domain.model.DeviceRegister
+import kr.tangram.smartgym.data.remote.model.DeviceInfo
+import kr.tangram.smartgym.data.remote.request.ReqDeviceLoad
+import kr.tangram.smartgym.data.remote.response.BaseResponse
+import kr.tangram.smartgym.data.remote.response.DeviceListResponse
 import kr.tangram.smartgym.util.Define
 import kr.tangram.smartgym.util.getNowDateFormat
 import no.nordicsemi.android.support.v18.scanner.ScanResult
 import org.koin.core.component.inject
-import java.util.*
 
 class DeviceViewModel(
 ): BaseViewModel() {
@@ -39,6 +41,10 @@ class DeviceViewModel(
 
     private val _deleteDevice = MutableLiveData<Unit>()
     var deleteDevice : LiveData<Unit> = _deleteDevice
+
+
+    private val _updateDeviceAlias = MutableLiveData<Unit>()
+    var updateDeviceAlias : LiveData<Unit> = _updateDeviceAlias
 
     var smartRopeManager : SmartRopeManager
 
@@ -66,7 +72,7 @@ class DeviceViewModel(
                 var type = if(scanResult.scanRecord?.deviceName!!.contains(Define.DeviceInfo.Type.Rookie)) Define.DeviceInfo.Type.Rookie
                 else Define.DeviceInfo.Type.Led
 
-                var deviceRegister = DeviceRegister(true, 100, false, "",
+                var deviceRegister = DeviceRegister(scanResult.scanRecord?.deviceName, true, 100, false, "",
                     getNowDateFormat("yyyyMMddHHmmss"), scanResult.device.address,
                     scanResult.scanRecord?.deviceName, "",
                     type)
@@ -74,9 +80,9 @@ class DeviceViewModel(
                 deviceRegisterRepository.insertDevice(deviceRegister)
                 RxBus.get().post(Define.BusEvent.DeviceState, "");
 
-                Toast.makeText(BaseApplication.context, "등록 완료", Toast.LENGTH_SHORT).show()
+                showMessage("등록 완료")
             } else {
-                Toast.makeText(BaseApplication.context, "이미 저장됨", Toast.LENGTH_SHORT).show()
+                showMessage("이미 저장됨")
             }
         }.subscribe()
 
@@ -155,5 +161,59 @@ class DeviceViewModel(
         smartRopeManager?.clearRelease()
     }
 
+    fun updateDeviceAlas(deviceRegister: DeviceRegister, alias: String)
+    {
+        var deviceInfo = DeviceInfo("InYNMt8FgISN6G44jf0p6fqcCNr2", "A",
+            deviceRegister.device_sid!!, deviceRegister.identifier!!, alias)
+
+        addDisposable(
+            deviceRegisterRepository.updateDeviceAlas(deviceInfo)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableObserver<BaseResponse>() {
+                    override fun onNext(response: BaseResponse) {
+
+                        if(response.result?.resultCode == Define.ResCode.SUCCESS) {
+                            _updateDeviceAlias.value = Unit
+                            RxBus.get().post(Define.BusEvent.DeviceState, "");
+                        } else{
+                            showMessage("update fail")
+                        }
+                    }
+
+                    override fun onError(e: Throwable) {}
+                    override fun onComplete() {}
+                })
+        )
+    }
+
+    fun getDeviceLoadList(list : List<DeviceRegister>)
+    {
+        Log.e("loadDeviceList", "loadDeviceList")
+
+        var deviceList = ArrayList<DeviceInfo>()
+
+        for(i in 0 until list.size)
+        {
+            deviceList.add(DeviceInfo("", "", list[i].device_sid!!, list[i].identifier!!, ""))
+        }
+
+        addDisposable(
+            deviceRegisterRepository.getDeviceLoadList(ReqDeviceLoad("A", deviceList))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableObserver<DeviceListResponse>() {
+                    override fun onNext(response: DeviceListResponse) {
+
+                        if(response.result?.resultCode == Define.ResCode.SUCCESS) {
+
+                        }
+                    }
+
+                    override fun onError(e: Throwable) {}
+                    override fun onComplete() {}
+                })
+        )
+    }
 
 }

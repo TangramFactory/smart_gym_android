@@ -31,7 +31,6 @@ interface DeviceRegisterDao {
     @Update
     fun updateDevice(vararg device: DeviceRegister) : Completable
 
-
     @Query("UPDATE device_register set connect = :connect, date_connect = :date_connect WHERE identifier = :identifier")
     fun updateDeviceConnect(connect:Boolean, date_connect: String, identifier: String) : Completable
 
@@ -43,6 +42,9 @@ interface DeviceRegisterDao {
 
     @Query("UPDATE device_register set auto = :auto WHERE identifier = :identifier")
     fun updateDeviceAuto(auto: Boolean, identifier: String) : Completable
+
+    @Query("UPDATE device_register set name = :name WHERE identifier = :identifier")
+    fun updateDeviceName(name: String, identifier: String) : Completable
 
     @Query("DELETE from device_register WHERE identifier = :identifier")
     fun deleteDevice(identifier: String) : Completable

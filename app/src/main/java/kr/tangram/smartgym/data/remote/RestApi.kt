@@ -3,8 +3,12 @@ package kr.tangram.smartgym.data.remote
 
 import io.reactivex.Observable
 import io.reactivex.Single
+import kr.tangram.smartgym.data.remote.model.DeviceInfo
 import kr.tangram.smartgym.data.remote.model.UserExistsResult
 import kr.tangram.smartgym.data.remote.model.UserRegResult
+import kr.tangram.smartgym.data.remote.request.ReqDeviceLoad
+import kr.tangram.smartgym.data.remote.response.BaseResponse
+import kr.tangram.smartgym.data.remote.response.DeviceListResponse
 import retrofit2.http.*
 import java.util.*
 
@@ -25,4 +29,10 @@ interface RestApi {
                       @Field("timezone") timezone: String = TimeZone.getDefault().id.toString()
     ) : Observable<UserRegResult>
 
+
+    @POST("device/deviceSaveAlias")
+    fun updateDeviceAlias(@Body deviceInfo: DeviceInfo) : Observable<BaseResponse>
+
+    @POST("device/deviceLoadList")
+    fun getDeviceLoadList(@Body reqDeviceLoad: ReqDeviceLoad) : Observable<DeviceListResponse>
 }

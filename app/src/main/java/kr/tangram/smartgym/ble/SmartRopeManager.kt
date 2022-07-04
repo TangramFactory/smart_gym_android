@@ -238,13 +238,6 @@ class SmartRopeManager() : KoinComponent {
     }
 
 
-    fun connectOff()
-    {
-        Log.e("connectOff", "start start startstartstartstart")
-
-    }
-
-
 
     private val mGattCallback: BluetoothGattCallback = object : BluetoothGattCallback() {
         override fun onConnectionStateChange(gatt: BluetoothGatt, status: Int, newState: Int) {

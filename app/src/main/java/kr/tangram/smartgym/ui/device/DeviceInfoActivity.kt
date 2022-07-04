@@ -24,14 +24,14 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class DeviceInfoActivity  : BaseActivity<ActivityDeviceInfoBinding, DeviceViewModel>(R.layout.activity_device_info) {
     override val viewModel: DeviceViewModel by viewModel()
     private lateinit var deviceListAdapter: DeviceManagerActivity.DeviceListAdapter
-    lateinit var identifier : String
+    lateinit var deviceIdentifier : String
     lateinit var deviceRegister: DeviceRegister
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        identifier = intent.getStringExtra(Define.Extra.Identifier)!!
+        deviceIdentifier = intent.getStringExtra(Define.Extra.Identifier)!!
 
         binding = ActivityDeviceInfoBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -97,7 +97,12 @@ class DeviceInfoActivity  : BaseActivity<ActivityDeviceInfoBinding, DeviceViewMo
     @OnClick(R.id.layout_update)
     fun onClickUpdate()
     {
-        BaseApplication.startActivityLock(this@DeviceInfoActivity, Intent(this@DeviceInfoActivity, DeviceNameActivity::class.java), false)
+        var intent = Intent(this@DeviceInfoActivity, DeviceNameActivity::class.java).apply {
+            putExtra(Define.Extra.Identifier, deviceIdentifier)
+        }
+
+        BaseApplication.startActivityLock(this@DeviceInfoActivity, intent, false)
+
     }
 
     @OnClick(R.id.tv_release)
@@ -127,7 +132,7 @@ class DeviceInfoActivity  : BaseActivity<ActivityDeviceInfoBinding, DeviceViewMo
     }
 
     fun getDeviceRegister(){
-        viewModel.getDeviceRegister(identifier!!)
+        viewModel.getDeviceRegister(deviceIdentifier!!)
     }
 
     override fun onDestroy() {

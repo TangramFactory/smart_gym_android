@@ -8,6 +8,7 @@ import java.util.*
 
 @Entity(tableName = "device_register")
 data class DeviceRegister (
+    @SerializedName("device_sid") @ColumnInfo(name = "device_sid") val device_sid : String? = "",
     @SerializedName("auto") @ColumnInfo(name = "auto") val auto : Boolean? = false,
     @SerializedName("battery") @ColumnInfo(name = "battery") val battery : Int? = 0,
     @SerializedName("connect") @ColumnInfo(name = "connect") val connect : Boolean? = false,

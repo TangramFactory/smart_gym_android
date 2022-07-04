@@ -82,6 +82,8 @@ class DeviceManagerActivity  : BaseActivity<ActivityDeviceManagerBinding, Device
 
         viewModel.myDeviceList.observe(this){
             deviceListAdapter.addList(it)
+
+            viewModel.getDeviceLoadList(it)
         }
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.S){
@@ -131,7 +133,6 @@ class DeviceManagerActivity  : BaseActivity<ActivityDeviceManagerBinding, Device
     @Subscribe(tags = [Tag(Define.BusEvent.DeviceState)])
     fun eventDeviceState(param : String)
     {
-        Log.e("event", "Event")
         getDeviceRegisterList()
     }
 

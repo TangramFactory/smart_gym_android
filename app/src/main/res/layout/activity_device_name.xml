@@ -36,7 +36,7 @@
                     android:text="이름"/>
 
                 <EditText
-                    android:id="@+id/edtEmail"
+                    android:id="@+id/et_device_name"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:paddingLeft="20dp"
@@ -49,9 +49,10 @@
                     android:textSize="@dimen/text_size_18sp"
                     android:inputType="text"
                     android:maxLines="1"
-                    android:maxLength="30"/>
+                    android:maxLength="20"/>
 
                 <TextView
+                    android:id="@+id/tv_device_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -60,7 +61,7 @@
                     android:text="fsdzjfsdjf "/>
 
                 <Button
-                    android:id="@+id/btnSave"
+                    android:id="@+id/btn_save"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginTop="60dp"

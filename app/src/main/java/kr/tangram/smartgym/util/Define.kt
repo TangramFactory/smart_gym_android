@@ -34,4 +34,10 @@ class Define {
             const val Identifier = "Identifier"
         }
     }
+
+    interface ResCode {
+        companion object {
+            const val SUCCESS = 0
+        }
+    }
 }
