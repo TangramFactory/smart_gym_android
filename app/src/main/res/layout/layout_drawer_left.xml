@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="kr.tangram.smartgym.UserViewModel" />
+    </data>
+
+
+
+    <androidx.drawerlayout.widget.DrawerLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/main_drawer_layout"
+    tools:openDrawer="start"
+    android:fitsSystemWindows="true">
+
+    <include
+        android:id="@+id/activity_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        layout="@layout/activity_main"/>
+
+    <com.google.android.material.navigation.NavigationView
+        android:layout_width="@dimen/menu_layout_width"
+        android:layout_height="match_parent"
+        android:background="@color/color_both_2"
+        android:layout_gravity="start"
+        app:itemTextColor="@color/color_both_1">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/margin_top_60dp"
+            android:background="@color/color_both_2">
+
+            <include
+                android:id="@+id/menu_header_include"
+                layout="@layout/layout_drawer_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/menu_header_include">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/margin_top_10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginStart="@dimen/margin_side_15dp"
+                    android:layout_marginEnd="@dimen/margin_side_15dp"
+                    android:background="#66AAAAAA"
+                    android:layout_height="1dp"/>
+
+                <Button
+                    android:id="@+id/menu_user_profile"
+                    android:text="@string/menu_user_profile"
+                    style="@style/MenuButtonStyle"
+                    />
+
+                <Button
+                    android:id="@+id/menu_user_account"
+                    android:layout_width="match_parent"
+                    android:text="@string/menu_user_account"
+                    style="@style/MenuButtonStyle" />
+
+                <Button
+                    android:id="@+id/menu_user_badge"
+                    android:text="@string/menu_user_badge"
+                    style="@style/MenuButtonStyle" />
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/margin_top_10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginStart="@dimen/margin_side_15dp"
+                    android:layout_marginEnd="@dimen/margin_side_15dp"
+                    android:background="#66AAAAAA"
+                    android:layout_height="1dp"/>
+
+                <Button
+                    android:id="@+id/menu_device_setting"
+                    android:text="@string/menu_device_setting"
+                    style="@style/MenuButtonStyle" />
+
+                <Button
+                    android:id="@+id/menu_app_settings"
+                    android:text="@string/menu_app_settings"
+                    style="@style/MenuButtonStyle" />
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/margin_top_10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginStart="@dimen/margin_side_15dp"
+                    android:layout_marginEnd="@dimen/margin_side_15dp"
+                    android:background="#66AAAAAA"
+                    android:layout_height="1dp"/>
+
+                <Button
+                    android:id="@+id/menu_notice"
+                    android:text="@string/menu_notice"
+                    style="@style/MenuButtonStyle"/>
+
+                <Button
+                    android:id="@+id/menu_contact_us"
+                    android:text="@string/menu_contact_us"
+                    style="@style/MenuButtonStyle"/>
+
+                <Button
+                    android:id="@+id/menu_logout"
+                    android:text="@string/menu_logout"
+                    style="@style/MenuButtonStyle"/>
+
+            </LinearLayout>
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+    </com.google.android.material.navigation.NavigationView>
+
+</androidx.drawerlayout.widget.DrawerLayout>
+
+</layout>

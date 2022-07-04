@@ -47,6 +47,7 @@
     <color name="color_both_5">#26AAAAAA</color> <!--15% -->
     <color name="color_both_6">#99000000</color> <!--60% -->
     <color name="color_both_7">#66000000</color> <!--40% -->
+    <color name="color_both_8">#ADFFFFFF</color>
 
 
     <color name="a01_background">#202639</color>
@@ -61,5 +62,12 @@
 
 
     <color name="background">#FFBB86FC</color>
+    <color name="menu_background_color">#E5FFFFFF</color>
+    <color name="gym_item_background_color">#26AAAAAA</color>
+
+    <color name="leader_board_rank_1st_color">#FFC22B</color>
+    <color name="leader_board_rank_2nd_color">#CCCCCC</color>
+    <color name="leader_board_rank_3rd_color">#CE8505</color>
+    <color name="leader_board_rank_my_color">#FFD300</color>
 
 </resources>

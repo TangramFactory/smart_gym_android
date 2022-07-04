@@ -51,6 +51,7 @@
     <string name="word_time">Time</string>
     <string name="word_calorie">Calories</string>
     <string name="word_jump">Jump</string>
+    <string name="word_speed">Speed</string>
     <string name="word_today">Today</string>
     <string name="word_logout">Logout</string>
     <string name="word_connect">Connect</string>
@@ -109,4 +110,14 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="base_url_image_path">https://storage.googleapis.com/smartgym-1204.appspot.com/smartgym/profile-image/</string>
+    <string name="menu_user_account">User Account</string>
+    <string name="menu_user_profile">User Profile</string>
+    <string name="menu_user_badge">User Badge</string>
+    <string name="menu_device_setting">Device Settings</string>
+    <string name="menu_app_settings">App Settings</string>
+    <string name="word_etc">etc</string>
+    <string name="menu_notice">Notice</string>
+    <string name="menu_contact_us">Contact us</string>
+    <string name="menu_logout">Log Out</string>
 </resources>

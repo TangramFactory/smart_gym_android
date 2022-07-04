@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="model"
+            type="kr.tangram.smartgym.data.domain.model.GymInfo" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_gym_list_item"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginBottom="10dp">
+
+        <ImageView
+            android:id="@+id/iv_gym_img"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/margin_side_20dp"
+            android:background="@drawable/gym_item_round_left_black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <com.mikhaellopez.circularimageview.CircularImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="20dp"
+            android:background="#00000000"
+            android:src="@drawable/ic_default_profile"
+            app:civ_border_color="@android:color/transparent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/item_layout"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="@dimen/margin_side_20dp"
+            android:layout_weight="1"
+            android:background="@drawable/gym_item_round_right_light_gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/iv_gym_img"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tv_gym_name"
+                android:layout_width="0dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="17dp"
+                android:gravity="center_vertical"
+                android:text="@{model.gymName!=null ? model.gymName :`마포 고등학교`}"
+                android:textColor="@color/color_both_1"
+                android:textSize="@dimen/text_size_18sp"
+                app:layout_constraintEnd_toStartOf="@+id/imageView8"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_gym_address"
+                android:layout_width="0dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="15dp"
+                android:gravity="center_vertical"
+                android:text="@{model.address}"
+                android:textSize="@dimen/text_size_14sp"
+                app:layout_constraintEnd_toStartOf="@+id/imageView8"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_gym_name" />
+
+
+            <TextView
+                android:id="@+id/tv_gym_long"
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:layout_marginStart="20dp"
+                android:gravity="center_vertical"
+                bind_float_to_text="@{model.distance}"
+                android:textSize="@dimen/text_size_16sp"
+                app:layout_constraintStart_toEndOf="@+id/tv_gym_user_count"
+                app:layout_constraintTop_toBottomOf="@+id/tv_gym_address" />
+
+            <TextView
+                android:id="@+id/tv_gym_user_count"
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:layout_marginStart="15dp"
+                android:drawableStart="@drawable/ic_group"
+                android:gravity="center_vertical"
+                bind_int_to_text="@{model.engagementUser}"
+                android:textSize="@dimen/text_size_16sp"
+                android:textColor="@color/color_both_1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_gym_address" />
+
+
+            <TextView
+                android:id="@+id/tv_gym_long_unit"
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:gravity="center_vertical"
+                android:text="km"
+                android:textColor="@color/color_both_1"
+                android:textSize="@dimen/text_size_16sp"
+                app:layout_constraintStart_toEndOf="@+id/tv_gym_long"
+                app:layout_constraintTop_toBottomOf="@+id/tv_gym_address" />
+
+
+            <ImageView
+                android:id="@+id/imageView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:layout_marginEnd="16dp"
+                android:src="@drawable/ic_arrow_right_gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

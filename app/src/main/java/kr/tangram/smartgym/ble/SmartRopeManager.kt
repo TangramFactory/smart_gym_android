@@ -1,19 +1,13 @@
 package kr.tangram.smartgym.ble
 
-import DeviceRegisterRepository
+import kr.tangram.smartgym.data.repository.DeviceRegisterRepository
 import android.bluetooth.*
 import android.os.Handler
 import android.os.ParcelUuid
 import android.util.Log
 import com.hwangjr.rxbus.RxBus
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
-import io.reactivex.observers.DisposableObserver
-import io.reactivex.observers.DisposableSingleObserver
-import io.reactivex.rxjava3.disposables.CompositeDisposable
-import io.reactivex.schedulers.Schedulers
 import kr.tangram.smartgym.base.BaseApplication
-import kr.tangram.smartgym.data.domain.model.DeviceRegister
 import kr.tangram.smartgym.util.Define
 import no.nordicsemi.android.support.v18.scanner.*
 import org.koin.core.component.KoinComponent
@@ -45,6 +39,7 @@ class SmartRopeManager() : KoinComponent {
 
     lateinit var onFound:(scanResult : ScanResult)->Unit
     lateinit var onStopScan:()->Unit
+    lateinit var onCountJump:(jumpCount : Int)->Unit
 
     var releaseList = ArrayList<String>()
 
@@ -318,7 +313,9 @@ class SmartRopeManager() : KoinComponent {
                     deviceRegisterRepository.updateDeviceVersion(data[1].toInt(), gatt.device.address)
                     sendBus(Define.BusEvent.DeviceState, "")
                 }
-//                "CNT" ->
+                "CNT" -> {
+                     onCountJump(data[1].toInt())
+                }
                 else -> {
 
                 }

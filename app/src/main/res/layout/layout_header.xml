@@ -22,6 +22,7 @@
             android:contentInsetLeft="0dp"
             app:contentInsetLeft="0dp"
             app:contentInsetStart="0dp"
+            app:expandedTitleMarginStart="20dp"
             app:collapsedTitleTextAppearance="@style/HeaderTextStyle"
             app:expandedTitleTextAppearance="@style/HeaderTextStyle"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
@@ -30,6 +31,7 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
+
                 app:layout_collapseMode="pin"/>
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>

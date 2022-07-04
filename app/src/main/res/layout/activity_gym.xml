@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="model"
+            type="kr.tangram.smartgym.data.domain.model.GymInfo" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.main.map.gym.GymActivity">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="@color/color_both_2"
+            app:layout_collapseMode="pin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/color_both_2">
+
+                <com.google.android.material.appbar.CollapsingToolbarLayout
+                    android:id="@+id/collapsing_toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_collapseMode="none">
+
+                        <ImageView
+                            android:id="@+id/tv_top_image"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:maxHeight="120dp"
+                            android:minHeight="50dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+
+                        <com.mikhaellopez.circularimageview.CircularImageView
+                            android:id="@+id/civ_gym_marker"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_marginTop="-40dp"
+                            android:background="#00000000"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_top_image"
+                            app:srcCompat="@drawable/ic_default_profile" />
+
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/margin_side_20dp"
+
+                            android:layout_marginEnd="@dimen/margin_side_20dp"
+
+
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_top_image">
+
+                            <TextView
+                                android:id="@+id/tv_gym_name"
+                                android:layout_width="match_parent"
+                                android:layout_height="30dp"
+                                android:layout_marginTop="48dp"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:text="한국 디지털 미디어 고등학교"
+                                android:textAlignment="center"
+                                android:textColor="@color/color_both_1"
+                                android:textSize="@dimen/text_size_24"
+                                android:textStyle="bold"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/tv_gym_address"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/layout_height_24dp"
+                                android:layout_marginTop="@dimen/margin_top_10dp"
+                                android:text="대한민국 경기도 안산시 단원구"
+                                android:textAlignment="center"
+                                android:textSize="@dimen/text_size_14sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/tv_gym_name" />
+
+                            <TextView
+                                android:id="@+id/tv_gym_introduce"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/margin_top_10dp"
+                                android:text="우리 같이 운동하면서 재미있게 놀아요.초보자들도 환영입니다.꾸준히 운동하고 건강하세요. 많은 참여 부탁드립니다."
+                                android:textAlignment="center"
+                                android:textSize="@dimen/text_size_14sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/tv_gym_address" />
+
+
+                            <LinearLayout
+                                android:id="@+id/linearLayout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="25dp"
+                                android:orientation="horizontal"
+                                android:paddingStart="@dimen/padding_10dp"
+                                android:paddingEnd="@dimen/padding_10dp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/tv_gym_introduce">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="참여인원"
+                                        android:textAlignment="center"
+                                        android:textSize="@dimen/text_size_14sp" />
+
+                                    <TextView
+                                        bind_int_to_text="@{model.engagementUser}"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="2dp"
+                                        android:drawableStart="@drawable/ic_group"
+                                        android:text="1000"
+                                        android:textStyle="bold"
+                                        android:textAlignment="center"
+                                        android:textColor="@color/color_both_1"
+                                        android:textSize="@dimen/text_size_16sp" />
+
+                                </LinearLayout>
+
+                                <View
+                                    android:layout_width="1dp"
+                                    android:layout_height="25dp"
+                                    android:layout_gravity="center"
+                                    android:background="@color/dark_gray" />
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="게시글"
+                                        android:textAlignment="center"
+                                        android:textSize="@dimen/text_size_14sp" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="2dp"
+                                        android:drawableStart="@drawable/ic_group"
+                                        android:text="1000"
+                                        android:textStyle="bold"
+                                        android:textColor="@color/color_both_1"
+                                        android:textSize="@dimen/text_size_16sp" />
+
+                                </LinearLayout>
+
+                                <View
+                                    android:layout_width="1dp"
+                                    android:layout_height="25dp"
+                                    android:layout_gravity="center"
+                                    android:background="@color/dark_gray" />
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="그룹"
+                                        android:textAlignment="center"
+                                        android:textSize="@dimen/text_size_14sp" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="2dp"
+                                        android:drawableStart="@drawable/ic_group"
+                                        android:text="110"
+                                        android:textStyle="bold"
+                                        android:textColor="@color/color_both_1"
+                                        android:textSize="@dimen/text_size_16sp" />
+
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:id="@+id/layout_reader_board"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/margin_top_20dp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+                                <TextView
+                                    android:id="@+id/tv_word_reader_board"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:text="리더보드"
+                                    android:textColor="@color/color_both_1"
+                                    android:textSize="@dimen/text_size_18sp"
+                                    app:layout_constraintEnd_toStartOf="@+id/imageView4"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <ImageView
+                                    android:id="@+id/imageView4"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_arrow_right_gray"
+                                    app:layout_constraintBottom_toBottomOf="@+id/tv_word_reader_board"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintTop_toTopOf="@+id/tv_word_reader_board" />
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/recycler_view_gym_readerBoard"
+                                bind_user_data_list="@{null}"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/layout_reader_board"
+                                tools:itemCount="4"
+                                tools:listitem="@layout/item_leader_board_user_info" />
+
+                            <View
+                                android:id="@+id/view"
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:visibility="gone"
+                                android:background="@color/dark_gray"
+                                app:layout_constraintTop_toBottomOf="@+id/recycler_view_gym_readerBoard"
+                                tools:layout_editor_absoluteX="0dp" />
+
+<!--                            <include-->
+<!--                                android:id="@+id/includ_leader_board_user_info" -->
+<!--                                layout="@layout/item_leader_board_user_info"-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                app:layout_constraintTop_toBottomOf="@+id/view" />-->
+
+                            <Button
+                                android:id="@+id/button2"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/layout_height_50dp"
+                                android:layout_marginTop="25dp"
+                                android:fontFamily="@font/roboto_light"
+                                android:text="참여"
+                                android:visibility="gone"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/view" />
+
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/gym_tab_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/collapsing_toolbar"
+                    app:tabIndicatorColor="@color/color_both_1"
+                    app:tabSelectedTextColor="@color/color_both_1"
+                    app:tabTextColor="@color/color_both_1" />
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/gym_view_pager"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/gym_tab_layout" />
+
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

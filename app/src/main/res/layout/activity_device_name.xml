@@ -42,7 +42,7 @@
                     android:paddingLeft="20dp"
                     android:paddingRight="20dp"
                     android:gravity="center_vertical"
-                    android:background="@drawable/edt_round"
+                    android:background="@drawable/edt_round_black"
                     android:layout_marginTop="@dimen/margin_top_7dp"
                     android:textColorHint="@color/border_color"
                     android:textColor="@color/color_both_1"

@@ -7,7 +7,7 @@
 
         <variable
             name="vm"
-            type="kr.tangram.smartgym.ui.login.LoginViewModel" />
+            type="kr.tangram.smartgym.ui.login.join.JoinViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -17,11 +17,13 @@
         android:background="@color/color_both_2"
         android:fitsSystemWindows="true">
 
-        <include layout="@layout/layout_header" />
+        <include
+            android:id="@+id/header"
+            layout="@layout/layout_header" />
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -59,21 +61,21 @@
                     tools:ignore="TouchTargetSizeCheck" />
 
 
-                <Button
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnEmailSend"
                     style="@style/ButtonStyle"
                     android:layout_marginTop="50dp"
-                    android:drawableLeft="@drawable/ic_certification_email"
-                    android:text="@string/login_email_certification"
+                    app:icon="@drawable/ic_certification_email"
+                    app:iconGravity="textStart"
+                    app:iconPadding="5dp"
+                    app:iconTint="@null"
+                    android:text="fsdfsfsdffsdf"
+                    app:layout_constraintVertical_bias="0.5"
+                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvJoinFailScript" />
-
-                <TextView
-                    android:id="@+id/tvJoinFailScript"
-                    style="@style/MessageTextStyle"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/edtJoinEmail" />
 
                 <TextView
@@ -81,7 +83,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:layout_marginBottom="@dimen/margin_side_40dp"
+                    android:layout_marginBottom="@dimen/margin_side_20dp"
                     android:clickable="true"
                     android:text="@string/login_recertification"
                     android:visibility="invisible"

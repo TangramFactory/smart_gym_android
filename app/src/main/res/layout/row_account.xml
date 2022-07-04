@@ -19,12 +19,14 @@
         android:paddingBottom="20dp"
         android:gravity="center_vertical">
 
-        <ImageView
+        <com.mikhaellopez.circularimageview.CircularImageView
+            android:id="@+id/ivJuniorProfileImage"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:background="@drawable/ic_default_profile"/>
 
         <TextView
+            android:id="@+id/tvJuniorItemEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"

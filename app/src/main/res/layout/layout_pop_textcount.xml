@@ -10,5 +10,5 @@
     android:paddingBottom="16dp"
     android:text="0"
     android:textAlignment="center"
-    android:textColor="@color/a01_text_bright"
+    android:textColor="@color/color_both_1"
     android:textSize="70dp" />

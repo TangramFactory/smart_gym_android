@@ -2,5 +2,6 @@
 <!--  res/drawable/rounded_edittext.xml -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="oval" android:padding="10dp">
-    <solid android:color="@color/color_3"/>
+    <solid android:color="@color/color_both_3"/>
+
 </shape>

@@ -9,4 +9,6 @@
     <color name="color_both_5">#4DAAAAAA</color> <!--30% -->
     <color name="color_both_6">#99FFFFFF</color> <!--60% -->
     <color name="color_both_7">#66FFFFFF</color> <!--40% -->
+    <color name="color_both_8">#AD000000</color>
+
 </resources>

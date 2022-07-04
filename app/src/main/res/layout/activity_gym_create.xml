@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="kr.tangram.smartgym.ui.main.map.gym.GymViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="600dp"
+            tools:context=".ui.leftMenu.GymCreateActivity">
+
+
+            <ImageView
+                android:id="@+id/iv_top_image"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <com.mikhaellopez.circularimageview.CircularImageView
+                android:id="@+id/civ_gym_marker"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="-40dp"
+                android:background="#00000000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/iv_top_image"
+                app:srcCompat="@drawable/ic_default_profile" />
+
+            <ImageButton
+                android:id="@+id/imgBtnCamera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:contentDescription="profileImageChangeButton"
+                app:layout_constraintBottom_toBottomOf="@+id/civ_gym_marker"
+                app:layout_constraintEnd_toEndOf="@+id/civ_gym_marker"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/civ_gym_marker"
+                app:srcCompat="@drawable/ic_camera_small" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_side_20dp"
+                android:layout_marginEnd="@dimen/margin_side_20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/civ_gym_marker">
+
+
+                <TextView
+                    android:id="@+id/tv_gym_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:text="짐이름"
+                    android:textColor="@color/color_both_1"
+                    android:textSize="@dimen/text_size_16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <EditText
+                    android:id="@+id/edt_gym_name"
+                    style="@style/EditTextStyle2"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="5dp"
+                    android:text="skdlasdkal"
+                    android:textSize="@dimen/text_size_18sp"
+
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_gym_name" />
+
+                <TextView
+                    android:id="@+id/tv_gym_introduce"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:text="소개"
+                    android:textColor="@color/color_both_1"
+                    android:textSize="@dimen/text_size_16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/edt_gym_name" />
+
+
+                <EditText
+                    android:id="@+id/edt_gym_introduce"
+                    style="@style/EditTextStyle2"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="top"
+                    android:text="skdlasdsdsadkal"
+                    android:textSize="@dimen/text_size_18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_gym_introduce" />
+
+                <TextView
+                    android:id="@+id/tv_gym_select_activity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:text="활동 선택"
+                    android:textColor="@color/color_both_1"
+                    android:textSize="@dimen/text_size_16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/edt_gym_introduce" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_gym_select_activity"
+                    style="@style/ButtonStyle2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/btn_round_gym_create"
+                    android:drawableStart="@drawable/ic_group"
+                    android:drawableEnd="@drawable/ic_group"
+                    android:drawablePadding="5dp"
+                    android:text="@{viewModel.selectedActivity !=null ? viewModel.selectedActivity: `활동을 선택하여주세요`}"
+                    android:textAlignment="textStart"
+                    android:textSize="@dimen/text_size_18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_gym_select_activity" />
+
+                <TextView
+                    android:id="@+id/tv_gym_select_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:text="짐 유형 선택"
+                    android:textColor="@color/color_both_1"
+                    android:textSize="@dimen/text_size_16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_gym_select_activity" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_gym_select_type"
+                    style="@style/ButtonStyle2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/btn_round_gym_create"
+                    android:drawableStart="@drawable/ic_group"
+                    android:drawableEnd="@drawable/ic_group"
+                    android:drawablePadding="5dp"
+                    android:text="@{viewModel.selectedType !=null ? viewModel.selectedType: `유형을 선택하여주세요`}"
+                    android:textAlignment="textStart"
+                    android:textSize="@dimen/text_size_18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_gym_select_type" />
+
+                <TextView
+                    android:id="@+id/tv_gym_select_location"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:text="짐 유형 선택"
+                    android:textColor="@color/color_both_1"
+                    android:textSize="@dimen/text_size_16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_gym_select_type" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_gym_select_location"
+                    style="@style/ButtonStyle2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/btn_round_gym_create"
+                    android:drawableStart="@drawable/ic_group"
+                    android:drawableEnd="@drawable/ic_group"
+                    android:drawablePadding="5dp"
+                    android:text="skdlasdkal"
+                    android:textAlignment="textStart"
+                    android:textSize="@dimen/text_size_18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_gym_select_location" />
+
+
+                <ImageView
+                    android:id="@+id/img_private_chack"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:onClick="@{viewModel::gymPrivate}"
+                    android:padding="8dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_private_check"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tv_private_check"
+                    app:srcCompat="@{viewModel.privateGymFlag ? @drawable/ic_checked_button : @drawable/ic_all_click_check_button }"
+                    tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+                <TextView
+                    android:id="@+id/tv_private_check"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="32dp"
+                    android:text="짐 비공개(초대전용)"
+                    android:textColor="@color/color_both_1"
+                    android:textSize="@dimen/text_size_18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/img_private_chack"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_gym_select_location" />
+
+                <TextView
+                    android:id="@+id/tv_private_script"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="dkalsdkas;ldkas;dlaskd;asdlka;dl"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_private_check" />
+
+                <TextView
+                    android:id="@+id/tv_gym_create_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:text="소개"
+                    android:textColor="@color/color_both_1"
+                    android:textSize="@dimen/text_size_16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_private_script" />
+
+
+                <EditText
+                    android:id="@+id/edt_gym_create_info"
+                    style="@style/EditTextStyle2"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="top"
+                    android:text="skdlasdsdsadkal"
+                    android:textSize="@dimen/text_size_18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_gym_create_info" />
+
+
+                <TextView
+                    android:id="@+id/tv_gym_create_info_script"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="dkalsdkas;ldkas;dlaskd;asdlka;dl"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/edt_gym_create_info" />
+
+
+                <Button
+                    android:id="@+id/btn_gym_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="44dp"
+                    android:fontFamily="@font/roboto_light"
+                    android:text="짐 오픈 요청"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_gym_create_info_script" />
+
+
+                <TextView
+                    android:id="@+id/tv_gym_create_script"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginBottom="30dp"
+                    android:text="dkalsdkas;ldkas;dlaskd;asdlka;dl"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_gym_create" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

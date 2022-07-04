@@ -28,9 +28,28 @@
         android:theme="@style/Theme.Smart_gym"
         android:usesCleartextTraffic="true" >
         <activity
-            android:name=".ui.login.LoginSuccessActivity"
-            android:screenOrientation="portrait"
+            android:name=".ui.leftMenu.GymCreateActivity"
             android:exported="false" />
+        <activity
+            android:name=".ui.main.map.community.CommunityListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.main.map.challenge.ChallengeListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.main.map.gym.GymActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.main.map.gym.GymListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.leftMenu.ProfileSettingActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.login.LoginCompleteActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.login.LoginEmailSentActivity"
             android:screenOrientation="portrait"
@@ -43,25 +62,24 @@
 
         <activity
             android:name=".ui.main.MainActivity"
-            android:screenOrientation="portrait"
             android:exported="false"
-            android:label="@string/title_activity_maps" />
+            android:label="@string/title_activity_maps"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.intro.IntroActivity"
             android:screenOrientation="portrait"
             android:exported="true">
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
         </activity>
         <activity
             android:name=".ui.login.LoginActivity"
             android:screenOrientation="portrait"
             android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".ui.login.EmailLinkSuccessActivity"
@@ -84,45 +102,57 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.certificate.CertificationActivity"
-            android:screenOrientation="portrait"
-            android:exported="true" />
+            android:name=".ui.login.join.JoinGuideActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.certificate.CertificationDetailActivity"
-            android:screenOrientation="portrait"
-            android:exported="true" />
+            android:name=".ui.login.join.JoinSelfAuthActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
 
-        <activity
-            android:name=".ui.certificate.CertificationMobileActivity"
-            android:screenOrientation="portrait"
-            android:exported="true" />
-        <activity
-            android:name=".ui.certificate.CertificationWebViewActivity"
-            android:screenOrientation="portrait"
-            android:exported="true" />
-        <activity
-            android:name=".ui.login.JoinActivity"
-            android:screenOrientation="portrait"
-            android:exported="true" />
+
         <activity
             android:name=".ui.deviceConnect.DeviceDiscoverActivity"
             android:screenOrientation="portrait"
             android:exported="true" />
 
-        <activity android:name=".ui.certificate.Certification14AgeActivity"
+        <activity android:name=".ui.login.join.JoinGuide14UnderActivity"
             android:screenOrientation="portrait"
             android:exported="false"/>
 
         <activity android:name=".ui.welcome.WelComeActivity"
             android:screenOrientation="portrait"/>
 
-        <activity android:name=".ui.junior.JuniorAccountActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".ui.junior.JuniorJoinActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".ui.login.junior.JuniorActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".ui.login.junior.JuniorJoinActivity" android:screenOrientation="portrait"/>
         <activity android:name=".ui.device.DeviceManagerActivity" android:screenOrientation="portrait"/>
         <activity android:name=".ui.device.DeviceScanActivity" android:screenOrientation="portrait"/>
         <activity android:name=".ui.device.DeviceInfoActivity" android:screenOrientation="portrait"/>
         <activity android:name=".ui.device.DeviceNameActivity" android:screenOrientation="portrait"/>
 
+
+        <activity
+            android:name=".ui.login.join.JoinGuide14UnderActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.welcome.WelComeActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.login.junior.JuniorJoinActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.login.join.JoinGuide14UnderActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.login.junior.JuniorModifyActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.welcome.WelComeActivity"
+            android:screenOrientation="portrait" />
         <!-- **** SERVICES **** -->
         <!-- BLE SERVICE -->
         <service android:name=".ble.BleSmartRopeService" />

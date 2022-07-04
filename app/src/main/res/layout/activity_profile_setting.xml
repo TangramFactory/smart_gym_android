@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="kr.tangram.smartgym.UserViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="@color/color_both_2"
+            app:layout_collapseMode="pin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ScrollView
+            android:id="@+id/scrollView2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="55dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:context=".ui.leftMenu.ProfileSettingActivity">
+
+
+                <com.mikhaellopez.circularimageview.CircularImageView
+                    android:id="@+id/imgBtnProfile"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@android:color/transparent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.497"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_profile_img" />
+
+                <ImageButton
+                    android:id="@+id/imgBtnCamera"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="profileImageChangeButton"
+                    app:layout_constraintBottom_toBottomOf="@+id/imgBtnProfile"
+                    app:layout_constraintEnd_toEndOf="@+id/imgBtnProfile"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="@+id/imgBtnProfile"
+                    app:srcCompat="@drawable/ic_camera" />
+
+                <TextView
+                    android:id="@+id/tvProfileName_"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_side_20dp"
+                    android:layout_marginTop="40dp"
+                    android:text="이름"
+                    android:textColor="@color/color_both_1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imgBtnProfile" />
+
+                <TextView
+                    android:id="@+id/tvProfileName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginEnd="@dimen/margin_side_20dp"
+                    android:text="@{viewModel.info.userName}"
+                    android:textColor="@color/color_both_1"
+                    android:textStyle="bold"
+                    android:textAlignment="textEnd"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/tvProfileName_"
+                    app:layout_constraintTop_toBottomOf="@+id/imgBtnProfile" />
+
+                <TextView
+                    android:id="@+id/tvProfileGender_"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_side_20dp"
+                    android:layout_marginTop="12dp"
+                    android:text="성별"
+
+                    android:textColor="@color/color_both_1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvProfileName_" />
+
+                <TextView
+                    android:id="@+id/tvProfileGender"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="@dimen/margin_side_20dp"
+                    android:text="@{viewModel.info.userGender == `0` ? `남자`:`여자`}"
+                    android:textColor="@color/color_both_1"
+                    android:textStyle="bold"
+                    android:textAlignment="textEnd"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/tvProfileGender_"
+                    app:layout_constraintTop_toBottomOf="@+id/tvProfileName" />
+
+                <TextView
+                    android:id="@+id/tvBirthDate_"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_side_20dp"
+                    android:layout_marginTop="12dp"
+                    android:text="생년 월일"
+                    android:textColor="@color/color_both_1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvProfileGender_" />
+
+                <TextView
+                    android:id="@+id/tvBirthDate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="@dimen/margin_side_20dp"
+                    android:text="@{viewModel.info.userBirthday}"
+                    android:textColor="@color/color_both_1"
+                    android:textStyle="bold"
+                    android:textAlignment="textEnd"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/tvBirthDate_"
+                    app:layout_constraintTop_toBottomOf="@+id/tvProfileGender" />
+
+                <TextView
+                    android:id="@+id/tvProfileNicName_"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:text="닉네임"
+                    android:layout_marginStart="@dimen/margin_side_20dp"
+                    android:layout_marginEnd="@dimen/margin_side_20dp"
+                    android:textColor="@color/color_both_1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvBirthDate_" />
+
+                <EditText
+                    android:id="@+id/edtProfileNickName"
+                    style="@style/EditTextStyle"
+                    android:layout_marginTop="5dp"
+                    android:hint="닉네임을 입력해주세요"
+                    android:text="@{viewModel.info.userNickname}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvProfileNicName_" />
+
+                <TextView
+                    android:id="@+id/tvProfileSelfIntroduction_"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginStart="@dimen/margin_side_20dp"
+                    android:layout_marginEnd="@dimen/margin_side_20dp"
+                    android:text="자기 소개"
+                    android:textColor="@color/color_both_1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/edtProfileNickName" />
+
+                <EditText
+                    android:id="@+id/tvProfileSelfIntroduction"
+                    style="@style/EditTextStyle"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:gravity="top"
+                    android:hint="소개 내용을 입력해주세요"
+                    android:maxLines="4"
+                    android:minHeight="120dp"
+                    android:padding="20dp"
+                    android:text="@{viewModel.info.userIntroduce}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvProfileSelfIntroduction_" />
+
+                <TextView
+                    android:id="@+id/tvProfileUnit_"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_side_20dp"
+                    android:layout_marginTop="30dp"
+                    android:text="단위"
+                    android:textColor="@color/color_both_1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvProfileSelfIntroduction" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/RGProfileUnit"
+                    android:layout_width="@dimen/layout_with_295dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_side_20dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center_vertical"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvProfileUnit_">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <LinearLayout
+                            android:id="@+id/RBtnCmKg"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical">
+
+                            <LinearLayout
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:background="@drawable/selector_checkbox"
+                                android:gravity="center">
+
+                                <View
+                                    android:id="@+id/view_profile_CmKg"
+                                    android:layout_width="11dp"
+                                    android:layout_height="11dp"
+                                    android:background="@drawable/oval_3b89ff"
+                                    android:visibility="gone" />
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:text="cm/kg"
+                                android:textColor="@color/color_both_1"
+                                android:textSize="@dimen/text_size_18sp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/RBtnFtIn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="40dp"
+                            android:gravity="center_vertical">
+
+                            <LinearLayout
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:background="@drawable/selector_checkbox"
+                                android:gravity="center">
+
+                                <View
+                                    android:id="@+id/view_profile_FtIn"
+                                    android:layout_width="11dp"
+                                    android:layout_height="11dp"
+                                    android:background="@drawable/oval_3b89ff"
+                                    android:visibility="gone" />
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:text="ft+in/lbs"
+                                android:textColor="@color/color_both_1"
+                                android:textSize="@dimen/text_size_18sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/tvProfileHeight_"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_side_20dp"
+                    android:layout_marginTop="30dp"
+                    android:text="신장"
+                    android:textColor="@color/color_both_1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/RGProfileUnit" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_height"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvProfileHeight_">
+
+
+                    <EditText
+                        android:id="@+id/edtProfileHeight"
+                        style="@style/EditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_weight="1"
+                        android:hint="-"
+                        android:inputType="numberDecimal"
+                        android:paddingEnd="18dp"
+                        android:text="@{viewModel.heightCm}"
+                        android:textAlignment="textEnd"
+                        android:textSize="@dimen/text_size_20"
+                        app:layout_constraintEnd_toStartOf="@+id/tvProfileHeighUnit_"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvProfileHeighUnit_"
+                        android:layout_width="32dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/layout_marginEnd_16dp"
+                        android:text="cm"
+                        android:textColor="@color/color_both_1"
+                        android:textSize="@dimen/text_size_20"
+                        app:layout_constraintBottom_toBottomOf="@+id/edtProfileHeight"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/edtProfileHeight" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_height_ft"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:layout_marginTop="5dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layout_height">
+
+
+                    <EditText
+                        android:id="@+id/edtProfileHeight_ft"
+                        style="@style/EditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_weight="1"
+                        android:hint="-"
+                        android:inputType="numberDecimal"
+                        android:paddingEnd="20dp"
+                        android:maxLength="1"
+                        android:text="@{viewModel.heightFt}"
+                        android:textAlignment="textEnd"
+                        android:textSize="@dimen/text_size_20"
+                        app:layout_constraintEnd_toStartOf="@+id/tvProfileHeighUnit_ft"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <TextView
+                        android:id="@+id/tvProfileHeighUnit_ft"
+                        android:layout_width="@dimen/layout_width_30dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="156dp"
+                        android:layout_marginEnd="204dp"
+                        android:text="ft"
+                        android:textColor="@color/color_both_1"
+                        android:textSize="@dimen/text_size_20"
+                        app:layout_constraintBottom_toBottomOf="@+id/edtProfileHeight_ft"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <EditText
+                        android:id="@+id/edtProfileHeight_in"
+                        style="@style/EditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_marginStart="22dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_weight="1"
+                        android:hint="-"
+                        android:inputType="numberDecimal"
+                        android:paddingEnd="20dp"
+                        android:text="@{viewModel.heightIn}"
+                        android:textAlignment="textEnd"
+                        android:textSize="@dimen/text_size_20"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/tvProfileHeighUnit_in"
+                        app:layout_constraintStart_toEndOf="@+id/tvProfileHeighUnit_ft"
+                        app:layout_constraintTop_toTopOf="@+id/edtProfileHeight_ft" />
+
+                    <TextView
+                        android:id="@+id/tvProfileHeighUnit_in"
+                        android:layout_width="@dimen/layout_width_30dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/layout_marginEnd_18dp"
+                        android:text="in"
+                        android:textColor="@color/color_both_1"
+                        android:textSize="@dimen/text_size_20"
+                        app:layout_constraintBottom_toBottomOf="@+id/edtProfileHeight_in"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/edtProfileHeight_in" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <TextView
+                    android:id="@+id/tvProfileWeight_"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_side_20dp"
+                    android:layout_marginTop="30dp"
+                    android:text="체중"
+                    android:textColor="@color/color_both_1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layout_height_ft" />
+
+                <EditText
+                    android:id="@+id/edtProfileWeight"
+                    style="@style/EditTextStyle"
+                    android:layout_width="0dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_weight="1"
+                    android:hint="-"
+                    android:inputType="numberDecimal"
+                    android:paddingEnd="20dp"
+                    android:text="@{viewModel.info.userWeight.toString()}"
+                    android:textAlignment="textEnd"
+                    android:textSize="@dimen/text_size_20"
+                    app:layout_constraintEnd_toStartOf="@+id/tvProfileWeighUnit_"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvProfileWeight_" />
+
+                <TextView
+                    android:id="@+id/tvProfileWeighUnit_"
+                    android:layout_width="@dimen/layout_width_30dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/layout_marginEnd_18dp"
+                    android:text="lbs"
+                    android:textColor="@color/color_both_1"
+                    android:textSize="@dimen/text_size_20"
+                    app:layout_constraintBottom_toBottomOf="@+id/edtProfileWeight"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/edtProfileWeight" />
+
+                <TextView
+                    android:id="@+id/tvProfileGoal_"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_side_20dp"
+                    android:layout_marginTop="40dp"
+                    android:text="일일 목표"
+                    android:textColor="@color/color_both_1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/edtProfileWeight" />
+
+                <EditText
+                    android:id="@+id/edtProfileGoal"
+                    style="@style/EditTextStyle"
+                    android:layout_marginTop="5dp"
+                    android:inputType="number"
+                    android:textAlignment="textEnd"
+                    android:hint="-"
+                    android:paddingEnd="20dp"
+                    android:maxLength="7"
+                    android:text="@{viewModel.info.userDailyGoal.toString()}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvProfileGoal_" />
+
+
+                <Button
+                    android:id="@+id/btnSave"
+                    style="@style/ButtonStyle"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginBottom="@dimen/margin_side_20dp"
+                    android:text="저장"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/edtProfileGoal" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    </layout>

@@ -1,7 +1,8 @@
 package kr.tangram.smartgym.ui.device
 
-import DeviceRegisterRepository
 import android.util.Log
+import kr.tangram.smartgym.data.repository.DeviceRegisterRepository
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.gson.Gson

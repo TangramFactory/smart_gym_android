@@ -4,8 +4,6 @@ import android.app.Activity
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothManager
-import android.bluetooth.le.ScanCallback
-import android.bluetooth.le.ScanResult
 import android.bluetooth.le.ScanSettings
 import android.content.*
 import android.content.pm.PackageManager
@@ -15,13 +13,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.PopupWindow
-import androidx.annotation.RequiresApi
 import com.tangramfactory.smartrope.views.ViewPopHistory
 import kr.tangram.smartgym.R
-import kr.tangram.smartgym.ui.deviceConnect.DeviceDiscoverActivity
 import kr.tangram.smartgym.util.*
 import kr.tangram.smartgym.view.ViewDialogPop
-import kr.tangram.smartgym.view.ViewPopCounter
 import no.nordicsemi.android.dfu.DfuServiceInitiator
 import org.json.JSONObject
 import java.io.File
@@ -890,7 +885,6 @@ class BleSmartRopeConnect {
 
     //==== 팝업 카운터를 보여준다
     private var viewHandler: Handler? = null
-    private var viewPopCounter : ViewPopCounter? = null
     private var viewParentContext: Context? = null
     var enableCounter = true
     fun openJumpCounterView() {
@@ -903,18 +897,6 @@ class BleSmartRopeConnect {
         viewHandler!!.post {
 
             //
-            if (viewParentContext != (smartropeInterface as Context)) viewPopCounter = null // 부모가 바뀌었으면 NULL
-            viewParentContext = (smartropeInterface as Context)
-
-            //
-            if (viewPopCounter == null) {
-                viewPopCounter = ViewPopCounter(viewParentContext!!)
-                privateCount = 0
-            } else {
-                if (viewPopCounter?.visibility == View.GONE) viewPopCounter?.open()
-                //** 숫자 세기 **//
-                viewPopCounter?.counting()
-            }
         }
     }
 
@@ -922,17 +904,11 @@ class BleSmartRopeConnect {
     fun closeJumpCounterView() {
         Handler(Looper.getMainLooper()).post { // On Main Looper
 
-            viewPopCounter?.close(fun() {
-                log(tag, "closed")
-                viewPopCounter = null
-                viewHandler = null
-            })
         }
     }
 
     //
     fun popOpened(): Boolean {
-        if (viewPopCounter?.visibility == View.VISIBLE) return true
         return false
     }
 

@@ -1,14 +1,11 @@
 package kr.tangram.smartgym.data.local.dao
 
-import android.net.MacAddress
 import androidx.room.*
 import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Observable
 import io.reactivex.Single
 import kr.tangram.smartgym.data.domain.model.DeviceRegister
-import kr.tangram.smartgym.data.domain.model.UserEmailCache
-import retrofit2.http.DELETE
 
 @Dao
 interface DeviceRegisterDao {

@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="kr.tangram.smartgym.UserViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:context=".ui.login.LoginCompleteActivity">
+
+
+            <TextView
+                android:id="@+id/tvLoginSuccess"
+                style="@style/HeaderTextStyle"
+                android:layout_width="0dp"
+                android:layout_marginStart="60dp"
+                android:layout_marginEnd="@dimen/margin_side_20dp"
+                android:layout_weight="1"
+                android:text="환영합니다."
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvLoginSuccessScript"
+                style="@style/ScriptTextStyle"
+                android:text="내근처 어떤 체육관이..."
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvLoginSuccess" />
+
+            <TextView
+                android:id="@+id/tvEnterProfile"
+                style="@style/Header2TextStyle"
+                android:layout_marginTop="40dp"
+                android:text="프로필 등"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvLoginSuccessScript" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_profile"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_side_20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="@dimen/margin_side_20dp"
+                android:layout_weight="1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvEnterProfile">
+
+                <com.mikhaellopez.circularimageview.CircularImageView
+                    android:id="@+id/imgProfile"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_default_profile"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+                <TextView
+                    android:id="@+id/tvProfileNicName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="10dp"
+                    android:text="@{viewModel.info.userNickname !=null &amp;&amp; viewModel.info.userNickname.length() > 0  ? viewModel.info.userNickname :`닉네임 설정`}"
+                    android:textColor="@color/color_both_1"
+                    android:textSize="@dimen/text_size_18sp"
+                    app:layout_constraintEnd_toStartOf="@+id/btnProfileInfo"
+                    app:layout_constraintStart_toEndOf="@+id/imgProfile"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvProfileScript"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="@{viewModel.info.userIntroduce !=null &amp;&amp; viewModel.info.userIntroduce.length() > 0  ? viewModel.info.userIntroduce :`개인정보를 입력해주세요.`}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/btnProfileInfo"
+                    app:layout_constraintStart_toEndOf="@+id/imgProfile"
+                    app:layout_constraintTop_toBottomOf="@+id/tvProfileNicName"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <ImageButton
+                    android:id="@+id/btnProfileInfo"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:background="@android:color/transparent"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvProfileScript"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tvProfileNicName"
+                    app:srcCompat="@drawable/ic_button_right"
+                    tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/tvCertification4"
+                style="@style/Header2TextStyle"
+                android:layout_marginTop="50dp"
+                android:text="계정 및 기기 설정"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layout_profile" />
+
+
+
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_connect_device"
+                gravity="center_vertical"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/layout_height_48dp"
+                android:layout_marginStart="@dimen/margin_side_20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="@dimen/margin_side_20dp"
+                android:layout_weight="1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvCertification4">
+
+
+                <TextView
+                    android:id="@+id/tvConnectDevice"
+                    android:layout_width="0dp"
+                    android:layout_height="24dp"
+                    android:text="기기 연결"
+                    android:textColor="@color/color_both_1"
+                    android:textSize="@dimen/text_size_18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/btnLocationInfo2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageButton
+                    android:id="@+id/btnLocationInfo2"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:background="@android:color/transparent"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvConnectDevice"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tvConnectDevice"
+                    app:layout_constraintVertical_bias="0.50"
+                    app:srcCompat="@drawable/ic_button_right"
+                    tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:id="@+id/view2"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginStart="@dimen/margin_side_20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="@dimen/margin_side_20dp"
+                android:layout_weight="1"
+                android:background="#AAAAAA"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layout_connect_device" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_junior_account"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_side_20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="@dimen/margin_side_20dp"
+                android:layout_weight="1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view2">
+
+                <TextView
+                    android:id="@+id/tvJuniorAccount"
+                    android:layout_width="0dp"
+                    android:layout_height="24dp"
+                    android:text="패밀리 계정"
+                    android:textColor="@color/color_both_1"
+                    android:textSize="@dimen/text_size_18sp"
+                    app:layout_constraintEnd_toStartOf="@+id/btnJuniorAccount"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvJuniorAccountScript"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="개인정보를 입력해주세요. \ndsda"
+                    android:textSize="@dimen/text_size_14sp"
+                    app:layout_constraintEnd_toStartOf="@+id/btnJuniorAccount"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvJuniorAccount" />
+
+                <ImageButton
+                    android:id="@+id/btnJuniorAccount"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:background="@android:color/transparent"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvJuniorAccountScript"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tvJuniorAccount"
+                    app:srcCompat="@drawable/ic_button_right"
+                    tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <Button
+                android:id="@+id/btnConfirm"
+                style="@style/ButtonStyle"
+                android:layout_marginTop="60dp"
+                android:layout_marginBottom="@dimen/margin_side_20dp"
+                android:text="확인"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layout_junior_account"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+
+                android:src="@drawable/ic_login_success"
+                app:layout_constraintBottom_toBottomOf="@+id/tvLoginSuccess"
+                app:layout_constraintEnd_toStartOf="@+id/tvLoginSuccess"
+                app:layout_constraintTop_toTopOf="@+id/tvLoginSuccess" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

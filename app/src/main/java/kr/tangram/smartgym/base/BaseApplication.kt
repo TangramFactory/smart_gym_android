@@ -3,6 +3,8 @@ package kr.tangram.smartgym.base
 import android.app.Activity
 import android.app.Application
 import android.content.Context
+import com.lyft.kronos.AndroidClockFactory
+import com.lyft.kronos.KronosClock
 import android.content.Intent
 import android.os.Handler
 import com.orhanobut.hawk.Hawk
@@ -14,7 +16,6 @@ import org.koin.core.context.startKoin
 class BaseApplication : Application() {
 
     val tag = javaClass.name
-
     override fun onCreate() {
         super.onCreate()
 
@@ -73,6 +74,11 @@ class BaseApplication : Application() {
         fun setIsLockScreen(isLockScreen: Boolean) {
             Hawk.put(Define.AppData.ScreenLock, isLockScreen)
         }
+
+        val kronosClock: KronosClock
+            get() = AndroidClockFactory.createKronosClock(context).apply {
+                syncInBackground()
+            }
     }
 
 

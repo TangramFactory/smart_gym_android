@@ -2,8 +2,7 @@ package kr.tangram.smartgym.ui.intro
 
 import kr.tangram.smartgym.base.BaseViewModel
 import org.koin.core.component.inject
-import DeviceRegisterRepository
-import android.util.Log
+import kr.tangram.smartgym.data.repository.DeviceRegisterRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers

@@ -8,7 +8,7 @@
     <data>
         <variable
             name="vm"
-            type="kr.tangram.smartgym.ui.junior.JuniorViewModel" />
+            type="kr.tangram.smartgym.ui.login.junior.JuniorViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -23,21 +23,22 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
             android:id="@+id/layout_main"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="40dp"
-            android:paddingRight="40dp"
+            android:paddingLeft="@dimen/margin_side_20dp"
+            android:paddingRight="@dimen/margin_side_20dp"
             android:paddingBottom="20dp"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_top_8dp"
                 android:textSize="@dimen/text_size_14"
                 android:textColor="@color/color_both_3"
                 android:text="이메일로 발송되는 인증 버튼을 누르면 비밀번호 설정 없이 가입이 완료됩니다."/>
@@ -55,7 +56,7 @@
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
                 android:gravity="center_vertical"
-                android:background="@drawable/edt_round"
+                android:background="@drawable/edt_round_black"
                 android:layout_marginTop="@dimen/margin_top_7dp"
                 android:hint="@string/login_hint_email_login"
                 android:textColorHint="@color/border_color"
@@ -79,7 +80,7 @@
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
                 android:gravity="center_vertical"
-                android:background="@drawable/edt_round"
+                android:background="@drawable/edt_round_black"
                 android:layout_marginTop="@dimen/margin_top_7dp"
                 android:hint="Junior Name"
                 android:textColorHint="@color/border_color"
@@ -103,13 +104,13 @@
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
                 android:gravity="center_vertical"
-                android:background="@drawable/edt_round"
+                android:background="@drawable/edt_round_black"
                 android:layout_marginTop="@dimen/margin_top_7dp"
                 android:hint="Junior Birthday"
                 android:textColorHint="@color/border_color"
                 android:textColor="@color/color_both_1"
                 android:textSize="@dimen/text_size_18sp"
-                android:inputType="number"
+                android:inputType="date"
                 android:maxLines="1"
                 android:maxLength="8"
                 tools:ignore="TouchTargetSizeCheck" />
@@ -119,7 +120,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:text="Sex"/>
+                android:text="Gender"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -202,7 +203,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="20dp"
                 android:gravity="center_vertical">
 
                 <ImageView
@@ -231,11 +233,12 @@
 
             </LinearLayout>
 
+
             <Button
                 android:id="@+id/btnEmailLink"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginTop="80dp"
+                android:layout_marginTop="50dp"
                 android:drawableLeft="@drawable/ic_login_email"
                 android:text="@string/login_email_certification" />
 

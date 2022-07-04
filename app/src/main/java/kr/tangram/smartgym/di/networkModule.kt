@@ -1,6 +1,7 @@
 package kr.tangram.smartgym.di
 
 import androidx.room.Room
+import com.google.gson.GsonBuilder
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.internal.synchronized
 import kr.tangram.smartgym.BuildConfig
@@ -17,7 +18,7 @@ private val httpLoggingInterceptor = HttpLoggingInterceptor().setLevel(HttpLoggi
 
 private val provideOkHttpClient = OkHttpClient.Builder().addInterceptor(httpLoggingInterceptor).build()
 
-
+private val gson = GsonBuilder().setLenient().create()
 
 val networkModule = module {
 
@@ -26,11 +27,13 @@ val networkModule = module {
             .baseUrl(BuildConfig.SERVER_URL)
             .client(provideOkHttpClient)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
     }
 
     single {
-        Room.databaseBuilder(androidContext(), AppDatabase::class.java, "smart_gym_DB").build()
+        Room.databaseBuilder(androidContext(), AppDatabase::class.java, "smart_gym_DB")
+            .fallbackToDestructiveMigration()
+            .build()
     }
 }

@@ -19,11 +19,12 @@
         android:background="@color/color_both_2"
         android:fitsSystemWindows="true">
 
-    <include layout="@layout/layout_header"/>
+    <include android:id="@+id/header"
+        layout="@layout/layout_header"/>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -54,7 +55,7 @@
                 style="@style/EditTextStyle"
                 android:layout_marginTop="@dimen/margin_top_7dp"
                 android:hint="@string/login_hint_email_login"
-                android:inputType=""
+                android:inputType="textEmailAddress"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
@@ -62,29 +63,29 @@
                 tools:ignore="TouchTargetSizeCheck" />
 
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnEmailLink"
                 style="@style/ButtonStyle"
-                android:drawableLeft="@drawable/ic_login_email"
+                app:icon="@drawable/ic_login_email"
+                app:iconGravity="textStart"
+                app:iconPadding="5dp"
+                app:iconTint="@null"
                 android:text="@string/login_email_certification"
                 android:layout_marginTop="84dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvLoginFailScript" />
-
-            <TextView
-                android:id="@+id/tvLoginFailScript"
-                style="@style/MessageTextStyle"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/edtEmail" />
 
-            <Button
+
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnJoin"
                 style="@style/ButtonStyle"
                 android:layout_marginTop="20dp"
-                android:layout_marginBottom="@dimen/margin_side_40dp"
-                android:drawableLeft="@drawable/ic_login_join"
+                android:layout_marginBottom="@dimen/margin_side_20dp"
+                app:icon="@drawable/ic_login_join"
+                app:iconGravity="textStart"
+                app:iconPadding="5dp"
+                app:iconTint="@null"
                 android:text="@string/login_join"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

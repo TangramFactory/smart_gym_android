@@ -14,7 +14,7 @@ import com.google.firebase.ktx.initialize
 import kr.tangram.smartgym.R
 
 class FireBaseEmailLogin constructor(private val context: Context) {
-    private val TAG = "deepLink"
+
     init {
         val option = FirebaseOptions.Builder()
             .setProjectId(context.getString(R.string.firebase_project_id))
@@ -23,12 +23,12 @@ class FireBaseEmailLogin constructor(private val context: Context) {
             .build()
         //중복요청 에러 방지
         if (FirebaseApp.getApps(context).isNullOrEmpty()) {
-            Firebase.initialize(context,option, FirebaseApp.DEFAULT_APP_NAME)
+            Firebase.initialize(context, option, FirebaseApp.DEFAULT_APP_NAME)
         }
     }
 
-    fun sendEmail(email : String, receiveEmail: ReceiveEmail) {
-        Firebase.auth.sendSignInLinkToEmail(email,makeSetting(receiveEmail))
+    fun sendEmail(email: String, emailReceiveType: EmailReceiveType, name : String="", birthDay : String="", gender: String="", parentUid : String?="") {
+        Firebase.auth.sendSignInLinkToEmail(email, makeSetting(email, emailReceiveType, name, birthDay,gender, parentUid))
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     Log.d("Login", "Email sent.")
@@ -39,22 +39,36 @@ class FireBaseEmailLogin constructor(private val context: Context) {
             }
     }
 
-    private fun makeSetting(receiveEmail: ReceiveEmail) : ActionCodeSettings{
+    private fun makeSetting(
+        email: String,
+        emailReceiveType: EmailReceiveType,
+        name: String,
+        birthDay: String,
+        gender: String,
+        parentUid: String?
+    ): ActionCodeSettings {
         var url = "https://smartgym.page.link/Login"
 
-        when (receiveEmail) {
-            ReceiveEmail.LOGIN -> url = Uri.parse(url).buildUpon()
-                    .appendQueryParameter("receiveEmail", ReceiveEmail.LOGIN.toString())
-                    .build()
-                    .toString()
-
-            ReceiveEmail.JOIN -> url = Uri.parse(url).buildUpon()
-                .appendQueryParameter("receiveEmail", ReceiveEmail.JOIN.toString())
+        when (emailReceiveType) {
+            EmailReceiveType.Login -> url = Uri.parse(url).buildUpon()
+                .appendQueryParameter("receiveEmail", "Login")
+                .appendQueryParameter("email", email)
                 .build()
                 .toString()
 
-            ReceiveEmail.JUNIOR -> url = Uri.parse(url).buildUpon()
-                .appendQueryParameter("receiveEmail", ReceiveEmail.JUNIOR.toString())
+            EmailReceiveType.Join -> url = Uri.parse(url).buildUpon()
+                .appendQueryParameter("receiveEmail", "Join")
+                .appendQueryParameter("email", email)
+                .build()
+                .toString()
+
+            EmailReceiveType.Junior -> url = Uri.parse(url).buildUpon()
+                .appendQueryParameter("receiveEmail", "Junior")
+                .appendQueryParameter("name", name)
+                .appendQueryParameter("birthDay", birthDay)
+                .appendQueryParameter("email", email)
+                .appendQueryParameter("parentUid", parentUid!!)
+                .appendQueryParameter("gender", gender)
                 .build()
                 .toString()
         }
@@ -72,6 +86,10 @@ class FireBaseEmailLogin constructor(private val context: Context) {
 }
 
 
-enum class ReceiveEmail{
-    LOGIN, JOIN, JUNIOR
+sealed class EmailReceiveType {
+    object Login : EmailReceiveType()
+    object Join : EmailReceiveType()
+    object Junior : EmailReceiveType()
+    data class Fail(val data: String) : EmailReceiveType()
+    data class FailToast(val data: String) : EmailReceiveType()
 }

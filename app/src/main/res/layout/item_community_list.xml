@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginStart="@dimen/margin_side_20dp"
+    android:layout_marginEnd="@dimen/margin_side_20dp">
+
+    <com.mikhaellopez.circularimageview.CircularImageView
+        android:id="@+id/circularImageView2"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_default_profile"
+        app:civ_border_width="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_post_user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="김수진"
+        android:textColor="@color/color_both_1"
+        app:layout_constraintStart_toEndOf="@+id/circularImageView2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_post_posting_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="2022년 10월 19일 오후 02:20"
+        app:layout_constraintBottom_toBottomOf="@+id/circularImageView2"
+        app:layout_constraintStart_toEndOf="@+id/circularImageView2"
+        app:layout_constraintTop_toBottomOf="@+id/tv_post_user_name"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_post_posting_time" />
+
+
+    <TextView
+        android:id="@+id/tv_post_posting_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="줄넘기를 같이 해봅시다."
+        android:textColor="@color/color_both_1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
+
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:text="우리 같이 운동하면서 재미있게 놀아요.초보자들도 환영입니다. 꾸준히 운동하고 건강하세요. 많은 참여 부탁드립니다......"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_post_posting_name" />
+
+    <View
+        android:id="@+id/view4"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/margin_top_10dp"
+        android:background="@color/dark_gray"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <com.google.android.material.button.MaterialButton
+        android:gravity="center"
+        android:id="@+id/btn_post_like"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:text="좋아요"
+        app:icon="@drawable/ic_group"
+        app:iconGravity="textStart"
+        app:iconPadding="5dp"
+        app:iconTint="@null"
+        style="@style/PostButtonStyle"
+        app:layout_constraintEnd_toStartOf="@+id/btn_post_comment"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view4" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_post_comment"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:text="댓글"
+        app:icon="@drawable/ic_group"
+        app:iconGravity="textStart"
+        app:iconPadding="5dp"
+        app:iconTint="@null"
+        style="@style/PostButtonStyle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btn_post_like"
+        app:layout_constraintTop_toBottomOf="@+id/view4" />
+</androidx.constraintlayout.widget.ConstraintLayout>
