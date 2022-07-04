@@ -1,7 +1,7 @@
 package kr.tangram.smartgym.data.local
 
 import androidx.room.TypeConverter
-import kr.tangram.smartgym.data.domain.model.TableName
+import kr.tangram.smartgym.data.domain.model.DeviceRegister
 import kr.tangram.smartgym.data.domain.type.TableNameType
 
 class Converters {
@@ -10,7 +10,7 @@ class Converters {
 
         @TypeConverter
         @JvmStatic
-        fun fromTableNameType(tableNameType: TableName?) = tableNameType?.name
+        fun fromTableNameType(tableNameType: DeviceRegister?) = tableNameType?.name
 
         @TypeConverter
         @JvmStatic

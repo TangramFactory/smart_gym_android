@@ -5,5 +5,8 @@
     <color name="color_both_1">#FFFFFF</color>
     <color name="color_both_2">#000000</color>
     <color name="color_both_3">#ADFFFFFF</color>
-
+    <color name="color_both_4">#80FFFFFF</color> <!--50% -->
+    <color name="color_both_5">#4DAAAAAA</color> <!--30% -->
+    <color name="color_both_6">#99FFFFFF</color> <!--60% -->
+    <color name="color_both_7">#66FFFFFF</color> <!--40% -->
 </resources>

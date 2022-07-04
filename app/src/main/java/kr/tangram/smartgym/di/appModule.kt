@@ -1,9 +1,8 @@
 package kr.tangram.smartgym.di
 
-import ContributorRepository
 import kr.tangram.smartgym.util.FireBaseEmailLogin
 import org.koin.android.ext.koin.androidContext
-import TableNameRepository
+import DeviceRegisterRepository
 import kr.tangram.smartgym.data.repository.UserRepository
 import org.koin.dsl.module
 
@@ -12,7 +11,7 @@ val appModule = module {
         FireBaseEmailLogin(androidContext())
     }
 
-    factory { TableNameRepository(get(), get()) }
+    factory { DeviceRegisterRepository(get(), get()) }
 
     factory { UserRepository(get(), get()) }
 }

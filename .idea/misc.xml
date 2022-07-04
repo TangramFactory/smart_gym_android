@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/dev/smart_gym/app/src/main/res/drawable-night/ic_header_arrow.xml" value="0.2855" />
+        <entry key="..\:/dev/smart_gym/app/src/main/res/drawable-v24/ic_icon_bat_40.xml" value="0.158" />
         <entry key="..\:/dev/smart_gym/app/src/main/res/drawable/background_popwindow2.xml" value="0.299" />
         <entry key="..\:/dev/smart_gym/app/src/main/res/drawable/circle_round_black.xml" value="0.2855" />
         <entry key="..\:/dev/smart_gym/app/src/main/res/drawable/edt_round.xml" value="0.2855" />
@@ -13,6 +14,9 @@
         <entry key="..\:/dev/smart_gym/app/src/main/res/drawable/ic_basic_count_indicator_04.xml" value="0.2855" />
         <entry key="..\:/dev/smart_gym/app/src/main/res/drawable/ic_basiccount_circle_goal.xml" value="0.2855" />
         <entry key="..\:/dev/smart_gym/app/src/main/res/drawable/ic_basiccount_circle_jump.xml" value="0.2855" />
+        <entry key="..\:/dev/smart_gym/app/src/main/res/drawable/ic_battery_small_100.xml" value="0.1045" />
+        <entry key="..\:/dev/smart_gym/app/src/main/res/drawable/ic_battery_small_50.xml" value="0.1045" />
+        <entry key="..\:/dev/smart_gym/app/src/main/res/drawable/ic_battery_small_75.xml" value="0.158" />
         <entry key="..\:/dev/smart_gym/app/src/main/res/drawable/ic_button_right.xml" value="0.2855" />
         <entry key="..\:/dev/smart_gym/app/src/main/res/drawable/ic_certification_mobile.xml" value="0.2855" />
         <entry key="..\:/dev/smart_gym/app/src/main/res/drawable/ic_checked_button.xml" value="0.299" />
@@ -30,22 +34,38 @@
         <entry key="..\:/dev/smart_gym/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2855" />
         <entry key="..\:/dev/smart_gym/app/src/main/res/drawable/ic_login_email.xml" value="0.299" />
         <entry key="..\:/dev/smart_gym/app/src/main/res/drawable/ic_login_join.xml" value="0.299" />
+        <entry key="..\:/dev/smart_gym/app/src/main/res/drawable/ic_more_gray.xml" value="0.2755" />
         <entry key="..\:/dev/smart_gym/app/src/main/res/drawable/ic_notification_icon_close.xml" value="0.2855" />
         <entry key="..\:/dev/smart_gym/app/src/main/res/drawable/ic_notification_icon_link.xml" value="0.2855" />
         <entry key="..\:/dev/smart_gym/app/src/main/res/drawable/ic_notification_icon_logo.xml" value="0.2855" />
         <entry key="..\:/dev/smart_gym/app/src/main/res/drawable/ic_plus_circle_gray.xml" value="0.2855" />
+        <entry key="..\:/dev/smart_gym/app/src/main/res/drawable/ic_rope_circle_white.xml" value="0.2755" />
         <entry key="..\:/dev/smart_gym/app/src/main/res/drawable/ic_success_mark.xml" value="0.2855" />
         <entry key="..\:/dev/smart_gym/app/src/main/res/drawable/ic_unchecked_button.xml" value="0.2855" />
         <entry key="..\:/dev/smart_gym/app/src/main/res/drawable/oval_33000000.xml" value="0.2855" />
         <entry key="..\:/dev/smart_gym/app/src/main/res/drawable/oval_3B89FF.xml" value="0.2855" />
         <entry key="..\:/dev/smart_gym/app/src/main/res/drawable/oval_FFFFFF_stroke_3B89FF.xml" value="0.2855" />
+        <entry key="..\:/dev/smart_gym/app/src/main/res/drawable/oval_black_white.xml" value="0.286" />
         <entry key="..\:/dev/smart_gym/app/src/main/res/drawable/oval_ffffff_stroke_3b89ff.xml" value="0.2855" />
         <entry key="..\:/dev/smart_gym/app/src/main/res/drawable/oval_ffffff_stroke_aaaaaa.xml" value="0.2855" />
         <entry key="..\:/dev/smart_gym/app/src/main/res/drawable/oval_gray.xml" value="0.2855" />
+        <entry key="..\:/dev/smart_gym/app/src/main/res/drawable/rectangle_round_100_solid_ff377f.xml" value="0.2755" />
+        <entry key="..\:/dev/smart_gym/app/src/main/res/drawable/round_15_solid_aaaaaa.xml" value="0.2755" />
+        <entry key="..\:/dev/smart_gym/app/src/main/res/drawable/round_22_solid_808080.xml" value="0.231" />
         <entry key="..\:/dev/smart_gym/app/src/main/res/drawable/selector_checkbox.xml" value="0.2855" />
-        <entry key="..\:/dev/smart_gym/app/src/main/res/layout/activity_certificate.xml" value="0.43697916666666664" />
-        <entry key="..\:/dev/smart_gym/app/src/main/res/layout/activity_certificate_detail.xml" value="0.43697916666666664" />
+        <entry key="..\:/dev/smart_gym/app/src/main/res/drawable/switch_thumb_off.xml" value="0.286" />
+        <entry key="..\:/dev/smart_gym/app/src/main/res/drawable/switch_thumb_on.xml" value="0.286" />
+        <entry key="..\:/dev/smart_gym/app/src/main/res/drawable/switch_thumb_selector.xml" value="0.286" />
+        <entry key="..\:/dev/smart_gym/app/src/main/res/drawable/switch_track_off.xml" value="0.286" />
+        <entry key="..\:/dev/smart_gym/app/src/main/res/drawable/switch_track_on.xml" value="0.286" />
+        <entry key="..\:/dev/smart_gym/app/src/main/res/drawable/switch_track_selector.xml" value="0.286" />
+        <entry key="..\:/dev/smart_gym/app/src/main/res/layout/activity_certificate.xml" value="0.1" />
+        <entry key="..\:/dev/smart_gym/app/src/main/res/layout/activity_certificate_detail.xml" value="0.1" />
         <entry key="..\:/dev/smart_gym/app/src/main/res/layout/activity_device_discover.xml" value="0.43697916666666664" />
+        <entry key="..\:/dev/smart_gym/app/src/main/res/layout/activity_device_info.xml" value="0.22" />
+        <entry key="..\:/dev/smart_gym/app/src/main/res/layout/activity_device_manager.xml" value="0.22" />
+        <entry key="..\:/dev/smart_gym/app/src/main/res/layout/activity_device_name.xml" value="0.22" />
+        <entry key="..\:/dev/smart_gym/app/src/main/res/layout/activity_device_scan.xml" value="0.16666666666666666" />
         <entry key="..\:/dev/smart_gym/app/src/main/res/layout/activity_email_link_success.xml" value="0.43697916666666664" />
         <entry key="..\:/dev/smart_gym/app/src/main/res/layout/activity_intro.xml" value="0.3333333333333333" />
         <entry key="..\:/dev/smart_gym/app/src/main/res/layout/activity_join.xml" value="0.43697916666666664" />
@@ -60,11 +80,14 @@
         <entry key="..\:/dev/smart_gym/app/src/main/res/layout/fragment_welcome.xml" value="0.35885416666666664" />
         <entry key="..\:/dev/smart_gym/app/src/main/res/layout/layout_frank.xml" value="0.43697916666666664" />
         <entry key="..\:/dev/smart_gym/app/src/main/res/layout/layout_header.xml" value="0.3305084745762712" />
+        <entry key="..\:/dev/smart_gym/app/src/main/res/layout/layout_header2.xml" value="0.5" />
         <entry key="..\:/dev/smart_gym/app/src/main/res/layout/layout_pop_dialog.xml" value="0.3390625" />
         <entry key="..\:/dev/smart_gym/app/src/main/res/layout/layout_pop_firmware.xml" value="0.43697916666666664" />
         <entry key="..\:/dev/smart_gym/app/src/main/res/layout/layout_pop_textcount.xml" value="0.3385416666666667" />
+        <entry key="..\:/dev/smart_gym/app/src/main/res/layout/layout_sync.xml" value="0.21979166666666666" />
         <entry key="..\:/dev/smart_gym/app/src/main/res/layout/layout_sync_row.xml" value="0.3729166666666667" />
         <entry key="..\:/dev/smart_gym/app/src/main/res/layout/row_account.xml" value="0.3692708333333333" />
+        <entry key="..\:/dev/smart_gym/app/src/main/res/layout/row_my_device.xml" value="0.3333333333333333" />
         <entry key="app/src/main/res/drawable-v24/ic_icon_bat_0.xml" value="0.377" />
         <entry key="app/src/main/res/drawable-v24/ic_notification_icon_smartrope.xml" value="0.377" />
         <entry key="app/src/main/res/drawable/background_popwindow2.xml" value="0.3775" />

@@ -23,13 +23,11 @@ class JuniorAccountActivity : BaseActivity<ActivityJuniorAccountBinding, JuniorV
         binding = ActivityJuniorAccountBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val toolbar: Toolbar = findViewById(R.id.toolbar)
-        setSupportActionBar(toolbar)
+
+        setSupportActionBar(binding.header.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_header_arrow);
-
-        val collapsingToolbar: CollapsingToolbarLayout = findViewById(R.id.collapsing_toolbar)
-        collapsingToolbar.title = "주니어 계정"
+        binding.header.collapsingToolbar.title = "주니어 계정"
 
         binding.layoutMain.addView(addRow())
         binding.layoutMain.addView(addRow())

@@ -1,5 +1,6 @@
 package kr.tangram.smartgym.base
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
@@ -11,8 +12,13 @@ open class BaseViewModel : ViewModel(), KoinComponent {
 
     fun addDisposable(disposable: Disposable) = compositeDisposable.add(disposable)
 
+
+    fun getCompositeDisposable() : CompositeDisposable{
+        return compositeDisposable
+    }
+
     override fun onCleared() {
-        compositeDisposable.clear()
+        compositeDisposable.dispose()
         super.onCleared()
     }
 }

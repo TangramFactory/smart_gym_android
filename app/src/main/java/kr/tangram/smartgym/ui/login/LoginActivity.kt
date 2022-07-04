@@ -15,6 +15,10 @@ import kr.tangram.smartgym.R
 import kr.tangram.smartgym.base.BaseActivity
 import kr.tangram.smartgym.databinding.ActivityLoginBinding
 import kr.tangram.smartgym.ui.certificate.CertificationActivity
+import kr.tangram.smartgym.ui.device.DeviceInfoActivity
+import kr.tangram.smartgym.ui.device.DeviceManagerActivity
+import kr.tangram.smartgym.ui.device.DeviceNameActivity
+import kr.tangram.smartgym.ui.device.DeviceScanActivity
 import kr.tangram.smartgym.util.BackgroundRoundShape
 import kr.tangram.smartgym.util.ReceiveEmail
 import org.koin.androidx.viewmodel.ext.android.getViewModel
@@ -28,6 +32,7 @@ class LoginActivity: BaseActivity<ActivityLoginBinding, LoginViewModel>(R.layout
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
 
         binding.btnJoin.background = BackgroundRoundShape.fill("#444444")
         binding.btnEmailLink.background = BackgroundRoundShape.fill(getString(R.string.buttonColor))

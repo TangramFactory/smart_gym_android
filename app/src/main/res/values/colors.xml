@@ -32,15 +32,21 @@
 
     <color name="color_1">#3B89FF</color>
     <color name="color_2">#FFFFFF</color>
-    <color name="color_3">#33000000</color>
-
+    <color name="color_3">#33000000</color> <!--20% -->
     <color name="color_4">#AAAAAA</color>
-
+    <color name="color_5">#80AAAAAA</color> <!--50% -->
+    <color name="color_6">#80000000</color> <!--50% -->
+    <color name="color_7">#4D000000</color> <!--30% -->
+    <color name="color_8">#808080</color>
     <!--- Theme -->
 
     <color name="color_both_1">#000000</color>
     <color name="color_both_2">#FFFFFF</color>
-    <color name="color_both_3">#AD000000</color>
+    <color name="color_both_3">#AD000000</color> <!--68% -->
+    <color name="color_both_4">#80000000</color> <!--50% -->
+    <color name="color_both_5">#26AAAAAA</color> <!--15% -->
+    <color name="color_both_6">#99000000</color> <!--60% -->
+    <color name="color_both_7">#66000000</color> <!--40% -->
 
 
     <color name="a01_background">#202639</color>

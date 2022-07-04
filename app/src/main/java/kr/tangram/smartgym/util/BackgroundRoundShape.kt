@@ -33,6 +33,28 @@ class BackgroundRoundShape {
             return shapeDrawable
         }
 
+        fun fill(colorInt:Int):MaterialShapeDrawable {
+            val shapeAppearanceModel = ShapeAppearanceModel().toBuilder().setAllCorners(CornerFamily.ROUNDED, R.attr.radius.toFloat()).build()
+            val shapeDrawable = MaterialShapeDrawable(shapeAppearanceModel)
+
+            val states = arrayOf(
+                intArrayOf(R.attr.state_enabled),
+                intArrayOf(-R.attr.state_enabled),
+                intArrayOf(-R.attr.state_checked),
+                intArrayOf(R.attr.state_pressed)
+            )
+            val colors = intArrayOf(
+                colorInt,
+                Color.parseColor("#AAAAAA"),
+                Color.GREEN,
+                Color.BLUE
+            )
+            shapeDrawable.fillColor = ColorStateList(states, colors)//parent.context.getColorStateList(colur)
+
+
+            return shapeDrawable
+        }
+
         fun fillStroke(fillColorString:String,strokeColorString:String,strokeWidth:Float):MaterialShapeDrawable {
             val shapeAppearanceModel = ShapeAppearanceModel().toBuilder().setAllCorners(CornerFamily.ROUNDED, R.attr.radius.toFloat()).build()
             val shapeDrawable = MaterialShapeDrawable(shapeAppearanceModel)

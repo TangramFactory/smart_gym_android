@@ -3,7 +3,6 @@ package kr.tangram.smartgym.data.local.dao
 import androidx.room.*
 import io.reactivex.Completable
 import io.reactivex.Flowable
-import kr.tangram.smartgym.data.domain.model.TableName
 import kr.tangram.smartgym.data.domain.model.UserEmailCache
 
 @Dao

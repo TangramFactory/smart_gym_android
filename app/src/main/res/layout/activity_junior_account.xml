@@ -17,7 +17,9 @@
         android:background="@color/color_both_2"
         android:fitsSystemWindows="true">
 
-    <include layout="@layout/layout_header"/>
+    <include
+        android:id="@+id/header"
+        layout="@layout/layout_header"/>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
