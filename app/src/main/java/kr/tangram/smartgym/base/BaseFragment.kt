@@ -56,13 +56,17 @@ abstract class BaseFragment<B : ViewDataBinding, VM : BaseViewModel>(
             lifecycleOwner = viewLifecycleOwner
         }
 
-        viewModel.workOutState.observe(viewLifecycleOwner) {
-            jumpStart()
-        }
 
         init()
         initLiveData()
         initListener()
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        viewModel.workOutState.observe(viewLifecycleOwner) {
+            jumpStart()
+        }
     }
 
 
@@ -81,7 +85,7 @@ abstract class BaseFragment<B : ViewDataBinding, VM : BaseViewModel>(
         if (isAdded) {
             binding.root
             BasicCountFragment.newInstance().run {
-//                show(parentFragment?.requireActivity()?.supportFragmentManager!!, BasicCountFragment::class.java.simpleName)
+//                show(childFragmentManager, BasicCountFragment::class.java.simpleName)
             }
         }
     }

@@ -7,7 +7,6 @@ import io.reactivex.schedulers.Schedulers
 import kr.tangram.smartgym.data.domain.model.DeviceRegister
 import kr.tangram.smartgym.data.local.AppDatabase
 import kr.tangram.smartgym.data.remote.BleRestApi
-import kr.tangram.smartgym.data.remote.RestApi
 import kr.tangram.smartgym.data.remote.model.DeviceInfo
 import kr.tangram.smartgym.data.remote.request.ReqDeviceLoad
 import kr.tangram.smartgym.data.remote.response.BaseResponse

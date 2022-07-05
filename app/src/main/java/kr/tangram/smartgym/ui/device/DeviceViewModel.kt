@@ -47,7 +47,6 @@ class DeviceViewModel(
     private val _updateDeviceAlias = MutableLiveData<Unit>()
     var updateDeviceAlias : LiveData<Unit> = _updateDeviceAlias
 
-    var smartRopeManager : SmartRopeManager
 
     init {
 
@@ -157,10 +156,7 @@ class DeviceViewModel(
         smartRopeManager?.removeRelease(identifier)
     }
 
-    fun clearRelease()
-    {
-        smartRopeManager?.clearRelease()
-    }
+
 
     fun updateDeviceAlas(deviceRegister: DeviceRegister, alias: String)
     {

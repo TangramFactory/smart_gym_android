@@ -6,7 +6,7 @@ import androidx.room.TypeConverters
 import kr.tangram.smartgym.data.local.dao.DeviceRegisterDao
 import kr.tangram.smartgym.data.domain.model.DeviceRegister
 
-@Database(entities = [DeviceRegister::class], version = 2, exportSchema = false)
+@Database(entities = [DeviceRegister::class], version = 3, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun deviceRegisterDAO(): DeviceRegisterDao
