@@ -60,7 +60,6 @@ class DeviceManagerActivity  : BaseActivity<ActivityDeviceManagerBinding, Device
         ButterKnife.bind(this)
 
         binding.header.tvTitle.text = "기기 관리"
-
         deviceListAdapter = DeviceListAdapter()
 
         binding.rvList.apply {

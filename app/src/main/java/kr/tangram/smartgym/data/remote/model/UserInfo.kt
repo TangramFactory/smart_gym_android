@@ -2,17 +2,6 @@ package kr.tangram.smartgym.data.remote.model
 
 import java.io.Serializable
 
-data class UserLoginResult(
-    val result: ResultLogin
-)
-
-
-data class ResultLogin(
-    val resultCode: Int,
-    val resultMsg: String,
-    val userInfoList: List<UserInfo>
-)
-
 
 data class UserInfo(
     val userUid: String,
@@ -31,13 +20,10 @@ data class UserInfo(
     val userTimezone: String?,
     val userTimezoneOffset: Int?,
     val userJuniorYn: String?,
-    val userImageUrlLarge: String?,
-    val userImageUrlSmall: String?,
     val userParentsUid: String?,
     val insertDt: String?,
     val updateDt: String?,
-    ) : Serializable{
-
+) : Serializable {
 
     fun getHeightFt() = if (userHeight?.contains("\'") == true) userHeight.split("\'")[0]
     else {

@@ -11,9 +11,11 @@ import kotlinx.coroutines.*
 import kr.tangram.smartgym.base.BaseViewModel
 import kr.tangram.smartgym.base.NetworkResult
 import kr.tangram.smartgym.ble.SmartRopeManager
-import kr.tangram.smartgym.data.remote.model.JumpSaveObject
 import kr.tangram.smartgym.data.remote.model.JumpToDay
+import kr.tangram.smartgym.data.remote.request.JumpSaveObject
 import kr.tangram.smartgym.data.repository.WorkOutRepository
+import java.text.SimpleDateFormat
+import java.util.*
 import javax.inject.Singleton
 
 @Singleton
@@ -26,8 +28,12 @@ class WorkOutViewModel(
     val toDayJump: LiveData<List<JumpToDay>> get() = _toDayJump
 
 
+    private val _jumpRopeWorkOut1 = MutableLiveData<JumpWorkOut>()
+    val jumpRopeWorkOut1: LiveData<JumpWorkOut> get() = _jumpRopeWorkOut1
+
     private val _jumpRopeWorkOut = MutableLiveData<JumpWorkOut>()
     val jumpRopeWorkOut: LiveData<JumpWorkOut> get() = _jumpRopeWorkOut
+
 
     private val _jumpMode = MutableLiveData<JumpMode>()
     val jumpMode: LiveData<JumpMode> get() = _jumpMode
@@ -36,22 +42,27 @@ class WorkOutViewModel(
 
     private val auth = Firebase.auth
 
+    private var startTime : Long
+
     init {
-        SmartRopeManager.getInstance().apply {
-            onCountJump = {
-                Log.d("fragment", it.toString())
-                CoroutineScope(Dispatchers.Main).launch {
-                    jumpCounting()
+        smartRopeManager = SmartRopeManager.getInstance().apply {
+            onFound ={}
+            onStopScan = {}
+            onCountJump = { jumpCount: Int, timeGap: Long ->
+                CoroutineScope(Dispatchers.Default).launch {
+                    jumpCounting(timeGap)
                 }
             }
         }
-
-
+        startTime = getCurrentTime()
+        clearJump()
         loadToDayJump()
         _jumpRopeWorkOut.value = JumpWorkOut()
         _jumpMode.value = JumpMode.JUMP
         jumpSaveDataList.clear()
     }
+
+    fun getCurrentTime() = Date().time + TimeZone.getDefault().rawOffset
 
     fun jumpModeChange(v : View){
         when(jumpMode.value){
@@ -62,12 +73,42 @@ class WorkOutViewModel(
         }
     }
 
-    private fun jumpCounting() {
-        val jump = _jumpRopeWorkOut.value?.jump!! + 1
-        val calorie = jump.toFloat()
-        val speed = jump * 10
-        val time = "2000"
+    private fun jumpCounting( timeGap : Long) {
+        val jump =  _jumpRopeWorkOut.value?.jump!!+1
+        val calorie = String.format("%.2f", _jumpRopeWorkOut.value?.calorie!! + calCalorie(90f, timeGap)).toFloat()
+        val speed = (60000.0f / timeGap).toInt()
+        val time = SimpleDateFormat("HH:mm:ss").format(getCurrentTime() - startTime)
+
         _jumpRopeWorkOut.postValue(JumpWorkOut(jump, calorie, speed, time))
+    }
+
+    fun calCalorie( weight_kg: Float, time_gap: Long): Float {
+        var oneCalorie = 0.0f
+        if (time_gap in 1..3000) {
+            val minRPM = 60000.0f / time_gap
+
+            val avrCalorie = when {
+                minRPM < 70 -> {
+                    0.074f
+                }
+                minRPM < 90 -> {
+                    0.075f
+                }
+                minRPM < 110 -> {
+                    0.077f
+                }
+                minRPM < 125 -> {
+                    0.080f
+                }
+                else -> {
+                    0.085f
+                }
+            }
+
+            // LBS로 계산되기 때문에 KG기준 > LBS기준으로 바꿈
+            oneCalorie = (weight_kg / 0.45359237f) * avrCalorie / 60.0f / 1000.0f * time_gap
+        }
+        return oneCalorie
     }
 
     fun saveJumpData() {
@@ -75,7 +116,7 @@ class WorkOutViewModel(
             _jumpRopeWorkOut.value?.jump.toString(), "20", String.format("%.2f", _jumpRopeWorkOut.value?.calorie), _jumpRopeWorkOut.value?.time.toString()))
 
         addDisposable(workOutRepository.saveJumpWorkOut(JumpSaveObject(auth.currentUser?.uid.toString(), jumpSaveDataList)).subscribe({
-               if(it.result.resultCode==0){
+               if(it.result?.resultCode==0){
                     Log.d(tag ,"저장 성공")
                }else{
                    Log.d(tag ,"저장 실패")
@@ -87,9 +128,9 @@ class WorkOutViewModel(
 
     fun loadToDayJump(){
         addDisposable(workOutRepository.getTodayJump(auth.currentUser?.uid.toString()).subscribe({
-            if(it.result.resultCode==0){
+            if(it.result?.resultCode==0){
                 Log.d(tag ,"로드 성공")
-                _toDayJump.postValue(it.result.resultList)
+                _toDayJump.postValue(it.resultList)
             }else{
                 Log.d(tag ,"로드 실패")
             }
@@ -98,8 +139,15 @@ class WorkOutViewModel(
         }))
     }
 
+    fun clearJump(){
+        _jumpRopeWorkOut.postValue(JumpWorkOut(0, 0f, 0, "00:00:00"))
+    }
 
 
+    override fun onCleared() {
+        super.onCleared()
+        smartRopeManager.stopScan()
+    }
 
     data class JumpWorkOut(val jump: Int = 0, val calorie: Float = 0F, val speed: Int = 0, val time: String = "00:00:00")
 

@@ -12,7 +12,6 @@ import kr.tangram.smartgym.R
 import kr.tangram.smartgym.base.BaseActivity
 import kr.tangram.smartgym.data.remote.model.UserInfo
 import kr.tangram.smartgym.databinding.ActivityJuniorModifyBinding
-import kr.tangram.smartgym.ui.login.LoginViewModel
 import kr.tangram.smartgym.util.BackgroundRoundShape
 import java.text.SimpleDateFormat
 import java.util.*

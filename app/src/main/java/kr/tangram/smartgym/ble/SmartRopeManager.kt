@@ -39,7 +39,7 @@ class SmartRopeManager() : KoinComponent {
 
     lateinit var onFound:(scanResult : ScanResult)->Unit
     lateinit var onStopScan:()->Unit
-    lateinit var onCountJump:(jumpCount : Int)->Unit
+    lateinit var onCountJump:(jumpCount : Int, time_gap :Long)->Unit
 
     var releaseList = ArrayList<String>()
 
@@ -301,7 +301,7 @@ class SmartRopeManager() : KoinComponent {
             var value = characteristic.getStringValue(0).toString().replace(";", "")
             val data: List<String> = value.split(":")
 
-            Log.e(data[0], data[1])
+            Log.e(data[0], data[1]+"/"+data[2]?:"0")
 
             when(data[0])
             {
@@ -314,7 +314,7 @@ class SmartRopeManager() : KoinComponent {
                     sendBus(Define.BusEvent.DeviceState, "")
                 }
                 "CNT" -> {
-                     onCountJump(data[1].toInt())
+                     onCountJump(data[1].toInt(), data[2].toLong())
                 }
                 else -> {
 

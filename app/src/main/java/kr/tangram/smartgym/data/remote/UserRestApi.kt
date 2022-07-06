@@ -4,11 +4,10 @@ package kr.tangram.smartgym.data.remote
 import com.google.gson.JsonObject
 import io.reactivex.Observable
 import io.reactivex.Single
-import kr.tangram.smartgym.data.remote.model.JuniorResult
-import kr.tangram.smartgym.data.remote.model.UserExistsResult
-import kr.tangram.smartgym.data.remote.model.UserLoginResult
-import kr.tangram.smartgym.data.remote.model.BaseResult
-import kr.tangram.smartgym.ui.workout.WorkOutViewModel
+import kr.tangram.smartgym.data.remote.response.JuniorResponse
+import kr.tangram.smartgym.data.remote.response.UserExistsResponse
+import kr.tangram.smartgym.data.remote.response.UserLoginResponse
+import kr.tangram.smartgym.data.remote.response.BaseResponse
 import retrofit2.http.*
 import java.util.*
 import javax.inject.Singleton
@@ -21,11 +20,11 @@ interface UserRestApi {
 
     @FormUrlEncoded
     @POST("user/userExists")
-    fun getUserExists(@Field("email") email: String) : Observable<UserExistsResult>
+    fun getUserExists(@Field("email") email: String) : Observable<UserExistsResponse>
 
     @FormUrlEncoded
     @POST("user/userLoadJuniorList")
-    fun getJuniorList(@Field("uid") uid: String) : Observable<JuniorResult>
+    fun getJuniorList(@Field("uid") uid: String) : Observable<JuniorResponse>
 
 
     @FormUrlEncoded
@@ -42,7 +41,7 @@ interface UserRestApi {
                    @Field("timezone") timezone: String = TimeZone.getDefault().id.toString(),
                    @Field("timezoneOffset") timezoneOffset: Int = TimeZone.getDefault().rawOffset,
 
-                   ) : Observable<BaseResult>
+                   ) : Observable<BaseResponse>
 
 
     @FormUrlEncoded
@@ -55,7 +54,7 @@ interface UserRestApi {
         @Field("height") height: String? = null,
         @Field("weight") weight: String? = null,
         @Field("dailyGoal") dailyGoal: String? = null
-    ):Observable<BaseResult>
+    ):Observable<BaseResponse>
 
     @FormUrlEncoded
     @POST("user/userModifyJunior")
@@ -64,9 +63,9 @@ interface UserRestApi {
         @Field("name") name: String,
         @Field("gender") gender : Int,
         @Field("birthday") birthday: String
-    ):Observable<BaseResult>
+    ):Observable<BaseResponse>
 
     @POST("user/userLogin")
-    fun updateUserLogin(@Body auth: JsonObject): Observable<UserLoginResult>
+    fun updateUserLogin(@Body auth: JsonObject): Observable<UserLoginResponse>
 
 }

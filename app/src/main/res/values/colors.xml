@@ -16,20 +16,6 @@
     <color name="border_color">#AAAAAA</color>
 
 
-
-
-
-
-
-
-    <color name="colorAccent">#FF6161</color>
-    <color name="a01_text_bright">#FFFFFF</color>
-    <color name="a01_text_normal">#B6BDD3</color>
-    <color name="a01_text_dark_bright">#6A7497</color>
-    <color name="a01_text_dark">#464F6F</color>
-    <color name="a01_text_accent">#FF6161</color>
-
-
     <color name="color_1">#3B89FF</color>
     <color name="color_2">#FFFFFF</color>
     <color name="color_3">#33000000</color> <!--20% -->
@@ -50,16 +36,6 @@
     <color name="color_both_8">#ADFFFFFF</color>
 
 
-    <color name="a01_background">#202639</color>
-    <color name="a01_background_transparent_light">#32000000</color>
-    <color name="a01_background_transparent">#7A000000</color>
-    <color name="a01_background_transparent_dark">#be000000</color>
-    <color name="a01_accent">#FF6161</color>
-
-    <color name="n1_background">#000000</color>
-    <color name="n1_background_dark">#191919</color>
-    <color name="n1_background_light">#282828</color>
-
 
     <color name="background">#FFBB86FC</color>
     <color name="menu_background_color">#E5FFFFFF</color>
@@ -69,5 +45,15 @@
     <color name="leader_board_rank_2nd_color">#CCCCCC</color>
     <color name="leader_board_rank_3rd_color">#CE8505</color>
     <color name="leader_board_rank_my_color">#FFD300</color>
+
+
+
+
+
+
+
+
+
+
 
 </resources>

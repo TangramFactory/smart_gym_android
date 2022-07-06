@@ -2,18 +2,6 @@ package kr.tangram.smartgym.data.remote.model
 
 import java.io.Serializable
 
-data class JumpLoadDayResult(
-    val result: ResultJumpLoadDay
-)
-
-
-data class ResultJumpLoadDay(
-    val resultCode: Int,
-    val resultMsg: String,
-    val resultList: List<JumpToDay>
-)
-
-
 data class JumpToDay(
     val userUid: String,
     val jumpCount: Int,
@@ -23,4 +11,4 @@ data class JumpToDay(
     val jumpDuration: Int,
     val insertDt: String,
     val updateDt: String,
-    ):Serializable
+): Serializable

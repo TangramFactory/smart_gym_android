@@ -31,7 +31,6 @@ import kr.tangram.smartgym.databinding.LayoutCustomToastBinding
 import kr.tangram.smartgym.ui.main.map.BottomDialogFragment
 import kr.tangram.smartgym.ui.workout.WorkOutViewModel
 import kr.tangram.smartgym.ui.workout.rope.BasicCountFragment
-import kr.tangram.smartgym.util.log
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 import org.koin.core.component.KoinComponent
 
@@ -41,6 +40,8 @@ abstract class BaseActivity<B : ViewDataBinding, VM : BaseViewModel>(
     lateinit var binding: B
 
     abstract val viewModel: VM
+
+    private val baseViewModel : BaseViewModel by lazy { getViewModel() }
     private var bluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
 
     private val PERMISSIONS = arrayOf(
@@ -61,10 +62,6 @@ abstract class BaseActivity<B : ViewDataBinding, VM : BaseViewModel>(
         binding.lifecycleOwner = this
 
         ButterKnife.bind(this)
-        viewModel.workOutState.observe(this) {
-            jumpStart()
-        }
-
 
         viewModel.networkState.observe(this) {
             when (it) {
@@ -73,18 +70,22 @@ abstract class BaseActivity<B : ViewDataBinding, VM : BaseViewModel>(
                 is NetworkResult.UserCreateFail -> showCustomToast(it.message, false)
             }
         }
+        viewModel.workOutState.observe(this) {
+            if (it >=0)
+            jumpStart()
+        }
+
+        Log.d("BaseActivity","+")
+
 
         init()
         initLiveData()
         initListener()
     }
 
-
     open fun init() {
         val intent = Intent(getApplicationContext(), BluetoothService::class.java)
         startService(intent)
-        viewModel.startScanBase()
-
     }
 
     open fun initLiveData() {}
@@ -116,17 +117,11 @@ abstract class BaseActivity<B : ViewDataBinding, VM : BaseViewModel>(
     }
 
 
-    private fun jumpStart() {
+    fun jumpStart() {
         BasicCountFragment.newInstance().run {
-            show(supportFragmentManager, BasicCountFragment::class.java.simpleName)
+            if (!isAdded) show(supportFragmentManager, BasicCountFragment::class.java.simpleName)
         }
     }
-
-    private fun jumpFinish() {
-        BasicCountFragment.newInstance().close()
-    }
-
-
 }
 
 sealed class NetworkResult() {

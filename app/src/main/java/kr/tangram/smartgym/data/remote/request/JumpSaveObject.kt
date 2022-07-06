@@ -1,4 +1,4 @@
-package kr.tangram.smartgym.data.remote.model
+package kr.tangram.smartgym.data.remote.request
 
 import kr.tangram.smartgym.base.BaseApplication.Companion.kronosClock
 

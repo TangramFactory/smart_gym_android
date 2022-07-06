@@ -1,8 +1,6 @@
 package kr.tangram.smartgym.ui.login.junior
 
 import android.util.Log
-import android.view.View
-import androidx.core.net.toUri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.FirebaseAuth
@@ -13,8 +11,6 @@ import kr.tangram.smartgym.base.BaseViewModel
 import kr.tangram.smartgym.data.repository.UserRepository
 import kr.tangram.smartgym.util.FireBaseEmailLogin
 import kr.tangram.smartgym.util.EmailReceiveType
-import com.google.gson.JsonObject;
-import kr.tangram.smartgym.R
 import kr.tangram.smartgym.base.NetworkResult
 import kr.tangram.smartgym.data.remote.model.UserInfo
 import org.koin.core.component.KoinComponent
@@ -39,7 +35,7 @@ class JuniorViewModel : BaseViewModel(), KoinComponent {
 
     fun modifyJunior(uid: String, name: String, gender: Int, birthday: String) {
         addDisposable(userRepository.modifyJuniorProfile(uid, name, gender, birthday).subscribe({
-            if (it.result.resultCode == 0) Log.d("junior", "주니어 정보 수정 ${it.result.resultMsg}")
+            if (it.result?.resultCode == 0) Log.d("junior", "주니어 정보 수정 ${it.result?.resultMsg}")
             else _networkState.postValue(NetworkResult.FailToast("주니어 업데이트 오류"))
 
         }, {
@@ -50,7 +46,7 @@ class JuniorViewModel : BaseViewModel(), KoinComponent {
 
     fun savedUserCheck(string: String): Boolean = addDisposable(
         userRepository.getUserExists(string).subscribe({
-            _isSaveUserFlag.value = it.result.userCnt == 1
+            _isSaveUserFlag.value = it.resultList == 1
         }, {
             _networkState.postValue(NetworkResult.FailToast("인터넷 연결을 확인하여주세요"))
         })
@@ -63,9 +59,9 @@ class JuniorViewModel : BaseViewModel(), KoinComponent {
     }
 
     fun getJuniorList() = addDisposable(userRepository.getJuniorList(auth.currentUser?.uid!!).subscribe({
-            if (it.result.resultCode == 0) {
-                Log.d("junior", "주니어 리스트 ${it.result.resultList}")
-                _juniorList.postValue(it.result.resultList)
+            if (it.result?.resultCode == 0) {
+                Log.d("junior", "주니어 리스트 ${it.resultList}")
+                _juniorList.postValue(it.resultList)
             } else {
                 _networkState.postValue(NetworkResult.FailToast("주니어 목록 가져오기 실패"))
             }

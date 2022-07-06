@@ -12,9 +12,10 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
+
     <uses-permission android:name="android.permission.BLUETOOTH" android:maxSdkVersion="30" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" android:maxSdkVersion="30" />
-    <uses-permission android:name="android.permission.BLUETOOTH_SCAN"  />
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADVERTISE" />
     <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
 
@@ -26,55 +27,50 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Smart_gym"
-        android:usesCleartextTraffic="true" >
-        <activity
-            android:name=".ui.leftMenu.GymCreateActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.main.map.community.CommunityListActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.main.map.challenge.ChallengeListActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.main.map.gym.GymActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.main.map.gym.GymListActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.leftMenu.ProfileSettingActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.login.LoginCompleteActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.login.LoginEmailSentActivity"
-            android:screenOrientation="portrait"
-            android:exported="false"
-            android:label="@string/title_activity_login_email_sent"
-            android:theme="@style/Theme.Smart_gym.NoActionBar" />
+        android:usesCleartextTraffic="true">
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_map_api_key" />
 
         <activity
+            android:name=".ui.main.map.gym.GymSettingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.leftMenu.GymCreateActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.main.map.community.CommunityListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.main.map.challenge.ChallengeListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.main.map.gym.GymActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.main.map.gym.GymListActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.leftMenu.ProfileSettingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.login.LoginCompleteActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.login.LoginEmailSentActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".ui.main.MainActivity"
-            android:exported="false"
-            android:label="@string/title_activity_maps"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.intro.IntroActivity"
-            android:screenOrientation="portrait"
-            android:exported="true">
-
-        </activity>
+            android:exported="true"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".ui.login.LoginActivity"
-            android:screenOrientation="portrait"
-            android:exported="true" >
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -83,8 +79,8 @@
         </activity>
         <activity
             android:name=".ui.login.EmailLinkSuccessActivity"
-            android:screenOrientation="portrait"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
 
@@ -103,59 +99,54 @@
         </activity>
         <activity
             android:name=".ui.login.join.JoinGuideActivity"
-            android:exported="true"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.login.join.JoinSelfAuthActivity"
-            android:exported="true"
             android:screenOrientation="portrait" />
-
-
-        <activity
-            android:name=".ui.deviceConnect.DeviceDiscoverActivity"
-            android:screenOrientation="portrait"
-            android:exported="true" />
-
-        <activity android:name=".ui.login.join.JoinGuide14UnderActivity"
-            android:screenOrientation="portrait"
-            android:exported="false"/>
-
-        <activity android:name=".ui.welcome.WelComeActivity"
-            android:screenOrientation="portrait"/>
-
-        <activity android:name=".ui.login.junior.JuniorActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".ui.login.junior.JuniorJoinActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".ui.device.DeviceManagerActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".ui.device.DeviceScanActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".ui.device.DeviceInfoActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".ui.device.DeviceNameActivity" android:screenOrientation="portrait"/>
-
-
         <activity
             android:name=".ui.login.join.JoinGuide14UnderActivity"
-            android:exported="false"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.welcome.WelComeActivity"
             android:screenOrientation="portrait" />
-
+        <activity
+            android:name=".ui.login.junior.JuniorActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.login.join.JoinActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.device.DeviceManagerActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.device.DeviceScanActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.device.DeviceInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.device.DeviceNameActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.login.join.JoinGuide14UnderActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.welcome.WelComeActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.login.junior.JuniorJoinActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.login.join.JoinGuide14UnderActivity"
-            android:exported="false"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.login.junior.JuniorModifyActivity"
-            android:exported="true"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.welcome.WelComeActivity"
             android:screenOrientation="portrait" />
-        <!-- **** SERVICES **** -->
+
         <!-- BLE SERVICE -->
-        <service android:name=".ble.BleSmartRopeService" />
         <service android:name=".ble.BluetoothService" />
     </application>
 

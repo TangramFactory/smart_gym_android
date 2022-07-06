@@ -45,7 +45,7 @@ class JoinViewModel : BaseViewModel() {
 
     fun savedUserCheck(string: String): Boolean = addDisposable(
         userRepository.getUserExists(string).subscribe({
-            _isSaveUserFlag.value = it.result.userCnt == 1
+            _isSaveUserFlag.value = it.resultList == 1
         }, {
             _networkState.postValue(NetworkResult.FailToast("인터넷 연결을 확인하여주세요"))
         })

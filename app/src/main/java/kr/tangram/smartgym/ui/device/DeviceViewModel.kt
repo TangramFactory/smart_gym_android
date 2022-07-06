@@ -156,6 +156,11 @@ class DeviceViewModel(
         smartRopeManager?.removeRelease(identifier)
     }
 
+    fun clearRelease()
+    {
+        smartRopeManager?.clearRelease()
+    }
+
 
 
     fun updateDeviceAlas(deviceRegister: DeviceRegister, alias: String)

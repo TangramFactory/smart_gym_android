@@ -74,37 +74,10 @@
     <string name="work_rank">Rank</string>
     <string name="word_jumps">Jumps</string>
 
-    <!-- POP . HISTORY -->
-    <string name="pop_history_title">Sync your Exercise Data</string>
-    <string name="pop_history_description">Save your Exercise Data.</string>
 
-    <string name="error_network_connection"><![CDATA[The network connection is bad.<br>Please check and try again.]]></string>
-    <string name="basiccount_pop_voice_complete" formatted="false">%s jumped.</string>
-    <string name="word_count_ordinal">th</string>
-    <string name="setting_device_firmware">Firmware version</string>
-    <string name="setting_device_firmwareupdate">FirmWare Update</string>
-    <string name="setting_device_firmwarealert">\"Do not power off your phone until this\nupdate is complete.\nDo not operate SmartRope during this update process.\"</string>
-    <string name="setting_device_firmwarefound">Found a device waiting for a firmware update.\nDo you want to proceed with the firmware update?</string>
-
-    <string name="notification_bleclose_title">Power management</string>
-    <string name="notification_bleclose_message">Automatically disconnected due to long period of inactivity.</string>
-    <string name="message_internet_denied">Unable to use network service</string>
-    <string name="message_update_googleservice">Unable to use Google Play \n Please update the application or complete the installation</string>
-    <!-- NOTIFICATION BLE -->
-    <string name="notification_bleautoclose_channel_num" translatable="false">9</string>
-    <string name="notification_bleautoclose_channel_id" translatable="false">smartrope_bleclose</string>
-    <string name="notification_bleautoclose_channel_title" translatable="false">BLE Power Save Notification</string>
-    <string name="notification_bleautoclose_channel_description" translatable="false">Automatically disconnected due to long period of inactivity.</string>
-
-    <!-- SETTING . DEVICE DISCOVER -->
-    <string name="setting_discover_title">Searching for SmartRope</string>
-    <string name="setting_discover_start">Start Searching</string>
-    <string name="setting_discover_doing">Searching..</string>
     <string name="login_recertification">recertification</string>
     <string name="title_activity_login_email_sent">LoginEmailSentActivity</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
+
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 

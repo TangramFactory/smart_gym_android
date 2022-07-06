@@ -11,7 +11,6 @@ import kr.tangram.smartgym.ui.login.junior.JuniorActivity
 import kr.tangram.smartgym.ui.main.MainActivity
 import kr.tangram.smartgym.UserViewModel
 import kr.tangram.smartgym.ui.device.DeviceManagerActivity
-import kr.tangram.smartgym.ui.deviceConnect.DeviceDiscoverActivity
 import kr.tangram.smartgym.ui.leftMenu.ProfileSettingActivity
 import kr.tangram.smartgym.util.BackgroundRoundShape
 import org.koin.androidx.viewmodel.ext.android.getViewModel

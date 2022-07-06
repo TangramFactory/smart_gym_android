@@ -67,7 +67,7 @@ class LoginViewModel : BaseViewModel(), KoinComponent {
 
     private fun juniorAccountCheck(emailLink: String){
         //주니어가입시 부모계정 로그아웃
-        if (emailLink.toUri().getQueryParameter("receiveEmail").toString() == EmailReceiveType.Junior.toString()) {
+        if (emailLink.toUri().getQueryParameter("receiveEmail").toString() == "Junior") {
             auth.signOut()
         }
     }
@@ -163,10 +163,10 @@ class LoginViewModel : BaseViewModel(), KoinComponent {
     private fun createUser(uid: String, email: String, name: String, gender: Int, birthday: String, juniorYn: String = "N", parentsUid: String = "", onSuccess: (() -> Unit)? = null) {
         addDisposable(userRepository.getUserReg(uid, email, name, gender, birthday, juniorYn, parentsUid).subscribe(
             {
-                if (it.result.resultCode == 0 && onSuccess != null) {
+                if (it.result?.resultCode == 0 && onSuccess != null) {
                     Log.d(tag, "유저 생성")
                     onSuccess()
-                } else if (it.result.resultCode != 0 || it == null) {
+                } else if (it.result?.resultCode != 0 || it == null) {
                     _emailLinkSuccessData.postValue(EmailReceiveType.Fail("유저 생성 오류"))
 
                     auth.currentUser?.delete()
@@ -184,8 +184,9 @@ class LoginViewModel : BaseViewModel(), KoinComponent {
 
     private fun updateUser(jsonProfile: JsonObject, emailReceiveType: EmailReceiveType) {
         addDisposable(userRepository.updateUserLogin(jsonProfile).subscribe({
-            if (it.result.resultCode==0){
-                Hawk.put("userInfoData", it.result.userInfoList[0])
+            if (it.result?.resultCode==0){
+                Log.d("로그인", "${it.result.resultCode}// ${it.resultList.toString()}")
+                Hawk.put("userInfoData", it.resultList!![0])
                 _emailLinkSuccessData.postValue(emailReceiveType)
             }else{
                 _emailLinkSuccessData.postValue(EmailReceiveType.Fail("로그인오류"))
@@ -201,7 +202,7 @@ class LoginViewModel : BaseViewModel(), KoinComponent {
 
     fun savedUserCheck(string: String): Boolean = addDisposable(
         userRepository.getUserExists(string).subscribe({
-            _isSaveUserFlag.value = it.result.userCnt == 1
+            _isSaveUserFlag.value = it.resultList == 1
         }, {
             _networkState.postValue(NetworkResult.FailToast("인터넷 연결을 확인하여주세요"))
         })

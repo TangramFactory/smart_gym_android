@@ -18,10 +18,6 @@ import kr.tangram.smartgym.UserViewModel
 
 import kr.tangram.smartgym.R
 import kr.tangram.smartgym.base.BaseActivity
-import kr.tangram.smartgym.ble.BleSmartRopeConnect
-import kr.tangram.smartgym.ble.BleSmartRopePopupEvent
-import kr.tangram.smartgym.ble.BleSmartRopeState
-import kr.tangram.smartgym.ble.BluetoothService
 import kr.tangram.smartgym.databinding.LayoutDrawerLeftBinding
 import kr.tangram.smartgym.ui.device.DeviceManagerActivity
 import kr.tangram.smartgym.ui.leftMenu.GymCreateActivity
@@ -31,18 +27,13 @@ import kr.tangram.smartgym.ui.main.challenge.ChallengeFragment
 import kr.tangram.smartgym.ui.main.home.HomeFragment
 import kr.tangram.smartgym.ui.main.map.MapFragment
 import kr.tangram.smartgym.ui.leftMenu.ProfileSettingActivity
-import kr.tangram.smartgym.ui.workout.WorkOutViewModel
-import kr.tangram.smartgym.util.bleConnection
-import org.json.JSONObject
 import org.koin.androidx.viewmodel.ext.android.getViewModel
-import org.koin.core.component.inject
 
 class MainActivity : BaseActivity<LayoutDrawerLeftBinding, UserViewModel>(
     R.layout.layout_drawer_left
-), NavigationBarView.OnItemSelectedListener , BleSmartRopeConnect.SmartRopeInterface,
-    View.OnClickListener {
+), NavigationBarView.OnItemSelectedListener , View.OnClickListener {
     override val viewModel: UserViewModel by lazy { getViewModel() }
-    private val workOutViewModel : WorkOutViewModel by inject()
+
 
     val tag =  javaClass.name
     //
@@ -91,7 +82,6 @@ class MainActivity : BaseActivity<LayoutDrawerLeftBinding, UserViewModel>(
         if ( ( ContextCompat.checkSelfPermission(this, Manifest.permission.INTERNET) != PackageManager.PERMISSION_GRANTED))  requestPermissions( arrayOf(Manifest.permission.INTERNET), REQUEST_CODE_INTERNET )
     }
 
-    @RequiresApi(Build.VERSION_CODES.M)
     private fun initDrawerLayout() {
         binding.menuUserAccount.setOnClickListener(this)
         binding.menuUserProfile.setOnClickListener(this)
@@ -132,22 +122,11 @@ class MainActivity : BaseActivity<LayoutDrawerLeftBinding, UserViewModel>(
 
 
 
-    override fun initLiveData()
-    {
-        viewModel.name.observe(this) {
-            binding.apply {
-            }
-        }
-    }
+    override fun initLiveData() {}
 
     override fun onBackPressed() {
         finishAffinity()
     }
-
-    override fun onState(state: BleSmartRopeState, message: JSONObject?) {}
-    override fun onCount(event: BleSmartRopePopupEvent) {}
-    override fun onRead(data: String) {}
-
 
     override fun onClick(view: View?) {
         when(view?.id){

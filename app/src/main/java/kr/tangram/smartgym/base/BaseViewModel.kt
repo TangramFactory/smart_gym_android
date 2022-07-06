@@ -27,25 +27,29 @@ open class BaseViewModel : ViewModel(), KoinComponent {
     internal val _networkState = MutableLiveData<NetworkResult>()
     val networkState: LiveData<NetworkResult> get() = _networkState
 
-    private val _workOutState = MutableLiveData<Int>()
+    //모든곳에서 같은 객체를 바라보게 하기위해 의존성 주입
+    private val _workOutState : MutableLiveData<Int> by inject()
     val workOutState: LiveData<Int> get() = _workOutState
 
-    var smartRopeManager : SmartRopeManager
+    lateinit var smartRopeManager : SmartRopeManager
 
     init {
+        _workOutState.postValue(-1)
+        smartRopeManagerInit()
+    }
+
+
+    fun smartRopeManagerInit(){
+        _workOutState.postValue(-1)
         smartRopeManager  = SmartRopeManager.getInstance().apply {
-            onFound ={ scanResult ->  }
+            onFound ={ }
             onStopScan = {}
-            onCountJump={
-                Log.d("연결" ,it.toString())
-                _workOutState.postValue(it)  }
+            onCountJump={ jumpCount: Int, _: Long ->
+                _workOutState.postValue(jumpCount)
+            }
         }
     }
 
-    fun startScanBase()
-    {
-        smartRopeManager?.startScanAndConnect()
-    }
 
     fun addDisposable(disposable: Disposable) = compositeDisposable.add(disposable)
 
@@ -55,13 +59,7 @@ open class BaseViewModel : ViewModel(), KoinComponent {
     }
 
 
-    fun clearRelease()
-    {
-        smartRopeManager?.clearRelease()
-    }
-
     override fun onCleared() {
-        clearRelease()
         compositeDisposable.dispose()
         super.onCleared()
     }

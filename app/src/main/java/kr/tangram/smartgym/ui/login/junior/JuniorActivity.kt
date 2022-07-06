@@ -3,7 +3,6 @@ package kr.tangram.smartgym.ui.login.junior
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
@@ -16,7 +15,6 @@ import kr.tangram.smartgym.R
 import kr.tangram.smartgym.base.BaseActivity
 import kr.tangram.smartgym.data.remote.model.UserInfo
 import kr.tangram.smartgym.databinding.ActivityJuniorBinding
-import kr.tangram.smartgym.ui.login.LoginViewModel
 
 class JuniorActivity : BaseActivity<ActivityJuniorBinding, JuniorViewModel>(R.layout.activity_junior) {
     override val viewModel: JuniorViewModel by viewModels()
@@ -37,7 +35,6 @@ class JuniorActivity : BaseActivity<ActivityJuniorBinding, JuniorViewModel>(R.la
 
         viewModel.getJuniorList()
         viewModel.juniorList.observe(this){
-            Log.d("주니어", it.toString())
             binding.layoutJuniorList.removeAllViews()
             it.forEach { junior->
                 binding.layoutJuniorList.addView(addRow(junior))
