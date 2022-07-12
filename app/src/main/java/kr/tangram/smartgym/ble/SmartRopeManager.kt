@@ -1,13 +1,14 @@
 package kr.tangram.smartgym.ble
 
-import kr.tangram.smartgym.data.repository.DeviceRegisterRepository
 import android.bluetooth.*
 import android.os.Handler
+import android.os.Looper
 import android.os.ParcelUuid
 import android.util.Log
 import com.hwangjr.rxbus.RxBus
 import io.reactivex.disposables.Disposable
 import kr.tangram.smartgym.base.BaseApplication
+import kr.tangram.smartgym.data.repository.DeviceRegisterRepository
 import kr.tangram.smartgym.util.Define
 import no.nordicsemi.android.support.v18.scanner.*
 import org.koin.core.component.KoinComponent
@@ -35,15 +36,20 @@ class SmartRopeManager() : KoinComponent {
     private var scanAndConnecting = false
     private val handler = Handler()
 
-    private val SCAN_DURATION: Long = (10 * 1000).toLong()
+    private val SCAN_DURATION: Long = (3 * 1000).toLong()
 
     lateinit var onFound:(scanResult : ScanResult)->Unit
     lateinit var onStopScan:()->Unit
     lateinit var onCountJump:(jumpCount : Int, time_gap :Long)->Unit
+    lateinit var onHistory:(identifier: String)->Unit
+
+    lateinit var historyGatt : BluetoothGatt
 
     var releaseList = ArrayList<String>()
 
     private var writeCharacteristic:BluetoothGattCharacteristic?=null
+
+    private var disconnectMap = HashMap<String, Long>()
 
     companion object {
         @Volatile private var instance: SmartRopeManager? = null
@@ -98,6 +104,33 @@ class SmartRopeManager() : KoinComponent {
         scanAndConnecting = true
     }
 
+    lateinit  var  connectHandler : Handler
+    lateinit var connectRunnable: Runnable
+
+    public fun checkDisconnect()
+    {
+        connectHandler = Handler()
+        connectRunnable = Runnable {
+
+            for(i in 0 until gattList.size)
+            {
+                var lastTime = disconnectMap.get(gattList.get(i).device.address)
+                val timeGap = Date().time - lastTime!!
+
+                // 10분동안 작동이 없으면 끊는다
+                if((60 * 1000 * 10) < timeGap) {
+                    Log.e("disconnect", timeGap.toString())
+
+                    disconnectMap.put(gattList.get(i).device.address, Date().time)
+                    disconnect(gattList.get(i).device.address)
+                }
+            }
+
+            connectHandler.postDelayed(connectRunnable!!, 10000)
+        }
+
+        connectHandler.postDelayed(connectRunnable!!, 1000)
+    }
 
     fun stopScanning() {
         stopScan()
@@ -144,7 +177,16 @@ class SmartRopeManager() : KoinComponent {
                 for (i in results.indices) {
                     deviceRegisterRepository.getDeviceList(results[i].device.address).doOnSuccess {
                         if(!it.isNullOrEmpty() && it[0].auto!! && !isExistRelease(it[0].identifier!!)){
-                            connect(results[i].device)
+
+                            var lastTime = if(disconnectMap.get(results[i].device.address) == null) Date().time else disconnectMap.get(results[i].device.address)
+                            val timeGap = Date().time - lastTime!!
+
+                            if(0 < timeGap && timeGap < (30 * 1000)) {
+                                Log.e("find device", "false:" + timeGap.toString())
+                            } else{
+                                Log.e("find device", "true")
+                                connect(results[i].device)
+                            }
                         }
                     }.subscribe()
 
@@ -216,6 +258,8 @@ class SmartRopeManager() : KoinComponent {
                 return
             }
         }
+
+        disconnectMap.put(gatt.device.address, Date().time)
 
         gattList.add(gatt)
     }
@@ -292,6 +336,12 @@ class SmartRopeManager() : KoinComponent {
                         write("HELLO?", gatt)
                     }
                 }, 300)
+
+                Timer().schedule(object : TimerTask() {
+                    override fun run() {
+                        write("HTC?", gatt)
+                    }
+                }, 600)
             }
         }
 
@@ -301,9 +351,11 @@ class SmartRopeManager() : KoinComponent {
             var value = characteristic.getStringValue(0).toString().replace(";", "")
             val data: List<String> = value.split(":")
 
-            Log.e(data[0], data[1]+"/"+data[2]?:"0")
+            var test1 = data[0]
+            var test2 = data[1]
+            Log.e(test1, test2)
 
-            when(data[0])
+             when(data[0])
             {
                 "BAT" -> {
                     deviceRegisterRepository.updateDeviceBattery(data[1].toInt(), gatt.device.address)
@@ -314,26 +366,28 @@ class SmartRopeManager() : KoinComponent {
                     sendBus(Define.BusEvent.DeviceState, "")
                 }
                 "CNT" -> {
+                    disconnectMap.put(gatt.device.address, Date().time)
                      onCountJump(data[1].toInt(), data[2].toLong())
                 }
+                "HCOUNT" -> {
+                }
+                "HTC" -> {
+                    val totalHistory = try { data[1].toInt() } catch (e: Exception) { 0 }
+                    if (totalHistory > 0) {
+
+                        historyGatt = gatt
+
+                        onHistory(gatt.device.address)
+                        getHistoryData(totalHistory,gatt)
+                    }
+                }
+                "H" -> {
+                    sendBus(Define.BusEvent.HistorySync, value!!)
+                }
+
                 else -> {
 
                 }
-            }
-        }
-
-        fun write(data: String?, gatt: BluetoothGatt)
-        {
-            if (data != null && data.isNotEmpty())
-            {
-                var msg = data.toByteArray(Charset.forName("UTF-8"))
-
-                if (writeCharacteristic == null || msg == null || msg.size == 0)
-                {
-                    return
-                }
-                writeCharacteristic?.value = msg
-                gatt!!.writeCharacteristic(writeCharacteristic)
             }
         }
 
@@ -364,8 +418,57 @@ class SmartRopeManager() : KoinComponent {
     }
 
 
+    fun write(data: String?, gatt: BluetoothGatt)
+    {
+        if (data != null && data.isNotEmpty())
+        {
+            var msg = data.toByteArray(Charset.forName("UTF-8"))
+
+            if (writeCharacteristic == null || msg == null || msg.size == 0)
+            {
+                return
+            }
+            writeCharacteristic?.value = msg
+            gatt!!.writeCharacteristic(writeCharacteristic)
+        }
+    }
+
+
+    private fun getHistoryData(totalHistory: Int, gatt: BluetoothGatt) {
+        //
+        var i = 1.0f
+        val phase = 100L
+        var percent: Float
+        val historyHandler = Handler(Looper.getMainLooper())
+        val historyRunnable = object : Runnable {
+            override fun run() {
+//                if (ropeType.equals("S")){
+                write("HTD:" + (i - 1.0f), gatt!!)
+                percent = i / totalHistory
+                if (percent == 1.0f) {
+
+                }
+                if (i < totalHistory) {
+                    historyHandler.postDelayed(this, phase)
+                    i++
+                }
+            }
+        }
+        //
+        historyHandler.postDelayed(historyRunnable, phase)
+
+    }
+
     fun sendBus(tag:String, data:String)
     {
         RxBus.get().post(tag, data);
+    }
+
+    fun deleteHistory()
+    {
+        if(historyGatt != null)
+        {
+//            write("HTR!", historyGatt)
+        }
     }
 }

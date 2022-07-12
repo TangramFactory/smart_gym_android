@@ -28,7 +28,6 @@ class DeviceRegisterRepository(
             .observeOn(AndroidSchedulers.mainThread())
 
 
-
     fun updateDeviceConnect(connect: Boolean, identifier: String)
     {
         db.deviceRegisterDAO().updateDeviceConnect(connect, getNowDateFormat("yyyyMMddHHmmss"), identifier)

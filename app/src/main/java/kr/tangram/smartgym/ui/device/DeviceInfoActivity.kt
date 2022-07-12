@@ -48,7 +48,6 @@ class DeviceInfoActivity  : BaseActivity<ActivityDeviceInfoBinding, DeviceViewMo
 
         viewModel.deviceRegister.observe(this){
 
-
             deviceRegister = it
 
             binding.tvDeviceName.text = it.name

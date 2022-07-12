@@ -31,6 +31,7 @@ import kr.tangram.smartgym.ble.BluetoothService
 import kr.tangram.smartgym.ble.SmartRopeManager
 import kr.tangram.smartgym.data.domain.model.DeviceRegister
 import kr.tangram.smartgym.databinding.ActivityDeviceManagerBinding
+import kr.tangram.smartgym.ui.workout.RopeSyncFragment
 import kr.tangram.smartgym.util.Define
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -74,7 +75,8 @@ class DeviceManagerActivity  : BaseActivity<ActivityDeviceManagerBinding, Device
                 BaseApplication.startActivityLock(this@DeviceManagerActivity, intent, false)
             }
             deviceListAdapter.actionConnect={
-
+                viewModel.removeRelease(it)
+                viewModel.updateDeviceRegister(it, true)
             }
             adapter = deviceListAdapter
         }
@@ -82,7 +84,15 @@ class DeviceManagerActivity  : BaseActivity<ActivityDeviceManagerBinding, Device
         viewModel.myDeviceList.observe(this){
             deviceListAdapter.addList(it)
 
-            viewModel.getDeviceLoadList(it)
+            if(!it.isNullOrEmpty()){
+                viewModel.getDeviceLoadList(it)
+            }
+        }
+
+        viewModel.deviceLoadList.observe(this){
+            for(i in 0 until it.size){
+                viewModel.updateDeviceName(it[i].deviceAlias, it[i].deviceIdentify)
+            }
         }
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.S){
@@ -99,7 +109,6 @@ class DeviceManagerActivity  : BaseActivity<ActivityDeviceManagerBinding, Device
 
         var intent = Intent(getApplicationContext(), BluetoothService::class.java)
         startService(intent)
-
 
         getDeviceRegisterList()
     }
@@ -127,6 +136,8 @@ class DeviceManagerActivity  : BaseActivity<ActivityDeviceManagerBinding, Device
             binding.switchBluetooth.isChecked = it.isEnabled
         }
 
+
+        viewModel.getLocalJumpData()
     }
 
     @Subscribe(tags = [Tag(Define.BusEvent.DeviceState)])
@@ -182,7 +193,7 @@ class DeviceManagerActivity  : BaseActivity<ActivityDeviceManagerBinding, Device
     class DeviceListAdapter() : RecyclerView.Adapter<DeviceViewHolder>() {
 
         var list = ArrayList<DeviceRegister>()
-        lateinit var actionConnect:()->Unit
+        lateinit var actionConnect:(identifier: String)->Unit
         lateinit var actionModify:(identifier: String)->Unit
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DeviceViewHolder {
@@ -206,15 +217,16 @@ class DeviceManagerActivity  : BaseActivity<ActivityDeviceManagerBinding, Device
     }
 
 
-    class DeviceViewHolder( inflater: LayoutInflater, parent: ViewGroup, actionConnect:()->Unit, actionModify:(identifier: String)->Unit) : RecyclerView.ViewHolder(inflater.inflate(R.layout.row_my_device, parent, false) )
+    class DeviceViewHolder( inflater: LayoutInflater, parent: ViewGroup, actionConnect:(identifier: String)->Unit, actionModify:(identifier: String)->Unit) : RecyclerView.ViewHolder(inflater.inflate(R.layout.row_my_device, parent, false) )
     {
         private var vgMore : ViewGroup = itemView.findViewById(R.id.vg_more)
         private var ivPic : ImageView = itemView.findViewById(R.id.iv_pic)
         private var tvName : TextView = itemView.findViewById(R.id.tv_name)
         private var tvStatus : TextView = itemView.findViewById(R.id.tv_status)
         private var ivBattery : ImageView = itemView.findViewById(R.id.iv_battery)
+        private var layout : ViewGroup = itemView.findViewById(R.id.layout)
 
-        var actionConnect:()->Unit = actionConnect
+        var actionConnect:(identifier: String)->Unit = actionConnect
         var actionModify:(identifier: String)->Unit = actionModify
 
         fun bind(deviceRegister: DeviceRegister)
@@ -240,6 +252,9 @@ class DeviceManagerActivity  : BaseActivity<ActivityDeviceManagerBinding, Device
             }
 
 
+            layout.setOnClickListener{
+                actionConnect(deviceRegister.identifier!!)
+            }
             vgMore.setOnClickListener{
                 actionModify(deviceRegister.identifier!!)
             }

@@ -38,7 +38,6 @@ class DeviceNameActivity  : BaseActivity<ActivityDeviceNameBinding, DeviceViewMo
 
         binding.btnSave.background = BackgroundRoundShape.fill(getString(R.string.buttonColor))
 
-
         viewModel.deviceRegister.observe(this){
 
             deviceRegister = it

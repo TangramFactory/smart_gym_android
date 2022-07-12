@@ -21,6 +21,8 @@ import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModel
 import butterknife.ButterKnife
 import com.hwangjr.rxbus.RxBus
+import com.hwangjr.rxbus.annotation.Subscribe
+import com.hwangjr.rxbus.annotation.Tag
 import kr.tangram.smartgym.BR
 import kr.tangram.smartgym.R
 import kr.tangram.smartgym.UserViewModel
@@ -28,11 +30,16 @@ import kr.tangram.smartgym.base.BaseApplication.Companion.context
 import kr.tangram.smartgym.ble.BluetoothService
 import kr.tangram.smartgym.ble.SmartRopeManager
 import kr.tangram.smartgym.databinding.LayoutCustomToastBinding
+import kr.tangram.smartgym.ui.device.DeviceManagerActivity
+import kr.tangram.smartgym.ui.login.LoginCompleteActivity
 import kr.tangram.smartgym.ui.main.map.BottomDialogFragment
+import kr.tangram.smartgym.ui.workout.RopeSyncActivity
 import kr.tangram.smartgym.ui.workout.WorkOutViewModel
 import kr.tangram.smartgym.ui.workout.rope.BasicCountFragment
+import kr.tangram.smartgym.util.Define
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 import org.koin.core.component.KoinComponent
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 abstract class BaseActivity<B : ViewDataBinding, VM : BaseViewModel>(
     @LayoutRes private val layoutResId: Int,
@@ -75,8 +82,14 @@ abstract class BaseActivity<B : ViewDataBinding, VM : BaseViewModel>(
             jumpStart()
         }
 
-        Log.d("BaseActivity","+")
+        viewModel.historySync.observe(this){
+            val intent = Intent(this, RopeSyncActivity::class.java).apply {
+                putExtra(Define.Extra.Identifier, it!!)
+                addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
 
+            }
+            startActivity(intent)
+        }
 
         init()
         initLiveData()
@@ -84,14 +97,17 @@ abstract class BaseActivity<B : ViewDataBinding, VM : BaseViewModel>(
     }
 
     open fun init() {
-        val intent = Intent(getApplicationContext(), BluetoothService::class.java)
-        startService(intent)
+//        val intent = Intent(getApplicationContext(), BluetoothService::class.java)
+//        startService(intent)
     }
 
     open fun initLiveData() {}
 
     open fun initListener() {}
 
+    override fun onDestroy() {
+        super.onDestroy()
+    }
 
     fun showToast(message: String) =
         Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()

@@ -188,6 +188,11 @@ dependencies {
 
     // rxBus
     implementation 'com.hwangjr.rxbus:rxbus:3.0.0'
+
+    // swipe Back
+    implementation 'com.r0adkll:slidableactivity:2.1.0'
+
+
 }
 
 

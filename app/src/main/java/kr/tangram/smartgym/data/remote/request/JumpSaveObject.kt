@@ -7,6 +7,8 @@ data class JumpSaveObject(
     val works: List<JumpSaveData>
 ) {
     data class JumpSaveData (
+        var row : String,
+        var sdate : String,
         val wid : String,
         val did : String,
         val mid : String,
@@ -14,5 +16,7 @@ data class JumpSaveObject(
         val avg : String,
         val calorie: String,
         val duration : String,
-        val finish : String? = kronosClock.getCurrentTimeMs().toString())
+        val finish : String,
+        var checked : Boolean ? = true
+    )
 }

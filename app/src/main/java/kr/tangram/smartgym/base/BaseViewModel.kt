@@ -31,6 +31,10 @@ open class BaseViewModel : ViewModel(), KoinComponent {
     private val _workOutState : MutableLiveData<Int> by inject()
     val workOutState: LiveData<Int> get() = _workOutState
 
+    private val _historySync = MutableLiveData<String>()
+    var historySync : LiveData<String> = _historySync
+
+
     lateinit var smartRopeManager : SmartRopeManager
 
     init {
@@ -44,6 +48,9 @@ open class BaseViewModel : ViewModel(), KoinComponent {
         smartRopeManager  = SmartRopeManager.getInstance().apply {
             onFound ={ }
             onStopScan = {}
+            onHistory = {
+                _historySync.postValue(it)
+            }
             onCountJump={ jumpCount: Int, _: Long ->
                 _workOutState.postValue(jumpCount)
             }
@@ -59,13 +66,13 @@ open class BaseViewModel : ViewModel(), KoinComponent {
     }
 
 
-    override fun onCleared() {
-        compositeDisposable.dispose()
-        super.onCleared()
-    }
-
     fun showMessage(message: String)
     {
         Toast.makeText(BaseApplication.context, message, Toast.LENGTH_LONG).show()
+    }
+
+    override fun onCleared() {
+        compositeDisposable.dispose()
+        super.onCleared()
     }
 }

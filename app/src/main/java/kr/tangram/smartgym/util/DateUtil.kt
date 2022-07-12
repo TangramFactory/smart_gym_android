@@ -32,3 +32,13 @@ fun getPeriodDate(dateTime:String, format: String, term: Int) : String{
 
     return SimpleDateFormat(format).format(cal.time)
 }
+
+
+fun getMilliSecondDate(timeStamp: Long, format: String): String {
+    return try {
+        var sdf = SimpleDateFormat(DateFormat.getBestDateTimePattern(Locale.getDefault(),format))
+        return sdf.format(timeStamp)
+    } catch (ex: Exception) {
+        ""
+    }
+}

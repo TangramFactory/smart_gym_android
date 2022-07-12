@@ -33,8 +33,7 @@ class BluetoothService : Service() {
     {
         smartRopeManager = SmartRopeManager.getInstance()
         smartRopeManager.startScanAndConnect()
-
-//        smartRopeManager.connectOff()
+        smartRopeManager.checkDisconnect()
 
     }
 

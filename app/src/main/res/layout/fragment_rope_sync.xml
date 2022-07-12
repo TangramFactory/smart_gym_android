@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:translationY="0dp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/round_20_top_solid_ffffff"
+                android:layout_marginTop="40dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingTop="30dp"
+                android:paddingBottom="20dp"
+                android:layout_alignParentBottom="true"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="운동 데이터 동기화"
+                    android:textSize="18sp"
+                    android:textColor="@color/color_both_1"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:textSize="@dimen/text_size_14sp"
+                    android:text="기기에 저장된 운동 데이터를 가져왔습니다.\n데이터를 저장하려면 아래 버튼을 눌러주세요."
+                    android:textColor="@color/color_both_4"/>
+
+                <LinearLayout
+                    android:id="@+id/vg_save"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="30dp"
+                    android:gravity="center"
+                    android:background="@color/color_1">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/text_size_18sp"
+                        android:textColor="@color/color_2"
+                        android:text="운동 데이터 저장하기 "/>
+
+                    <TextView
+                        android:id="@+id/tv_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="2dp"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/text_size_18sp"
+                        android:textColor="@color/leader_board_rank_1st_color"
+                        android:text="10"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_delete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="30dp"
+                    android:textSize="@dimen/text_size_16sp"
+                    android:textColor="@color/color_both_6"
+                    android:text="저장하지 않고 화면종료"/>
+
+                <View android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="30dp"
+                    android:background="@color/color_9"/>
+
+                <androidx.core.widget.NestedScrollView
+                    android:id="@+id/ns_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_device_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/text_size_14sp"
+                            android:layout_marginTop="20dp"
+                            android:textColor="@color/color_both_4"
+                            tools:text="Rookie AK39"/>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_list"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="10dp"/>
+
+
+                    </LinearLayout>
+
+                </androidx.core.widget.NestedScrollView>
+
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </FrameLayout>
+
+
+
+
+
+
+</layout>

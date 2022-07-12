@@ -23,6 +23,7 @@ import kr.tangram.smartgym.base.BaseActivity
 import kr.tangram.smartgym.ble.SmartRopeManager
 import kr.tangram.smartgym.data.domain.model.DeviceRegister
 import kr.tangram.smartgym.databinding.ActivityDeviceScanBinding
+import kr.tangram.smartgym.util.getNowDateFormat
 import no.nordicsemi.android.support.v18.scanner.ScanResult
 import org.json.JSONObject
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -32,7 +33,7 @@ class DeviceScanActivity  : BaseActivity<ActivityDeviceScanBinding, DeviceViewMo
     private lateinit  var deviceListAdapter : DeviceListAdapter
     lateinit  var smartRopeManager : SmartRopeManager
 
-
+    var aliasMap = HashMap<String, String>()
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,7 +53,6 @@ class DeviceScanActivity  : BaseActivity<ActivityDeviceScanBinding, DeviceViewMo
             layoutManager = LinearLayoutManager(context)
             overScrollMode = View.OVER_SCROLL_IF_CONTENT_SCROLLS
             deviceListAdapter.action={
-
                 viewModel.saveDevice(it)
             }
             adapter = deviceListAdapter
@@ -61,12 +61,39 @@ class DeviceScanActivity  : BaseActivity<ActivityDeviceScanBinding, DeviceViewMo
 
         viewModel.stopScan.observe(this){
             notifyButtonChanged(false)
+
+            var items = deviceListAdapter.getItems()
+
+            if(!items.isNullOrEmpty()) {
+
+                var list = ArrayList<DeviceRegister>()
+
+                for(i in 0 until items.size){
+                    var deviceRegister = DeviceRegister(items[i].scanRecord?.deviceName, true, 100, false, "",
+                        getNowDateFormat("yyyyMMddHHmmss"), items[i].device.address,
+                        items[i].scanRecord?.deviceName, "", "")
+
+                    list.add(deviceRegister)
+                }
+
+                viewModel.getDeviceLoadList(list)
+            }
         }
 
         viewModel.scanDevice.observe(this){
             deviceListAdapter.add(it)
         }
 
+        viewModel.deviceLoadList.observe(this){
+
+            for(i in 0 until it.size) {
+                aliasMap.put(it[i].deviceIdentify, it[i].deviceAlias)
+            }
+
+            deviceListAdapter.setAliasMap(aliasMap)
+            deviceListAdapter.notifyDataSetChanged()
+        }
+        
         onClickSearch()
 
     }
@@ -82,10 +109,6 @@ class DeviceScanActivity  : BaseActivity<ActivityDeviceScanBinding, DeviceViewMo
             binding.layoutSearch.visibility = View.VISIBLE
         }
     }
-
-
-
-
 
 
     @OnClick(R.id.menu_back)
@@ -121,6 +144,7 @@ class DeviceScanActivity  : BaseActivity<ActivityDeviceScanBinding, DeviceViewMo
         var deivceRegisterList = ArrayList<DeviceRegister>()
         var list = ArrayList<ScanResult>()
         lateinit var action:(scanResult: ScanResult)->Unit
+        var alias = HashMap<String, String>()
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DeviceViewHolder {
             val inflater = LayoutInflater.from(parent.context)
@@ -128,7 +152,9 @@ class DeviceScanActivity  : BaseActivity<ActivityDeviceScanBinding, DeviceViewMo
         }
 
         override fun onBindViewHolder(holder: DeviceViewHolder, position: Int) {
-            holder.bind(list.get(position))
+            var key = list.get(position).device.address.toString()
+            var value = if(!alias.get(key).isNullOrEmpty()) alias.get(key) else ""
+            holder.bind(list.get(position), value!!)
         }
 
         fun addList(list : ArrayList<ScanResult>)
@@ -153,6 +179,13 @@ class DeviceScanActivity  : BaseActivity<ActivityDeviceScanBinding, DeviceViewMo
             }
         }
 
+        fun setAliasMap(map : HashMap<String, String>){
+            alias = map
+        }
+
+        fun getItems() : ArrayList<ScanResult>{
+            return list
+        }
 
         fun isExistDevice(scanResult: ScanResult) : Boolean
         {
@@ -176,8 +209,8 @@ class DeviceScanActivity  : BaseActivity<ActivityDeviceScanBinding, DeviceViewMo
         }
 
         override fun getItemCount(): Int = list.size
-    }
 
+    }
 
     class DeviceViewHolder(inflater: LayoutInflater, parent: ViewGroup, action:(scanResult: ScanResult)->Unit)
         : RecyclerView.ViewHolder(inflater.inflate(R.layout.row_my_device, parent, false) )
@@ -191,13 +224,13 @@ class DeviceScanActivity  : BaseActivity<ActivityDeviceScanBinding, DeviceViewMo
 
         var action:(scanResult: ScanResult)->Unit = action
 
-        fun bind(scanResult: ScanResult)
+        fun bind(scanResult: ScanResult, alias: String)
         {
             vgMore.visibility = View.GONE
             tvStatus.visibility = View.GONE
             ivBattery.visibility = View.GONE
 
-            tvName.text = scanResult.scanRecord?.deviceName.toString()
+            tvName.text = if(!alias.isNullOrEmpty()) alias else scanResult.scanRecord?.deviceName.toString()
 
             layout.setOnClickListener{
                 action(scanResult)

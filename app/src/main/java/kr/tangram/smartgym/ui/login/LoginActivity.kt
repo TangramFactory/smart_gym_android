@@ -10,6 +10,7 @@ import android.view.MenuItem
 import android.view.View
 import kr.tangram.smartgym.R
 import kr.tangram.smartgym.base.BaseActivity
+import kr.tangram.smartgym.base.BaseApplication
 import kr.tangram.smartgym.databinding.ActivityLoginBinding
 import kr.tangram.smartgym.ui.login.join.JoinGuideActivity
 import kr.tangram.smartgym.ui.main.MainActivity
@@ -17,6 +18,8 @@ import kr.tangram.smartgym.ui.device.DeviceInfoActivity
 import kr.tangram.smartgym.ui.device.DeviceManagerActivity
 import kr.tangram.smartgym.ui.device.DeviceNameActivity
 import kr.tangram.smartgym.ui.device.DeviceScanActivity
+import kr.tangram.smartgym.ui.workout.RopeSyncActivity
+import kr.tangram.smartgym.ui.workout.RopeSyncFragment
 import kr.tangram.smartgym.util.BackgroundRoundShape
 import kr.tangram.smartgym.util.EmailReceiveType
 import org.koin.androidx.viewmodel.ext.android.getViewModel
@@ -35,6 +38,9 @@ class LoginActivity: BaseActivity<ActivityLoginBinding, LoginViewModel>(R.layout
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_header_arrow);
         binding.header.collapsingToolbar.title = getString(R.string.login_email_login)
+
+
+        startActivity(Intent(this, DeviceManagerActivity::class.java))
 
 
             //자동 로그인

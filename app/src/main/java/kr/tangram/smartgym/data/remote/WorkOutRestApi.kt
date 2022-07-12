@@ -21,4 +21,6 @@ interface WorkOutRestApi {
     fun jumpLoadDay(@Field("uid") uid: String,
                     @Field("jumpYmd") jumpYmd: String = SimpleDateFormat("yyyyMMdd").format(Date(System.currentTimeMillis()))):Observable<JumpLoadDayResponse>
 
+
+
 }

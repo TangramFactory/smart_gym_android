@@ -7,13 +7,20 @@ import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.orhanobut.hawk.Hawk
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.observers.DisposableObserver
+import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.*
 import kr.tangram.smartgym.base.BaseViewModel
 import kr.tangram.smartgym.base.NetworkResult
 import kr.tangram.smartgym.ble.SmartRopeManager
+import kr.tangram.smartgym.data.domain.model.DeviceRegister
+import kr.tangram.smartgym.data.domain.model.JumpData
 import kr.tangram.smartgym.data.remote.model.JumpToDay
 import kr.tangram.smartgym.data.remote.request.JumpSaveObject
+import kr.tangram.smartgym.data.repository.DeviceRegisterRepository
 import kr.tangram.smartgym.data.repository.WorkOutRepository
+import org.koin.core.component.inject
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Singleton
@@ -23,6 +30,8 @@ class WorkOutViewModel(
     private val workOutRepository: WorkOutRepository
 ) : BaseViewModel() {
     private val tag = javaClass.name
+
+    private val deviceRegisterRepository: DeviceRegisterRepository by inject()
 
     private val _toDayJump = MutableLiveData<List<JumpToDay>>()
     val toDayJump: LiveData<List<JumpToDay>> get() = _toDayJump
@@ -34,9 +43,14 @@ class WorkOutViewModel(
     private val _jumpRopeWorkOut = MutableLiveData<JumpWorkOut>()
     val jumpRopeWorkOut: LiveData<JumpWorkOut> get() = _jumpRopeWorkOut
 
-
     private val _jumpMode = MutableLiveData<JumpMode>()
     val jumpMode: LiveData<JumpMode> get() = _jumpMode
+
+    private val _deviceRegister = MutableLiveData<DeviceRegister>()
+    var deviceRegister : LiveData<DeviceRegister> = _deviceRegister
+
+    private val _localJumpData = MutableLiveData<List<JumpData>>()
+    var localJumpData : LiveData<List<JumpData>> = _localJumpData
 
     private val jumpSaveDataList = mutableListOf<JumpSaveObject.JumpSaveData>()
 
@@ -112,7 +126,7 @@ class WorkOutViewModel(
     }
 
     fun saveJumpData() {
-        jumpSaveDataList.add(JumpSaveObject.JumpSaveData((jumpSaveDataList.size+1).toString(), "0000", Hawk.get<String?>("deviceID").toString(),
+        jumpSaveDataList.add(JumpSaveObject.JumpSaveData((jumpSaveDataList.size+1).toString(),"", "", "", "0000", Hawk.get<String?>("deviceID").toString(),
             _jumpRopeWorkOut.value?.jump.toString(), "20", String.format("%.2f", _jumpRopeWorkOut.value?.calorie), _jumpRopeWorkOut.value?.time.toString()))
 
         addDisposable(workOutRepository.saveJumpWorkOut(JumpSaveObject(auth.currentUser?.uid.toString(), jumpSaveDataList)).subscribe({
@@ -154,4 +168,32 @@ class WorkOutViewModel(
     enum class JumpMode{
         JUMP, SPEED, CALORIE, TIME
     }
+
+
+    fun getDeviceRegister(identifier: String)
+    {
+        deviceRegisterRepository.getDeviceList(identifier).doOnSuccess {
+            if(!it.isNullOrEmpty()){
+                _deviceRegister.postValue(it[0])
+            }
+        }.subscribe()
+    }
+
+    fun deleteHistory()
+    {
+        smartRopeManager.deleteHistory()
+    }
+
+    fun saveLocalJumpData(list: List<JumpSaveObject.JumpSaveData>)
+    {
+        for(i in 0 until list.size)
+        {
+            var jumpData = JumpData(list[i].wid, list[i].did, list[i].mid, list[i].jump,
+                list[i].avg, list[i].calorie, list[i].duration, list[i].finish)
+
+            workOutRepository.insertJumpData(jumpData)
+        }
+    }
+
+
 }

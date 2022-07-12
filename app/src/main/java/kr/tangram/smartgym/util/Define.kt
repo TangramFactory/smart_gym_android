@@ -16,6 +16,7 @@ class Define {
     interface BusEvent{
         companion object {
             const val DeviceState = "DeviceState"
+            const val HistorySync = "HistorySync"
         }
     }
 
@@ -38,6 +39,13 @@ class Define {
     interface ResCode {
         companion object {
             const val SUCCESS = 0
+        }
+    }
+
+    interface HardCording{
+        companion object {
+            const val Weight = 65f
+            const val Uid = "InYNMt8FgISN6G44jf0p6fqcCNr2"
         }
     }
 }

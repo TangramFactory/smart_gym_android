@@ -3,10 +3,10 @@ package kr.tangram.smartgym.base
 import android.app.Activity
 import android.app.Application
 import android.content.Context
-import com.lyft.kronos.AndroidClockFactory
-import com.lyft.kronos.KronosClock
 import android.content.Intent
 import android.os.Handler
+import com.lyft.kronos.AndroidClockFactory
+import com.lyft.kronos.KronosClock
 import com.orhanobut.hawk.Hawk
 import kr.tangram.smartgym.di.*
 import kr.tangram.smartgym.util.Define
@@ -32,6 +32,7 @@ class BaseApplication : Application() {
         }
 
         Hawk.init(context).build();
+
 
         setIsLockScreen(false)
     }
